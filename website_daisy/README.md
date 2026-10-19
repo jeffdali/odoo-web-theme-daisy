@@ -14,7 +14,11 @@
   <a href="#"><img src="https://img.shields.io/badge/Status-Production%20Ready-success?style=flat-square" alt="Status"></a>
   <a href="#"><img src="https://img.shields.io/badge/Price-100%25%20Free-brightgreen?style=flat-square" alt="Price"></a>
   <a href="#"><img src="https://img.shields.io/badge/Author-Jaafar%20Ali-indigo?style=flat-square" alt="Author"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Community-100%25%20Supported-success?style=flat-square" alt="Community"></a>
 </p>
+
+> [!NOTE]
+> **Edition Compatibility & Zero-Risk Promise**: **Odoo 19 Community Edition** is 100% supported out-of-the-box. Built with standard Bootstrap 5 overrides and native SCSS variables, maintaining full visual harmony with Odoo 19 standard apps and views. The module is **100% Free ($0.00)** with no paid lock-in.
 
 ---
 

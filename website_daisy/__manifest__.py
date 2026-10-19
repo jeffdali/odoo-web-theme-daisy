@@ -23,7 +23,7 @@ Key Highlights:
 * **Real-time Instant Theme Customizer**: Configure appearance, brand colors, typography, card elevation, and corner radius directly from Odoo Settings with instant live preview.
 * **100% Free & Open Source**: Licensed under LGPL-3.
 """,
-    'category': 'Themes/Backend',
+    'category': 'Themes',
     'version': '19.0.1.0.0',
     'author': 'Jaafar Ali',
     'maintainer': 'Jaafar Ali',
