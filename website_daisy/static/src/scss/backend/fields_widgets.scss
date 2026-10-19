@@ -1,0 +1,798 @@
+// ==============================================================================
+// Daisy Theme — Field Widgets & One2many Sub-tables
+// Exhaustive styling for all Odoo field controls and embedded sub-lists
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// 1. Checkboxes & Switches (Tactile Radix UI style)
+// ------------------------------------------------------------------------------
+.form-check-input {
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 4px !important;
+    width: 1.05em !important;
+    height: 1.05em !important;
+    cursor: pointer;
+    box-shadow: none !important;
+    transition: all 0.15s ease !important;
+
+    &[type="radio"] {
+        border-radius: 50% !important;
+    }
+
+    &:checked {
+        background-color: var(--daisy-primary, #6366f1) !important;
+        border-color: var(--daisy-primary, #6366f1) !important;
+        box-shadow: none !important;
+    }
+
+    &:focus {
+        border-color: var(--daisy-primary, #6366f1) !important;
+        box-shadow: none !important;
+    }
+}
+
+// Boolean Switch Toggle (.form-switch)
+.form-switch {
+    padding-left: 2.5em !important;
+
+    .form-check-input {
+        width: 2.1em !important;
+        height: 1.2em !important;
+        border-radius: 9999px !important;
+        background-color: #e2e8f0 !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23ffffff'/%3e%3c/svg%3e") !important;
+
+        &:checked {
+            background-color: var(--daisy-primary, #6366f1) !important;
+            border-color: var(--daisy-primary, #6366f1) !important;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23ffffff'/%3e%3c/svg%3e") !important;
+            box-shadow: none !important;
+        }
+
+        &:focus {
+            box-shadow: none !important;
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 2. Many2many Tag Badges (.o_tag, .o_tag_color_*)
+// Elegant, accessible shadcn pastel badges with dark contrast text
+// ------------------------------------------------------------------------------
+.o_tag {
+    border-radius: 6px !important;
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    padding: 4px 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    line-height: 1.4 !important;
+    box-shadow: none !important;
+    border: 1px solid transparent;
+
+    .o_delete {
+        opacity: 0.6;
+        cursor: pointer;
+        transition: opacity 0.12s ease;
+
+        &:hover {
+            opacity: 1;
+            color: #ef4444 !important;
+        }
+    }
+
+    // Curated Palette of 11 Tag Colors
+    &.o_tag_color_0 {
+        background-color: #f1f5f9 !important;
+        border-color: #e2e8f0 !important;
+        color: #334155 !important;
+    }
+    &.o_tag_color_1 {
+        background-color: #fee2e2 !important;
+        border-color: #fecaca !important;
+        color: #991b1b !important;
+    }
+    &.o_tag_color_2 {
+        background-color: #ffedd5 !important;
+        border-color: #fed7aa !important;
+        color: #9a3412 !important;
+    }
+    &.o_tag_color_3 {
+        background-color: #fef3c7 !important;
+        border-color: #fde68a !important;
+        color: #92400e !important;
+    }
+    &.o_tag_color_4 {
+        background-color: #ecfdf5 !important;
+        border-color: #a7f3d0 !important;
+        color: #065f46 !important;
+    }
+    &.o_tag_color_5 {
+        background-color: #ccfbf1 !important;
+        border-color: #99f6e4 !important;
+        color: #115e59 !important;
+    }
+    &.o_tag_color_6 {
+        background-color: #e0f2fe !important;
+        border-color: #bae6fd !important;
+        color: #075985 !important;
+    }
+    &.o_tag_color_7 {
+        background-color: #e0e7ff !important;
+        border-color: #c7d2fe !important;
+        color: #3730a3 !important;
+    }
+    &.o_tag_color_8 {
+        background-color: #ede9fe !important;
+        border-color: #ddd6fe !important;
+        color: #5b21b6 !important;
+    }
+    &.o_tag_color_9 {
+        background-color: #fae8ff !important;
+        border-color: #f5d0fe !important;
+        color: #86198f !important;
+    }
+    &.o_tag_color_10 {
+        background-color: #ffe4e6 !important;
+        border-color: #fecdd3 !important;
+        color: #9f1239 !important;
+    }
+}
+
+// Dark Mode Tag Badges (Linear / Vercel Pro Soft Glow Chips)
+[data-daisy-scheme="dark"],
+[data-bs-theme="dark"] {
+    .o_tag {
+        &.o_tag_color_0 {
+            background-color: rgba(148, 163, 184, 0.14) !important;
+            border-color: rgba(148, 163, 184, 0.25) !important;
+            color: #cbd5e1 !important;
+        }
+        &.o_tag_color_1 {
+            background-color: rgba(239, 68, 68, 0.16) !important;
+            border-color: rgba(239, 68, 68, 0.3) !important;
+            color: #fca5a5 !important;
+        }
+        &.o_tag_color_2 {
+            background-color: rgba(249, 115, 22, 0.16) !important;
+            border-color: rgba(249, 115, 22, 0.3) !important;
+            color: #fdba74 !important;
+        }
+        &.o_tag_color_3 {
+            background-color: rgba(245, 158, 11, 0.16) !important;
+            border-color: rgba(245, 158, 11, 0.3) !important;
+            color: #fde68a !important;
+        }
+        &.o_tag_color_4 {
+            background-color: rgba(16, 185, 129, 0.16) !important;
+            border-color: rgba(16, 185, 129, 0.3) !important;
+            color: #6ee7b7 !important;
+        }
+        &.o_tag_color_5 {
+            background-color: rgba(20, 184, 166, 0.16) !important;
+            border-color: rgba(20, 184, 166, 0.3) !important;
+            color: #5eead4 !important;
+        }
+        &.o_tag_color_6 {
+            background-color: rgba(14, 165, 233, 0.16) !important;
+            border-color: rgba(14, 165, 233, 0.3) !important;
+            color: #7dd3fc !important;
+        }
+        &.o_tag_color_7 {
+            background-color: rgba(99, 102, 241, 0.16) !important;
+            border-color: rgba(99, 102, 241, 0.3) !important;
+            color: #a5b4fc !important;
+        }
+        &.o_tag_color_8 {
+            background-color: rgba(139, 92, 246, 0.16) !important;
+            border-color: rgba(139, 92, 246, 0.3) !important;
+            color: #c4b5fd !important;
+        }
+        &.o_tag_color_9 {
+            background-color: rgba(217, 70, 239, 0.16) !important;
+            border-color: rgba(217, 70, 239, 0.3) !important;
+            color: #f0abfc !important;
+        }
+        &.o_tag_color_10 {
+            background-color: rgba(244, 63, 94, 0.16) !important;
+            border-color: rgba(244, 63, 94, 0.3) !important;
+            color: #fda4af !important;
+        }
+    }
+}
+
+// Completely hide Odoo core's clunky hover backdrop
+.o_avatar_backdrop {
+    display: none !important;
+}
+
+// ------------------------------------------------------------------------------
+// 2b. Assignee / Avatar Badges (.o_tag.o_avatar, .o_field_many2many_tags_avatar)
+// Ultra-clean modern pill chip with circular avatar & smooth hover deletion
+// ------------------------------------------------------------------------------
+.o_tag.o_avatar,
+.o_field_many2many_tags_avatar .o_tag {
+    height: 30px !important;
+    min-height: 30px !important;
+    padding: 3px 10px 3px 4px !important;
+    border-radius: 9999px !important;
+    background-color: var(--daisy-surface, #ffffff) !important;
+    border: 1px solid var(--daisy-border, #e2e8f0) !important;
+    color: var(--daisy-text, #0f172a) !important;
+    font-size: 0.8125rem !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    box-shadow: var(--daisy-shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.04)) !important;
+    gap: 0 !important;
+    margin: 2px !important;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+
+    &:hover {
+        background-color: var(--daisy-surface-muted, #f8fafc) !important;
+        border-color: var(--daisy-border-hover, #cbd5e1) !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+        transform: translateY(-1px);
+    }
+
+    img.o_avatar,
+    img.o_m2m_avatar,
+    .o_avatar,
+    .o_m2m_avatar {
+        width: 22px !important;
+        height: 22px !important;
+        min-width: 22px !important;
+        border-radius: 9999px !important;
+        object-fit: cover !important;
+        margin: 0 !important;
+        border: 1px solid rgba(0, 0, 0, 0.08) !important;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 0.6875rem !important;
+        font-weight: 700 !important;
+        flex-shrink: 0 !important;
+    }
+
+    .o_tag_badge_text {
+        font-size: 0.8125rem !important;
+        font-weight: 500 !important;
+        color: var(--daisy-text, #0f172a) !important;
+        margin-left: 6px !important;
+        margin-right: 4px !important;
+        line-height: 1 !important;
+        letter-spacing: -0.01em !important;
+    }
+
+    .o_delete {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 18px !important;
+        height: 18px !important;
+        min-width: 18px !important;
+        border-radius: 9999px !important;
+        padding: 0 !important;
+        margin-left: 2px !important;
+        margin-right: -2px !important;
+        background: transparent !important;
+        color: var(--daisy-text-muted, #94a3b8) !important;
+        opacity: 0 !important;
+        visibility: hidden;
+        border: none !important;
+        transition: opacity 0.15s ease, background-color 0.15s ease, color 0.15s ease, transform 0.15s ease !important;
+
+        .oi, .fa {
+            font-size: 0.625rem !important;
+            line-height: 1 !important;
+        }
+
+        &:hover {
+            background-color: rgba(239, 68, 68, 0.12) !important;
+            color: #ef4444 !important;
+            opacity: 1 !important;
+            transform: scale(1.15);
+        }
+    }
+
+    &:hover .o_delete {
+        opacity: 0.75 !important;
+        visibility: visible !important;
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 3. Priority Star Widget (.o_priority)
+// ------------------------------------------------------------------------------
+.o_priority {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+
+    .o_priority_star {
+        font-size: 1rem;
+        color: #cbd5e1;
+        transition: transform 0.12s ease, color 0.12s ease;
+
+        &.fa-star {
+            color: #f59e0b !important;
+            filter: drop-shadow(0 1px 1px rgba(245, 158, 11, 0.3));
+        }
+
+        &:hover {
+            transform: scale(1.15);
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 4. Image Uploader (.o_field_image)
+// ------------------------------------------------------------------------------
+.o_field_image {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    box-shadow: none !important;
+    transition: border-color 0.15s ease;
+
+    &:hover {
+        border-color: #6366f1;
+
+        .o_clear_file_button,
+        .o_select_file_button {
+            opacity: 1;
+        }
+    }
+
+    img {
+        border-radius: 9px;
+        object-fit: cover;
+    }
+
+    .o_clear_file_button,
+    .o_select_file_button {
+        background-color: rgba(15, 23, 42, 0.75) !important;
+        color: #ffffff !important;
+        border-radius: 6px !important;
+        padding: 4px 8px !important;
+        font-size: 0.75rem !important;
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        transition: opacity 0.15s ease, background-color 0.15s ease;
+
+        &:hover {
+            background-color: rgba(15, 23, 42, 0.95) !important;
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 5. Embedded One2many Sub-tables (.o_field_x2many_list)
+// Clean sub-tables for Sale Order Lines, Invoice Lines, etc.
+// ------------------------------------------------------------------------------
+.o_field_x2many_list {
+    background-color: var(--daisy-surface, #ffffff) !important;
+    border: 1px solid var(--daisy-border, #e2e8f0) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+
+    .o_list_table {
+        margin-bottom: 0 !important;
+
+        thead th {
+            background-color: var(--daisy-surface-muted, #f8fafc) !important;
+            border-bottom: 1px solid var(--daisy-border, #e2e8f0) !important;
+            padding: 8px 12px !important;
+            font-size: 0.75rem !important;
+            font-weight: 600 !important;
+            color: var(--daisy-text-secondary, #64748b) !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.03em !important;
+
+            &.o_list_actions_header {
+                width: 44px !important;
+                min-width: 44px !important;
+                max-width: 44px !important;
+                padding: 0 !important;
+                text-align: center !important;
+                vertical-align: middle !important;
+                position: sticky !important;
+                right: 0 !important;
+                z-index: 3 !important;
+            }
+        }
+
+        .o_optional_columns_dropdown {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            height: 100% !important;
+            width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+
+            .btn {
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                width: 32px !important;
+                height: 32px !important;
+                padding: 0 !important;
+                border: none !important;
+                background: transparent !important;
+                box-shadow: none !important;
+            }
+
+            .o_optional_columns_dropdown_toggle {
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                width: 28px !important;
+                height: 28px !important;
+                padding: 0 !important;
+                color: var(--daisy-text-muted, #64748b) !important;
+                border-radius: 6px !important;
+                font-size: 13px !important;
+                transition: all 0.15s ease !important;
+
+                &:hover {
+                    color: var(--daisy-text, #1e293b) !important;
+                    background-color: var(--daisy-surface-muted, #f1f5f9) !important;
+                }
+            }
+        }
+
+        tbody tr {
+            td {
+                padding: 6px 12px !important;
+                font-size: 0.8125rem !important;
+                border-bottom: 1px solid var(--daisy-border, #f1f5f9) !important;
+                vertical-align: middle;
+
+                .o_input {
+                    padding: 3px 6px !important;
+                    font-size: 0.8125rem !important;
+                }
+            }
+
+            // Record removal icon
+            .o_list_record_remove {
+                color: #94a3b8;
+                cursor: pointer;
+                transition: color 0.12s ease;
+
+                &:hover {
+                    color: #ef4444 !important;
+                }
+            }
+        }
+    }
+
+    // Add a line / Add a section / Add a note buttons
+    .o_field_x2many_list_row_add,
+    .btn-add-record {
+        padding: 10px 16px !important;
+        background-color: var(--daisy-surface-muted, #f8fafc) !important;
+        border-top: 1px solid var(--daisy-border, #f1f5f9) !important;
+        display: flex;
+        gap: 8px;
+
+        a, button {
+            font-size: 0.8125rem !important;
+            font-weight: 500 !important;
+            color: var(--daisy-primary, #6366f1) !important;
+            text-decoration: none !important;
+            padding: 4px 10px !important;
+            border-radius: 6px !important;
+            background-color: var(--daisy-surface, #ffffff) !important;
+            border: 1px dashed var(--daisy-border-hover, #c7d2fe) !important;
+            transition: all 0.12s ease !important;
+
+            &:hover {
+                background-color: var(--daisy-primary-subtle, #eef2ff) !important;
+                border-color: var(--daisy-primary, #6366f1) !important;
+                color: var(--daisy-primary-hover, #4f46e5) !important;
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 6. Ribbons (.ribbon)
+// Modern status ribbons (Won, Lost, Archived)
+// ------------------------------------------------------------------------------
+.ribbon {
+    font-size: 0.6875rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    padding: 3px 12px !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+
+    &.bg-success {
+        background-color: #10b981 !important;
+        color: #ffffff !important;
+    }
+
+    &.bg-danger {
+        background-color: #ef4444 !important;
+        color: #ffffff !important;
+    }
+
+    &.bg-warning {
+        background-color: #f59e0b !important;
+        color: #ffffff !important;
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 7. Many2one Autocomplete & External Link (.o_field_many2one, .o-autocomplete)
+// ------------------------------------------------------------------------------
+.o_field_many2one {
+    .o_external_button {
+        color: var(--daisy-text-muted, #94a3b8) !important;
+        font-size: 0.75rem !important;
+        border-radius: var(--daisy-radius-sm, 4px) !important;
+        transition: all 0.15s ease;
+
+        &:hover {
+            background-color: var(--daisy-surface-subtle, #f1f5f9) !important;
+            color: var(--daisy-primary) !important;
+        }
+    }
+}
+
+.o-autocomplete--dropdown-menu {
+    border: 1px solid var(--daisy-border, #e2e8f0) !important;
+    border-radius: var(--daisy-radius, 8px) !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04) !important;
+    padding: 4px !important;
+    background-color: var(--daisy-surface, #ffffff) !important;
+
+    .dropdown-item {
+        font-size: 0.8125rem !important;
+        font-weight: 500 !important;
+        border-radius: var(--daisy-radius-sm, 6px) !important;
+        padding: 6px 12px !important;
+        color: var(--daisy-text, #0f172a) !important;
+
+        &:hover,
+        &.active,
+        &:focus {
+            background-color: var(--daisy-surface-subtle, #f1f5f9) !important;
+            color: var(--daisy-text, #0f172a) !important;
+        }
+
+        &.o_m2o_dropdown_option_create,
+        &.o_m2o_dropdown_option_search_more {
+            color: var(--daisy-primary) !important;
+            font-weight: 600 !important;
+            border-top: 1px solid var(--daisy-border, #f1f5f9);
+            margin-top: 4px;
+            padding-top: 8px;
+
+            &:hover {
+                background-color: var(--daisy-surface-subtle, #f1f5f9) !important;
+                color: var(--daisy-primary) !important;
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 8. DateTime Picker Popover (.o_datetime_picker)
+// ------------------------------------------------------------------------------
+.o_datetime_picker {
+    border: 1px solid var(--daisy-border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25) !important;
+    background-color: var(--daisy-surface) !important;
+    color: var(--daisy-text) !important;
+    padding: 12px !important;
+
+    .o_datetime_picker_header {
+        font-weight: 700 !important;
+        color: var(--daisy-text) !important;
+
+        .btn {
+            border-radius: 6px !important;
+            color: var(--daisy-text-muted) !important;
+
+            &:hover {
+                background-color: var(--daisy-surface-muted) !important;
+                color: var(--daisy-text) !important;
+            }
+        }
+    }
+
+    table {
+        th {
+            font-size: 0.6875rem !important;
+            font-weight: 600 !important;
+            color: var(--daisy-text-muted) !important;
+            text-transform: uppercase !important;
+        }
+
+        td {
+            border-radius: 6px !important;
+            font-size: 0.8125rem !important;
+            color: var(--daisy-text) !important;
+            transition: all 0.12s ease;
+
+            &:hover {
+                background-color: var(--daisy-surface-muted) !important;
+            }
+
+            &.o_selected {
+                background-color: var(--daisy-primary, #6366f1) !important;
+                color: #ffffff !important;
+                font-weight: 600 !important;
+            }
+
+            &.o_today:not(.o_selected) {
+                border: 1px solid var(--daisy-primary, #6366f1) !important;
+                color: var(--daisy-primary, #6366f1) !important;
+                font-weight: 600 !important;
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 9. Progress Bars & Gauges (.o_progressbar, .progress)
+// ------------------------------------------------------------------------------
+.o_progressbar,
+.progress {
+    height: 8px !important;
+    border-radius: 9999px !important;
+    background-color: #e2e8f0 !important;
+    overflow: hidden;
+
+    .progress-bar {
+        background-color: #6366f1 !important;
+        border-radius: 9999px !important;
+        transition: width 0.3s ease;
+
+        &.bg-success {
+            background-color: #10b981 !important;
+        }
+
+        &.bg-danger {
+            background-color: #ef4444 !important;
+        }
+
+        &.bg-warning {
+            background-color: #f59e0b !important;
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 10. Radio Buttons (.o_radio_item)
+// ------------------------------------------------------------------------------
+.o_radio_item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 12px;
+    cursor: pointer;
+
+    input[type="radio"] {
+        accent-color: #6366f1 !important;
+        cursor: pointer;
+    }
+
+    label {
+        font-size: 0.8125rem !important;
+        color: #334155 !important;
+        cursor: pointer;
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 11. Copy to Clipboard Button (.o_clipboard_button)
+// ------------------------------------------------------------------------------
+.o_clipboard_button {
+    border-radius: 6px !important;
+    padding: 4px 8px !important;
+    font-size: 0.75rem !important;
+    color: var(--daisy-text-muted) !important;
+    border: 1px solid var(--daisy-border) !important;
+    background-color: var(--daisy-surface) !important;
+    transition: all 0.12s ease;
+
+    &:hover {
+        background-color: var(--daisy-surface-muted) !important;
+        color: var(--daisy-text) !important;
+        border-color: var(--daisy-border-hover) !important;
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 12. Batch Selection Bar (.o_list_selection_box)
+// Floating tactile pill when records are checked in List view
+// ------------------------------------------------------------------------------
+.o_list_selection_box {
+    background-color: #121824 !important;
+    color: #f8fafc !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 8px !important;
+    padding: 8px 16px !important;
+    margin: 8px 16px !important;
+    font-size: 0.8125rem !important;
+    font-weight: 500 !important;
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.4) !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+        color: var(--daisy-primary, #818cf8) !important;
+        font-weight: 600 !important;
+        text-decoration: underline;
+
+        &:hover {
+            color: var(--daisy-primary-hover, #a5b4fc) !important;
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 13. Empty State / No Content Helper (.o_view_nocontent)
+// ------------------------------------------------------------------------------
+.o_view_nocontent {
+    max-width: 480px !important;
+    margin: 60px auto !important;
+    text-align: center !important;
+    padding: 36px 24px !important;
+    background-color: var(--daisy-surface) !important;
+    border: 1px dashed var(--daisy-border) !important;
+    border-radius: 12px !important;
+
+    .o_nocontent_help {
+        h4, p.o_view_nocontent_smiling_face {
+            font-size: 1.125rem !important;
+            font-weight: 700 !important;
+            color: var(--daisy-text) !important;
+            margin-bottom: 8px !important;
+        }
+
+        p {
+            font-size: 0.875rem !important;
+            color: var(--daisy-text-muted) !important;
+            line-height: 1.5;
+        }
+    }
+
+    .btn {
+        margin-top: 16px !important;
+        border-radius: 6px !important;
+        font-weight: 500 !important;
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 14. Export Data Dialog (.o_export)
+// ------------------------------------------------------------------------------
+.o_export {
+    .o_left_field_panel,
+    .o_right_field_panel {
+        border: 1px solid var(--daisy-border) !important;
+        border-radius: 8px !important;
+        background-color: var(--daisy-surface) !important;
+        color: var(--daisy-text) !important;
+        padding: 10px !important;
+    }
+
+    .o_center_field_panel {
+        .btn {
+            border-radius: 6px !important;
+        }
+    }
+}

@@ -1,0 +1,1315 @@
+// ==============================================================================
+// Daisy Theme — Form View & Comprehensive Modern Inputs
+// Clean floating cards, Radix stage pills, and tactile shadcn/ui inputs
+// Full token-driven design supporting Light, Dark, and Contrast schemes
+// ==============================================================================
+
+.o_form_view {
+    background-color: var(--daisy-surface-subtle) !important;
+
+    // Set and enforce CSS variables across all inner fields
+    --o-input-border-color: var(--daisy-border);
+    --o-input-background-color: var(--daisy-surface);
+    --o-form-lightsecondary: var(--daisy-border);
+
+    // Prevent Odoo 19 core from clearing border color when not hovered/focused
+    &:not(.o_field_highlight) .o_field_widget:not(.o_field_invalid):not(.o_field_highlight) .o_input:not(:hover):not(:focus) {
+        --o-input-border-color: var(--daisy-border) !important;
+    }
+
+    // --------------------------------------------------------------------------
+    // 1. Form Statusbar (Modern Radix Stepper Pills)
+    // --------------------------------------------------------------------------
+    .o_form_statusbar {
+        background-color: var(--daisy-surface) !important;
+        border: 1px solid var(--daisy-border) !important;
+        border-radius: var(--daisy-radius-lg, 10px) !important;
+        box-shadow: none !important;
+        padding: 8px 16px !important;
+        margin: 12px auto 16px auto !important;
+        width: 100% !important;
+        max-width: 1140px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        min-height: 48px !important;
+
+        // Action buttons inside statusbar
+        .o_statusbar_buttons {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            .btn {
+                border-radius: var(--daisy-radius-sm, 6px) !important;
+                font-size: 0.8125rem !important;
+                font-weight: 500 !important;
+                padding: 6px 14px !important;
+                box-shadow: none !important;
+                transition: all 0.15s ease !important;
+
+                &.btn-primary {
+                    background-color: var(--daisy-primary) !important;
+                    border-color: var(--daisy-primary) !important;
+                    color: #ffffff !important;
+                    box-shadow: none !important;
+
+                    &:hover {
+                        background-color: var(--daisy-primary-hover, var(--daisy-primary)) !important;
+                        border-color: var(--daisy-primary-hover, var(--daisy-primary)) !important;
+                        color: #ffffff !important;
+                        filter: brightness(0.96);
+                        box-shadow: none !important;
+                        transform: none !important;
+                    }
+
+                    &:active {
+                        background-color: var(--daisy-primary-hover, var(--daisy-primary)) !important;
+                        filter: brightness(0.9);
+                        transform: scale(0.98) !important;
+                        box-shadow: none !important;
+                    }
+                }
+
+                &.btn-secondary {
+                    background-color: var(--daisy-surface) !important;
+                    border: 1px solid var(--daisy-border) !important;
+                    color: var(--daisy-text) !important;
+                    box-shadow: none !important;
+
+                    &:hover {
+                        background-color: var(--daisy-surface-muted) !important;
+                        border-color: var(--daisy-border-hover) !important;
+                        box-shadow: none !important;
+                    }
+
+                    &:active {
+                        background-color: var(--daisy-border) !important;
+                    }
+                }
+            }
+        }
+
+        // Right-side stage container — prevent stretching and ensure perfect vertical centering
+        .o_field_statusbar,
+        .o_field_widget:has(.o_statusbar_status) {
+            align-self: center !important;
+            margin: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        // Stepper Stage Indicators (Radix UI Segmented Control Capsule Track)
+        .o_statusbar_status {
+            display: inline-flex !important;
+            align-items: center !important;
+            align-self: center !important;
+            gap: 2px !important;
+            background-color: var(--daisy-surface-muted) !important;
+            padding: 3px !important;
+            border-radius: var(--daisy-radius-lg, 10px) !important;
+            border: 1px solid var(--daisy-border) !important;
+            margin: 0 !important;
+
+            // When only a dropdown is rendered (single dropdown mode), remove outer track box
+            &:not(:has(.o_arrow_button:not(.dropdown-toggle):not(.d-none))) {
+                background-color: transparent !important;
+                border-color: transparent !important;
+                padding: 0 !important;
+            }
+
+            // Strict enforcement of Bootstrap .d-none across all statusbar elements
+            .d-none,
+            &.d-none,
+            button.d-none,
+            .btn.d-none,
+            .o_arrow_button.d-none,
+            .dropdown-toggle.d-none,
+            .o_statusbar_overflow_btn.d-none,
+            [aria-label="More..."].d-none {
+                display: none !important;
+            }
+
+            // When the stage dropdown is rendered, hide any overflow before/after ellipsis buttons
+            &:has(.o_statusbar_stage_dropdown:not(.d-none)) {
+                .o_statusbar_overflow_btn,
+                button[aria-label="More..."],
+                .dropdown-toggle.o_arrow_button.o_first,
+                .dropdown-toggle.o_arrow_button.o_last,
+                .dropdown:has(button[aria-label="More..."]),
+                .dropdown:has(.o_statusbar_overflow_btn) {
+                    display: none !important;
+                }
+            }
+
+            .dropdown:not(.d-none):not(:has(> .d-none)) {
+                display: inline-flex !important;
+                align-items: center !important;
+            }
+
+            .dropdown.d-none,
+            .dropdown:has(> .d-none),
+            .dropdown:has(> button.d-none) {
+                display: none !important;
+            }
+
+            // Inline stage pills
+            .o_arrow_button {
+                clip-path: none !important;
+                border-radius: var(--daisy-radius-sm, 7px) !important;
+                margin: 0 !important;
+                padding: 6px 14px !important;
+                font-size: 0.8125rem !important;
+                font-weight: 500 !important;
+                color: var(--daisy-text-muted) !important;
+                background-color: transparent !important;
+                border: 1px solid transparent !important;
+                transition: all 0.15s ease !important;
+                position: relative !important;
+                line-height: 1.25 !important;
+                box-shadow: none !important;
+
+                &::before,
+                &::after {
+                    display: none !important;
+                    content: none !important;
+                }
+
+                &:disabled,
+                &.disabled {
+                    color: var(--daisy-text-muted) !important;
+                    opacity: 0.6;
+                    background-color: transparent !important;
+                    border-color: transparent !important;
+                }
+
+                &:not(.disabled):hover {
+                    background-color: var(--daisy-surface) !important;
+                    color: var(--daisy-text) !important;
+                }
+
+                // Active stage (Clean flat accent pill)
+                &.btn-primary,
+                &.o_arrow_button_current {
+                    background-color: var(--daisy-primary) !important;
+                    border-color: var(--daisy-primary) !important;
+                    color: #ffffff !important;
+                    font-weight: 500 !important;
+                    box-shadow: none !important;
+                }
+            }
+
+            // Stage Dropdown Toggle Button (Across the entire application)
+            .o_statusbar_stage_dropdown,
+            .dropdown-toggle:not(.o_arrow_button) {
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                height: 34px !important;
+                min-height: 34px !important;
+                padding: 0 14px 0 12px !important;
+                font-size: 0.8125rem !important;
+                font-weight: 600 !important;
+                line-height: 1 !important;
+                border-radius: var(--daisy-radius-md, 8px) !important;
+                background-color: var(--daisy-surface) !important;
+                border: 1px solid var(--daisy-border) !important;
+                color: var(--daisy-text) !important;
+                box-shadow: var(--daisy-shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.05)) !important;
+                transition: all 0.15s ease !important;
+                cursor: pointer !important;
+                text-decoration: none !important;
+                outline: none !important;
+                margin: 0 !important;
+
+                // Pulsing accent dot for active stage indicator
+                .o_stage_dot {
+                    width: 7px;
+                    height: 7px;
+                    min-width: 7px;
+                    border-radius: 9999px;
+                    background-color: var(--daisy-primary, #6366f1);
+                    box-shadow: 0 0 6px var(--daisy-primary, #6366f1);
+                    display: inline-block;
+                    flex-shrink: 0;
+                    animation: daisy-pulse-dot 2.5s infinite;
+                }
+
+                // Stage label
+                .o_stage_label {
+                    max-width: 180px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    font-weight: 600;
+                    letter-spacing: -0.01em;
+                }
+
+                // Dropdown Chevron icon
+                .o_dropdown_chevron {
+                    font-size: 0.6875rem !important;
+                    color: var(--daisy-text-muted) !important;
+                    transition: transform 0.2s ease, color 0.15s ease !important;
+                    display: inline-block;
+                }
+
+                // Fallback caret if chevron element not in DOM
+                &:not(:has(.o_dropdown_chevron))::after {
+                    display: inline-block !important;
+                    content: "" !important;
+                    margin-left: 8px !important;
+                    vertical-align: middle !important;
+                    border-top: 4px solid var(--daisy-text-muted) !important;
+                    border-right: 4px solid transparent !important;
+                    border-left: 4px solid transparent !important;
+                    border-bottom: 0 !important;
+                    transition: transform 0.2s ease, border-top-color 0.15s ease !important;
+                }
+
+                &:hover {
+                    background-color: var(--daisy-surface-muted) !important;
+                    border-color: var(--daisy-border-hover) !important;
+                    color: var(--daisy-text) !important;
+                    box-shadow: var(--daisy-shadow-sm, 0 2px 4px rgba(0, 0, 0, 0.06)) !important;
+
+                    .o_dropdown_chevron {
+                        color: var(--daisy-text) !important;
+                    }
+
+                    &:not(:has(.o_dropdown_chevron))::after {
+                        border-top-color: var(--daisy-text) !important;
+                    }
+                }
+
+                &:focus,
+                &:focus-visible {
+                    border-color: var(--daisy-primary) !important;
+                    box-shadow: 0 0 0 3px var(--daisy-primary-subtle, rgba(99, 102, 241, 0.15)) !important;
+                }
+
+                &[aria-expanded="true"],
+                &.show {
+                    background-color: var(--daisy-surface-muted) !important;
+                    border-color: var(--daisy-primary) !important;
+                    box-shadow: 0 0 0 3px var(--daisy-primary-subtle, rgba(99, 102, 241, 0.15)) !important;
+
+                    .o_dropdown_chevron {
+                        transform: rotate(180deg) !important;
+                        color: var(--daisy-primary) !important;
+                    }
+
+                    &:not(:has(.o_dropdown_chevron))::after {
+                        transform: rotate(180deg) !important;
+                        border-top-color: var(--daisy-primary) !important;
+                    }
+                }
+            }
+        }
+    }
+
+    // Keyframe for glowing active stage dot
+    @keyframes daisy-pulse-dot {
+        0%, 100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.5;
+            transform: scale(0.85);
+        }
+    }
+
+    // Stage dropdown item styles (used across the entire application)
+    .o_stage_dropdown_item {
+        padding: 8px 14px !important;
+        font-size: 0.8125rem !important;
+        font-weight: 500 !important;
+        border-radius: var(--daisy-radius-sm, 6px) !important;
+        transition: background-color 0.12s ease !important;
+
+        // Suppress legacy Odoo :before and :after checkmark pseudo-elements
+        &::before,
+        &:before,
+        &::after,
+        &:after {
+            display: none !important;
+            content: none !important;
+        }
+
+        &.active,
+        &:active {
+            background-color: var(--daisy-primary) !important;
+            color: #ffffff !important;
+
+            .o_stage_check {
+                color: #ffffff !important;
+            }
+        }
+
+        &:hover:not(.active) {
+            background-color: var(--daisy-surface-muted) !important;
+            color: var(--daisy-text) !important;
+        }
+
+        .o_stage_check {
+            color: var(--daisy-primary);
+            font-size: 0.8125rem !important;
+            margin-left: auto !important;
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // 2. Form Sheet (Clean floating card)
+    // --------------------------------------------------------------------------
+    .o_form_sheet_bg,
+    .o_form_renderer {
+        background-color: transparent !important;
+        padding: 16px 20px 48px 20px !important;
+
+        .o_form_sheet {
+            background-color: var(--daisy-card-bg, var(--daisy-surface)) !important;
+            border: var(--daisy-card-border, 1px solid var(--daisy-border)) !important;
+            border-radius: var(--daisy-radius-lg, 12px) !important;
+            box-shadow: var(--daisy-card-shadow, none) !important;
+            backdrop-filter: var(--daisy-card-backdrop, none) !important;
+            -webkit-backdrop-filter: var(--daisy-card-backdrop, none) !important;
+            padding: 36px 44px !important;
+            width: 100% !important;
+            max-width: 1140px !important;
+            margin: 0 auto !important;
+            color: var(--daisy-text) !important;
+            transition: box-shadow 0.15s ease, border-radius 0.15s ease, background-color 0.15s ease !important;
+        }
+    }
+
+    .o_form_sheet {
+        width: 100% !important;
+        max-width: 1140px !important;
+        margin: 0 auto !important;
+        background-color: var(--daisy-card-bg, var(--daisy-surface)) !important;
+        border: var(--daisy-card-border, 1px solid var(--daisy-border)) !important;
+        color: var(--daisy-text) !important;
+        box-shadow: var(--daisy-card-shadow, none) !important;
+        backdrop-filter: var(--daisy-card-backdrop, none) !important;
+        -webkit-backdrop-filter: var(--daisy-card-backdrop, none) !important;
+        transition: box-shadow 0.15s ease, border-radius 0.15s ease, background-color 0.15s ease !important;
+    }
+
+    // --------------------------------------------------------------------------
+    // 3. Title Field (.oe_title)
+    // --------------------------------------------------------------------------
+    .oe_title {
+        margin-bottom: 20px !important;
+
+        h1 {
+            font-size: 1.75rem !important;
+            font-weight: 700 !important;
+            color: var(--daisy-text) !important;
+            letter-spacing: -0.025em !important;
+            margin-bottom: 8px !important;
+
+            // Specifically title inputs (e.g. opportunity name, partner name)
+            .o_input,
+            input,
+            textarea {
+                font-size: 1.625rem !important;
+                font-weight: 700 !important;
+                color: var(--daisy-text) !important;
+                border: 1px solid transparent !important;
+                border-bottom: 2px solid var(--daisy-border) !important;
+                border-radius: 0 !important;
+                padding: 4px 0 8px 0 !important;
+                background: transparent !important;
+                box-shadow: none !important;
+                resize: none !important;
+                min-height: auto !important;
+                line-height: 1.3 !important;
+
+                &:hover {
+                    border-bottom-color: var(--daisy-border-hover) !important;
+                }
+
+                &:focus {
+                    border-bottom-color: var(--daisy-primary) !important;
+                    outline: none !important;
+                    box-shadow: none !important;
+                }
+            }
+        }
+
+        // Subtitles or secondary fields placed inside oe_title (like Expected Revenue in CRM)
+        h2 {
+            font-size: 1rem !important;
+            font-weight: 500 !important;
+            color: var(--daisy-text-secondary) !important;
+
+            label {
+                font-size: 0.8125rem !important;
+                font-weight: 500 !important;
+                color: var(--daisy-text-muted) !important;
+                margin-bottom: 4px !important;
+            }
+
+            // Normal boxed inputs inside h2 (do NOT inherit h1 border-bottom underline)
+            .o_input,
+            input.o_input,
+            select.o_input {
+                font-size: 0.875rem !important;
+                font-weight: 500 !important;
+                border: 1px solid var(--daisy-border) !important;
+                border-radius: var(--daisy-radius, 8px) !important;
+                background-color: var(--daisy-surface) !important;
+                padding: 6px 12px !important;
+                min-height: 38px !important;
+                box-shadow: none !important;
+
+                &:focus {
+                    border-color: var(--daisy-primary) !important;
+                    box-shadow: none !important;
+                }
+            }
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // 4. Smart Button Box (.oe_button_box)
+    // --------------------------------------------------------------------------
+    .oe_button_box {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px !important;
+
+        .oe_stat_button {
+            background: var(--daisy-surface) !important;
+            border: 1px solid var(--daisy-border) !important;
+            border-radius: var(--daisy-radius, 8px) !important;
+            padding: 8px 14px !important;
+            box-shadow: none !important;
+            transition: all 0.15s ease !important;
+
+            &:hover {
+                background-color: var(--daisy-surface-muted) !important;
+                border-color: var(--daisy-border-hover) !important;
+                box-shadow: none !important;
+            }
+
+            .o_button_icon {
+                color: var(--daisy-primary) !important;
+                font-size: 1.125rem !important;
+            }
+
+            .o_stat_value {
+                font-size: 1.0625rem !important;
+                font-weight: 700 !important;
+                color: var(--daisy-text) !important;
+            }
+
+            .o_stat_text {
+                font-size: 0.6875rem !important;
+                font-weight: 600 !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.04em !important;
+                color: var(--daisy-text-muted) !important;
+            }
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // 5. Notebook & Tabs (.o_notebook)
+    // --------------------------------------------------------------------------
+    .o_notebook {
+        margin-top: 24px !important;
+
+        .nav-tabs {
+            border-bottom: 1px solid var(--daisy-border) !important;
+            gap: 4px;
+
+            .nav-link {
+                border: none !important;
+                border-bottom: 2px solid transparent !important;
+                border-radius: var(--daisy-radius-sm, 6px) var(--daisy-radius-sm, 6px) 0 0 !important;
+                padding: 10px 18px !important;
+                font-size: 0.8125rem !important;
+                font-weight: 500 !important;
+                color: var(--daisy-text-muted) !important;
+                transition: all 0.15s ease !important;
+                background-color: transparent !important;
+
+                &:hover {
+                    color: var(--daisy-text) !important;
+                    background-color: var(--daisy-surface-muted) !important;
+                }
+
+                &.active {
+                    color: var(--daisy-primary) !important;
+                    font-weight: 600 !important;
+                    border-bottom-color: var(--daisy-primary) !important;
+                    background-color: transparent !important;
+                }
+            }
+        }
+
+        .tab-content {
+            padding: 24px 0 8px 0 !important;
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // 6. Universal Modern Form Inputs (shadcn / Radix Boxed Aesthetic)
+    // --------------------------------------------------------------------------
+    input.o_input,
+    textarea.o_input,
+    select.o_input,
+    .o_input:not(div):not(.o_field_widget),
+    .form-control:not(.o-mail-Composer-input):not(.o-mail-Composer-inputStyle),
+    .form-select,
+    .o_field_widget input:not([type="checkbox"]):not([type="radio"]),
+    .o_field_widget textarea:not(.o-mail-Composer-input),
+    .o_field_widget select {
+        border: 1px solid var(--daisy-border) !important;
+        border-radius: var(--daisy-radius, 8px) !important;
+        padding: 9px 12px !important;
+        min-height: 40px !important;
+        font-size: 0.875rem !important;
+        background-color: var(--daisy-surface) !important;
+        color: var(--daisy-text) !important;
+        line-height: 1.42857 !important;
+        box-shadow: none !important;
+        transition: border-color 0.15s ease, background-color 0.15s ease !important;
+
+        &::placeholder {
+            color: var(--daisy-text-muted) !important;
+            font-weight: 400 !important;
+        }
+
+        &:hover:not(:disabled):not([readonly]) {
+            border-color: var(--daisy-border-hover) !important;
+            background-color: var(--daisy-surface-subtle) !important;
+        }
+
+        &:focus,
+        &:focus-within {
+            border-color: var(--daisy-primary) !important;
+            outline: none !important;
+            box-shadow: none !important;
+            background-color: var(--daisy-surface) !important;
+        }
+
+        &:disabled,
+        &[disabled] {
+            background-color: var(--daisy-surface-muted) !important;
+            border-color: var(--daisy-border) !important;
+            color: var(--daisy-text-muted) !important;
+            cursor: not-allowed !important;
+            box-shadow: none !important;
+        }
+
+        &[readonly]:not(.o_field_many2one):not(.o_field_selection) {
+            border-color: transparent !important;
+            background-color: transparent !important;
+            box-shadow: none !important;
+            padding-left: 0 !important;
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // Textarea & Rich Description Editor Modern Styling
+    // --------------------------------------------------------------------------
+    textarea.o_input,
+    .o_field_text textarea,
+    .o_field_widget textarea:not(.o-mail-Composer-input) {
+        min-height: 110px !important;
+        line-height: 1.6 !important;
+        padding: 12px 14px !important;
+        border: 1px solid var(--daisy-border) !important;
+        border-radius: var(--daisy-radius, 8px) !important;
+        background-color: var(--daisy-surface) !important;
+        color: var(--daisy-text) !important;
+        font-size: 0.875rem !important;
+        box-shadow: none !important;
+        resize: vertical;
+        transition: border-color 0.15s ease, background-color 0.15s ease !important;
+
+        &:hover:not(:disabled):not([readonly]) {
+            border-color: var(--daisy-border-hover) !important;
+        }
+
+        &:focus,
+        &:focus-within {
+            border-color: var(--daisy-primary) !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+    }
+
+    // HTML / Rich Text Editor in Form View
+    .o_field_html {
+        border: 1px solid var(--daisy-border) !important;
+        border-radius: var(--daisy-radius, 8px) !important;
+        background-color: var(--daisy-surface) !important;
+        transition: border-color 0.15s ease, background-color 0.15s ease !important;
+        overflow: hidden;
+        box-shadow: none !important;
+
+        &:hover:not(:focus-within) {
+            border-color: var(--daisy-border-hover) !important;
+        }
+
+        &:focus-within {
+            border-color: var(--daisy-primary) !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .od_content,
+        .note-editable,
+        .odoo-editor-editable {
+            padding: 12px 14px !important;
+            min-height: 110px !important;
+            font-size: 0.875rem !important;
+            line-height: 1.6 !important;
+            color: var(--daisy-text) !important;
+            background-color: var(--daisy-surface) !important;
+            outline: none !important;
+        }
+    }
+
+    // Dropdown / Datepicker Input Wrapper
+    .o_input_dropdown,
+    .o_datepicker {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        .o_input {
+            width: 100%;
+            padding-right: 32px !important;
+        }
+
+        .o_dropdown_button,
+        .o_datepicker_button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--daisy-text-muted);
+            pointer-events: none;
+            font-size: 0.75rem;
+            transition: color 0.15s ease;
+        }
+
+        &:hover .o_dropdown_button,
+        &:hover .o_datepicker_button {
+            color: var(--daisy-text);
+        }
+
+        &:focus-within .o_dropdown_button,
+        &:focus-within .o_datepicker_button {
+            color: var(--daisy-primary);
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // Relational Fields: Many2one Autocomplete & External Link Button
+    // --------------------------------------------------------------------------
+    .o_field_many2one,
+    .o_field_many2one_selection,
+    .o_field_many2one_avatar {
+        position: relative;
+        width: 100%;
+
+        .o_field_many2one_selection {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .o_input_dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            flex: 1 1 auto;
+
+            .o-autocomplete {
+                width: 100%;
+                flex: 1 1 auto;
+
+                .o-autocomplete--input,
+                input.o_input {
+                    width: 100% !important;
+                    padding-right: 54px !important; // Room for both external link icon & dropdown caret
+                }
+            }
+
+            .o_dropdown_button {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--daisy-text-muted);
+                pointer-events: none;
+                font-size: 0.7rem;
+                z-index: 2;
+                transition: color 0.15s ease;
+            }
+        }
+
+        // External Link Arrow Button (Integrated smoothly inside the input right boundary)
+        .o_external_button {
+            position: absolute !important;
+            right: 28px !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            z-index: 3 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 22px !important;
+            height: 22px !important;
+            min-height: 22px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border: none !important;
+            border-radius: var(--daisy-radius-sm, 4px) !important;
+            background-color: transparent !important;
+            color: var(--daisy-text-muted) !important;
+            font-size: 0.75rem !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            transition: opacity 0.15s ease, visibility 0.15s ease, background-color 0.15s ease, color 0.15s ease !important;
+            cursor: pointer !important;
+
+            i, .fa, .oi {
+                font-size: 0.75rem !important;
+                line-height: 1 !important;
+            }
+
+            &:hover {
+                background-color: var(--daisy-surface-subtle) !important;
+                color: var(--daisy-primary) !important;
+            }
+        }
+
+        // Reveal the external button cleanly inside the input on hover or focus
+        &:hover,
+        &:focus-within {
+            .o_external_button {
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+
+            .o_input_dropdown .o_dropdown_button {
+                color: var(--daisy-text);
+            }
+        }
+    }
+
+    // Tags input container
+    .o_tags_input {
+        min-height: 40px !important;
+        padding: 4px 8px !important;
+        border: 1px solid var(--daisy-border) !important;
+        border-radius: var(--daisy-radius, 8px) !important;
+        background-color: var(--daisy-surface) !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        gap: 4px !important;
+
+        .o-autocomplete {
+            flex: 1 1 60px;
+
+            .o_input,
+            input {
+                border: none !important;
+                background: transparent !important;
+                box-shadow: none !important;
+                min-height: 28px !important;
+                height: 28px !important;
+                padding: 2px 4px !important;
+                color: var(--daisy-text) !important;
+            }
+        }
+    }
+
+    // Priority stars alignment
+    .o_priority {
+        display: inline-flex;
+        align-items: center;
+        margin-left: 8px;
+    }
+
+    // Monetary and numeric fields
+    .o_field_monetary,
+    .o_monetary_cell {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: none !important;
+        border-bottom: none !important;
+
+        .o_input {
+            text-align: right;
+            max-width: 160px;
+        }
+
+        .o_monetary_currency {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--daisy-text-muted);
+            padding: 0 4px;
+        }
+    }
+
+    // Required Field Modifiers (Clean uniform border — NO thick left border)
+    .o_field_widget.o_required_modifier .o_input:not(.oe_title .o_input),
+    .o_cell.o_required_modifier .o_input:not(.oe_title .o_input) {
+        border-left: 1px solid var(--daisy-border) !important;
+        border-left-width: 1px !important;
+    }
+
+    // Force override any Odoo 19 attempt to add thick left border on required
+    .o_required_modifier:not(.oe_title) > .o_input,
+    .o_required_modifier:not(.oe_title) .o_input {
+        border-left-width: 1px !important;
+        border-left-color: var(--daisy-border) !important;
+        box-shadow: none !important;
+    }
+
+    .oe_title,
+    .oe_title .o_input,
+    .oe_title.o_required_modifier,
+    .o_field_widget.oe_title {
+        border-left: none !important;
+    }
+
+    // Invalid / Error Fields
+    .o_field_invalid,
+    .o_field_widget.o_field_invalid .o_input,
+    .o_cell.o_field_invalid .o_input {
+        border-color: #ef4444 !important;
+
+        &:focus {
+            box-shadow: 0 0 0 2px var(--daisy-surface), 0 0 0 4px rgba(239, 68, 68, 0.25) !important;
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // 7. Form Labels (.o_form_label)
+    // --------------------------------------------------------------------------
+    .o_form_label {
+        font-size: 0.8125rem !important;
+        font-weight: 500 !important;
+        color: var(--daisy-text-secondary) !important;
+        margin-bottom: 5px !important;
+        letter-spacing: -0.01em;
+        line-height: 1.4;
+
+        &.o_form_label_help {
+            cursor: help;
+            text-decoration: none !important;
+
+            &::after {
+                content: '\f059';
+                font-family: FontAwesome;
+                font-size: 0.75rem;
+                color: var(--daisy-text-muted);
+                margin-left: 4px;
+                font-weight: normal;
+            }
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // 8. Relational Fields & Many2many Tags (No Outer Div Border)
+    // --------------------------------------------------------------------------
+    div.o_field_many2many_tags,
+    div.o_field_many2many_tags.o_input,
+    .o_field_widget.o_field_many2many_tags,
+    .o_field_widget.o_field_many2many_tags.o_input,
+    div.o_field_tags,
+    div.o_field_tags.o_input,
+    div.o_tags_input,
+    div.o_tags_input.o_input,
+    .o_field_widget.o_field_tags,
+    .o_field_widget.o_field_tags.o_input,
+    div.o_field_many2many_avatar,
+    div.o_field_many2many_avatar.o_input,
+    div.o_field_many2many_tags_avatar,
+    div.o_field_many2many_tags_avatar.o_input,
+    div.o_field_many2many_selection_tags,
+    div.o_field_many2many_selection_tags.o_input,
+    div.o_field_widget.o_input:has(input),
+    div.o_field_widget.o_input:has(.o-autocomplete--input),
+    div.o_field_widget.o_input:has(.o_autocomplete),
+    div.o_field_widget.o_input:has(.o_field_many2many_selection),
+    div.o_field_widget.o_input:has(.o_tags_input) {
+        border: none !important;
+        border-color: transparent !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        min-height: auto !important;
+
+        &:hover,
+        &:focus,
+        &:focus-within,
+        &:active {
+            border: none !important;
+            border-color: transparent !important;
+            background: transparent !important;
+            background-color: transparent !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        .o_field_many2many_selection {
+            flex: 1 1 180px !important;
+            width: 100% !important;
+
+            .o-autocomplete {
+                width: 100% !important;
+
+                .o-autocomplete--input,
+                input.o_input {
+                    width: 100% !important;
+                    border: 1px solid var(--daisy-border) !important;
+                    border-radius: var(--daisy-radius-sm, 6px) !important;
+                    padding: 6px 12px !important;
+                    min-height: 34px !important;
+                    background-color: var(--daisy-surface) !important;
+                    color: var(--daisy-text) !important;
+                    box-shadow: none !important;
+                    transition: border-color 0.15s ease, background-color 0.15s ease !important;
+
+                    &:hover:not(:disabled):not([readonly]) {
+                        border-color: var(--daisy-border-hover) !important;
+                        background-color: var(--daisy-surface-subtle) !important;
+                    }
+
+                    &:focus,
+                    &:focus-within {
+                        border-color: var(--daisy-primary) !important;
+                        outline: none !important;
+                        box-shadow: none !important;
+                        background-color: var(--daisy-surface) !important;
+                    }
+                }
+            }
+        }
+    }
+
+    // Completely hide Odoo core's clunky hover backdrop
+    .o_avatar_backdrop {
+        display: none !important;
+    }
+
+    .o_field_many2many_tags,
+    .o_field_tags {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px;
+
+        // Regular non-avatar tags
+        .badge,
+        .o_tag:not(.o_avatar) {
+            background-color: var(--daisy-surface-muted) !important;
+            border: 1px solid var(--daisy-border) !important;
+            border-radius: var(--daisy-radius-sm, 6px) !important;
+            color: var(--daisy-text) !important;
+            font-size: 0.75rem !important;
+            font-weight: 500 !important;
+            padding: 4px 8px !important;
+            margin: 2px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 4px;
+            transition: all 0.15s ease !important;
+
+            &:hover {
+                background-color: var(--daisy-surface) !important;
+                border-color: var(--daisy-border-hover) !important;
+            }
+
+            .o_delete {
+                color: var(--daisy-text-muted);
+                cursor: pointer;
+                transition: color 0.15s ease;
+
+                &:hover {
+                    color: #ef4444 !important;
+                }
+            }
+        }
+
+        // Modern Assignee / User Avatar Pill Chips
+        .o_tag.o_avatar,
+        &.o_field_many2many_tags_avatar .o_tag {
+            display: inline-flex !important;
+            align-items: center !important;
+            height: 30px !important;
+            min-height: 30px !important;
+            padding: 3px 10px 3px 4px !important;
+            border-radius: 9999px !important;
+            background-color: var(--daisy-surface) !important;
+            border: 1px solid var(--daisy-border) !important;
+            color: var(--daisy-text) !important;
+            font-size: 0.8125rem !important;
+            font-weight: 500 !important;
+            line-height: 1 !important;
+            box-shadow: var(--daisy-shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.04)) !important;
+            margin: 2px 4px 2px 0 !important;
+            position: relative !important;
+            user-select: none !important;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            cursor: default;
+
+            &:hover {
+                background-color: var(--daisy-surface-muted, #f8fafc) !important;
+                border-color: var(--daisy-border-hover, #cbd5e1) !important;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07) !important;
+                transform: translateY(-1px);
+            }
+
+            img.o_avatar,
+            img.o_m2m_avatar,
+            .o_avatar,
+            .o_m2m_avatar {
+                width: 22px !important;
+                height: 22px !important;
+                min-width: 22px !important;
+                border-radius: 9999px !important;
+                object-fit: cover !important;
+                margin: 0 !important;
+                border: 1px solid rgba(0, 0, 0, 0.08) !important;
+                box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8) !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                font-size: 0.6875rem !important;
+                font-weight: 700 !important;
+                flex-shrink: 0 !important;
+            }
+
+            .o_tag_badge_text {
+                font-size: 0.8125rem !important;
+                font-weight: 500 !important;
+                color: var(--daisy-text) !important;
+                margin-left: 6px !important;
+                margin-right: 4px !important;
+                line-height: 1 !important;
+                letter-spacing: -0.01em !important;
+                max-width: 180px !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+            }
+
+            .o_delete {
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                width: 18px !important;
+                height: 18px !important;
+                min-width: 18px !important;
+                border-radius: 9999px !important;
+                padding: 0 !important;
+                margin-left: 2px !important;
+                margin-right: -2px !important;
+                background: transparent !important;
+                color: var(--daisy-text-muted, #94a3b8) !important;
+                opacity: 0 !important;
+                visibility: hidden;
+                border: none !important;
+                text-decoration: none !important;
+                transition: opacity 0.15s ease, background-color 0.15s ease, color 0.15s ease, transform 0.15s ease !important;
+
+                .oi, .fa {
+                    font-size: 0.625rem !important;
+                    line-height: 1 !important;
+                }
+
+                &:hover {
+                    background-color: rgba(239, 68, 68, 0.12) !important;
+                    color: #ef4444 !important;
+                    opacity: 1 !important;
+                    transform: scale(1.15);
+                }
+            }
+
+            &:hover .o_delete {
+                opacity: 0.75 !important;
+                visibility: visible !important;
+            }
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // 9. Section Separators (.o_horizontal_separator)
+    // --------------------------------------------------------------------------
+    .o_horizontal_separator {
+        font-size: 0.75rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.06em !important;
+        color: var(--daisy-primary) !important;
+        border-bottom: 1px solid var(--daisy-border) !important;
+        padding-bottom: 8px !important;
+        margin: 28px 0 16px 0 !important;
+        display: flex;
+        align-items: center;
+    }
+
+    // --------------------------------------------------------------------------
+    // 10. Form Status Indicator (Autosave Cloud Indicator)
+    // --------------------------------------------------------------------------
+    .o_form_status_indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+
+        .o_form_status_indicator_buttons {
+            .btn {
+                border-radius: var(--daisy-radius-sm, 6px) !important;
+                padding: 4px 8px !important;
+                font-size: 0.75rem !important;
+                color: var(--daisy-text-muted) !important;
+
+                &:hover {
+                    background-color: var(--daisy-surface-muted) !important;
+                    color: var(--daisy-text) !important;
+                }
+            }
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // 11. Reset Chatter Composer (Protect from Form View Inputs)
+    // --------------------------------------------------------------------------
+    .o-mail-Composer {
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+
+        .o-mail-Composer-inputContainer {
+            background-color: var(--daisy-surface) !important;
+            border: 1px solid var(--daisy-border) !important;
+            border-radius: var(--daisy-radius, 8px) !important;
+            box-shadow: none !important;
+            padding: 2px 8px !important;
+
+            &:focus-within {
+                border-color: var(--daisy-primary) !important;
+                box-shadow: none !important;
+            }
+        }
+
+        .o-mail-Composer-input,
+        .o-mail-Composer-inputStyle,
+        textarea.o-mail-Composer-input {
+            border: none !important;
+            border-radius: 0 !important;
+            outline: none !important;
+            box-shadow: none !important;
+            background: transparent !important;
+            color: var(--daisy-text) !important;
+            min-height: 56px !important;
+            padding: 8px 10px !important;
+            font-size: 0.875rem !important;
+            resize: none !important;
+
+            &:focus,
+            &:focus-visible,
+            &:focus-within {
+                border: none !important;
+                outline: none !important;
+                box-shadow: none !important;
+                background: transparent !important;
+            }
+        }
+    }
+}
+
+// ==============================================================================
+// Dark Mode Overrides for Form View Button Box, Inputs & Widgets
+// ==============================================================================
+[data-daisy-scheme="dark"],
+[data-bs-theme="dark"],
+body.o_dark_user_theme,
+.o_dark_user_theme {
+    .oe_button_box, .o_form_view .oe_button_box {
+        .oe_stat_button, .btn.oe_stat_button {
+            background-color: #121824 !important;
+            border-color: rgba(255, 255, 255, 0.12) !important;
+            color: #cbd5e1 !important;
+            background: #121824 !important;
+
+            &:hover {
+                background-color: #1e293b !important;
+                background: #1e293b !important;
+                border-color: rgba(255, 255, 255, 0.2) !important;
+            }
+
+            .o_stat_value,
+            .o_button_icon,
+            i.fa,
+            i {
+                color: #f8fafc !important;
+            }
+
+            .o_stat_text, .text-muted {
+                color: #94a3b8 !important;
+            }
+        }
+    }
+
+    // Monetary Input Fields (Fix invisible typed numbers)
+    .o_field_monetary,
+    .o_field_monetary .o_input,
+    .o_field_monetary input,
+    .o_field_monetary span {
+        color: #f8fafc !important;
+    }
+
+    // One2many Sub-tables & Order Lines Table Footer (Fix white strip on bottom of sale order lines)
+    .o_field_x2many_list table tfoot,
+    .o_field_x2many_list table tfoot td,
+    .o_field_x2many_list table tfoot tr,
+    .o_list_table tfoot,
+    .o_list_table tfoot td,
+    .o_list_table tfoot tr {
+        background-color: transparent !important;
+        color: #f8fafc !important;
+        border-color: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    // Organization Chart Widget (.hr_org_chart)
+    #o_employee_org_chart,
+    .o_org_chart_entry {
+        .o_media_heading {
+            color: #f8fafc !important;
+        }
+
+        .o_employee_job {
+            color: #cbd5e1 !important;
+        }
+
+        .btn-secondary.rounded-pill {
+            background-color: #181f2e !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            color: #f8fafc !important;
+
+            .badge {
+                color: var(--daisy-primary, #f59e0b) !important;
+                font-weight: 700 !important;
+            }
+        }
+    }
+}
+

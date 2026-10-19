@@ -1,0 +1,1793 @@
+// ==============================================================================
+// Daisy Theme — Discuss & Messaging App Stylesheet
+// Full modern redesign for Discuss, Live Chat, Floating Windows & Systray Menu
+// Fully token-driven for Light, Dark, and Contrast themes
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// 1. Full Discuss App Layout (.o-mail-Discuss)
+// ------------------------------------------------------------------------------
+.o-mail-Discuss {
+    background-color: var(--daisy-surface-subtle) !important;
+
+    // --------------------------------------------------------------------------
+    // Discuss Sidebar (Channels & Direct Messages)
+    // --------------------------------------------------------------------------
+    .o-mail-DiscussSidebar {
+        background-color: var(--daisy-surface) !important;
+        border-right: 1px solid var(--daisy-border) !important;
+        box-shadow: 1px 0 2px rgba(0, 0, 0, 0.02) !important;
+
+        // Header / Search Bar at top of sidebar
+        .o-mail-DiscussSidebar-header {
+            padding: 14px 16px !important;
+            border-bottom: 1px solid var(--daisy-border) !important;
+
+            .o_input {
+                border: 1px solid var(--daisy-border) !important;
+                border-radius: var(--daisy-radius-sm, 6px) !important;
+                padding: 6px 10px !important;
+                font-size: 0.8125rem !important;
+                background-color: var(--daisy-surface-subtle) !important;
+                color: var(--daisy-text) !important;
+
+                &:focus {
+                    background-color: var(--daisy-surface) !important;
+                    border-color: var(--daisy-primary) !important;
+                    box-shadow: var(--daisy-ring) !important;
+                }
+            }
+        }
+
+        // Section Categories (Channels, Direct Messages)
+        .o-mail-DiscussSidebarCategory {
+            padding: 10px 12px 4px 12px !important;
+
+            .o-mail-DiscussSidebarCategory-toggler {
+                color: var(--daisy-text-muted) !important;
+                font-size: 0.6875rem !important;
+                font-weight: 700 !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.06em !important;
+                padding: 0 !important;
+                border: none !important;
+                background: transparent !important;
+                box-shadow: none !important;
+
+                &:hover {
+                    color: var(--daisy-text) !important;
+                }
+            }
+
+            .o-mail-DiscussSidebarCategory-title {
+                font-size: 0.6875rem !important;
+                font-weight: 700 !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.06em !important;
+                color: var(--daisy-text-muted) !important;
+            }
+        }
+
+        // Category Action Buttons (e.g. "+" to add a channel or direct message)
+        .o-mail-DiscussSidebarCategory-actions {
+            display: flex !important;
+            align-items: center !important;
+            gap: 2px !important;
+
+            button,
+            .btn {
+                width: 22px !important;
+                height: 22px !important;
+                min-width: 22px !important;
+                max-width: 22px !important;
+                min-height: 22px !important;
+                max-height: 22px !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                border: none !important;
+                border-radius: 4px !important;
+                background: transparent !important;
+                color: var(--daisy-text-muted) !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                box-shadow: none !important;
+                line-height: 1 !important;
+
+                i, .fa, .oi {
+                    font-size: 0.75rem !important;
+                    color: inherit !important;
+                }
+
+                &:hover {
+                    background-color: var(--daisy-surface-muted) !important;
+                    color: var(--daisy-text) !important;
+                }
+            }
+        }
+
+        // Channel container wrapper
+        .o-mail-DiscussSidebarChannel-container {
+            margin: 1px 6px !important;
+            padding: 0 !important;
+            gap: 1px !important;
+
+            // Ended livechat channel pills in light mode
+            &.bg-100,
+            &.o-bordered {
+                background-color: #f8fafc !important;
+                border: 1px solid #e2e8f0 !important;
+                border-radius: var(--daisy-radius-md, 8px) !important;
+
+                &:hover {
+                    background-color: #f1f5f9 !important;
+                    border-color: #cbd5e1 !important;
+                }
+            }
+        }
+
+        // Sidebar Items (Channels, Direct Messages, Mailboxes)
+        .o-mail-DiscussSidebarChannel,
+        .o-mail-DiscussSidebar-item,
+        .o-mail-Mailbox {
+            border-radius: var(--daisy-radius-md, 8px) !important;
+            height: 38px !important;
+            min-height: 38px !important;
+            max-height: 38px !important;
+            padding: 0 8px !important;
+            margin: 1px 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease !important;
+            color: var(--daisy-text-secondary) !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+            line-height: 38px !important;
+            border: 1px solid transparent !important;
+            background-color: transparent !important;
+            box-shadow: none !important;
+            transform: none !important;
+
+            &:hover {
+                background-color: var(--daisy-surface-muted, #f1f5f9) !important;
+                color: var(--daisy-text, #0f172a) !important;
+                transform: none !important;
+                box-shadow: none !important;
+            }
+
+            &.o-active {
+                background-color: var(--daisy-primary-subtle, rgba(99, 102, 241, 0.12)) !important;
+                border-color: rgba(99, 102, 241, 0.25) !important;
+                color: var(--daisy-primary) !important;
+                font-weight: 600 !important;
+
+                .o-mail-DiscussSidebarChannel-badge {
+                    background-color: var(--daisy-primary) !important;
+                    color: #ffffff !important;
+                }
+            }
+
+            // Avatar container
+            [name="threadAvatar"] {
+                width: 26px !important;
+                height: 26px !important;
+                min-width: 26px !important;
+                max-width: 26px !important;
+                margin: 0 !important;
+                flex-shrink: 0 !important;
+
+                img {
+                    width: 26px !important;
+                    height: 26px !important;
+                    border-radius: var(--daisy-radius-sm, 6px) !important;
+                    object-fit: cover !important;
+                }
+            }
+
+            // Channel / Conversation Name
+            .o-mail-DiscussSidebarChannel-itemName {
+                font-size: 0.8125rem !important;
+                font-weight: 500 !important;
+                line-height: 1.25 !important;
+                color: inherit !important;
+                margin-left: 8px !important;
+                margin-right: 4px !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                white-space: nowrap !important;
+            }
+
+            // Three-Dots Actions Container (Zero layout shift, fixed 24px height)
+            .o-mail-DiscussSidebarChannel-actions {
+                display: none;
+                align-items: center !important;
+                justify-content: center !important;
+                margin-left: auto !important;
+                margin-right: 0 !important;
+                padding: 0 !important;
+                flex-shrink: 0 !important;
+                height: 24px !important;
+                max-height: 24px !important;
+                line-height: 1 !important;
+
+                // Sleek compact three-dots icon button
+                .btn,
+                button,
+                .btn-light,
+                .o-mail-discussSidebarBgColor,
+                .o-mail-ActionList-button {
+                    width: 24px !important;
+                    height: 24px !important;
+                    min-width: 24px !important;
+                    max-width: 24px !important;
+                    min-height: 24px !important;
+                    max-height: 24px !important;
+                    aspect-ratio: 1 / 1 !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    border: none !important;
+                    border-width: 0 !important;
+                    border-radius: var(--daisy-radius-sm, 6px) !important;
+                    background-color: transparent !important;
+                    background: transparent !important;
+                    color: var(--daisy-text-muted, #94a3b8) !important;
+                    display: inline-flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    box-shadow: none !important;
+                    transform: none !important;
+                    line-height: 1 !important;
+                    font-size: 0.75rem !important;
+                    cursor: pointer !important;
+                    transition: background-color 0.12s ease, color 0.12s ease !important;
+
+                    .oi, .fa {
+                        font-size: 0.8125rem !important;
+                        line-height: 1 !important;
+                        color: inherit !important;
+                        margin: 0 !important;
+                        padding: 0 !important;
+                    }
+
+                    &:hover,
+                    &:focus-visible,
+                    &.o-showingActions {
+                        background-color: var(--daisy-surface-muted, rgba(0, 0, 0, 0.08)) !important;
+                        color: var(--daisy-text, #0f172a) !important;
+                        border: none !important;
+                        box-shadow: none !important;
+                    }
+
+                    &:active {
+                        transform: scale(0.92) !important;
+                    }
+                }
+            }
+
+            // Reveal three-dots button on row hover
+            &:hover .o-mail-DiscussSidebarChannel-actions,
+            .o-mail-DiscussSidebarChannel-actions:has(.o-showingActions),
+            .o-mail-DiscussSidebarChannel-actions.d-flex {
+                display: flex !important;
+            }
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // Discuss Main Thread Area (.o-mail-DiscussContent)
+    // --------------------------------------------------------------------------
+    .o-mail-DiscussContent {
+        background-color: var(--daisy-surface) !important;
+
+        .o-mail-DiscussContent-main,
+        .o-mail-DiscussContent-core {
+            background-color: var(--daisy-surface) !important;
+        }
+
+        // Top Thread Header
+        .o-mail-DiscussContent-header {
+            background-color: var(--daisy-surface) !important;
+            border-bottom: 1px solid var(--daisy-border) !important;
+            padding: 12px 20px !important;
+            box-shadow: none !important;
+
+            .o-mail-DiscussContent-threadName {
+                font-size: 1rem !important;
+                font-weight: 700 !important;
+                color: var(--daisy-text) !important;
+                letter-spacing: -0.015em;
+            }
+
+            // Header Action Buttons (Search, Phone, Video, Info)
+            .o-mail-DiscussContent-headerActions button {
+                border-radius: var(--daisy-radius-sm, 6px) !important;
+                width: 32px !important;
+                height: 32px !important;
+                padding: 0 !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                color: var(--daisy-text-muted) !important;
+                transition: all 0.12s ease !important;
+
+                &:hover {
+                    background-color: var(--daisy-surface-muted) !important;
+                    color: var(--daisy-text) !important;
+                }
+
+                &.o-isActive {
+                    background-color: var(--daisy-primary-subtle, rgba(99, 102, 241, 0.15)) !important;
+                    color: var(--daisy-primary) !important;
+                    outline: none !important;
+                }
+            }
+        }
+
+        // Message Thread Feed
+        .o-mail-Thread {
+            padding: 16px 24px !important;
+
+            // Date separator pills
+            .o-mail-DateSection {
+                margin: 20px 0 !important;
+                text-align: center;
+
+                .o-mail-DateSection-date {
+                    background-color: var(--daisy-surface-muted) !important;
+                    border: 1px solid var(--daisy-border) !important;
+                    border-radius: 9999px !important;
+                    padding: 4px 14px !important;
+                    font-size: 0.6875rem !important;
+                    font-weight: 600 !important;
+                    color: var(--daisy-text-muted) !important;
+                }
+            }
+
+            // Individual Message Card
+            .o-mail-Message {
+                border-radius: var(--daisy-radius, 8px) !important;
+                padding: 10px 14px !important;
+                margin-bottom: 8px !important;
+                transition: background-color 0.12s ease;
+                position: relative;
+
+                &:hover {
+                    background-color: var(--daisy-surface-subtle) !important;
+
+                    .o-mail-Message-actions {
+                        opacity: 1;
+                    }
+                }
+
+                .o-mail-Message-author {
+                    font-weight: 600 !important;
+                    color: var(--daisy-text) !important;
+                }
+
+                .o-mail-Message-date {
+                    font-size: 0.6875rem !important;
+                    color: var(--daisy-text-muted) !important;
+                    margin-left: 6px;
+                }
+
+                .o-mail-Message-textContent {
+                    font-size: 0.875rem !important;
+                    color: var(--daisy-text-secondary) !important;
+                    line-height: 1.55;
+                    margin-top: 4px;
+                }
+
+                // Floating Actions Bar on Message Hover (Radix style)
+                .o-mail-Message-actions {
+                    position: absolute;
+                    right: 12px;
+                    top: -12px;
+                    background-color: var(--daisy-surface) !important;
+                    border: 1px solid var(--daisy-border) !important;
+                    border-radius: var(--daisy-radius, 8px) !important;
+                    box-shadow: var(--daisy-shadow-md) !important;
+                    padding: 2px 4px !important;
+                    display: flex;
+                    gap: 2px;
+                    opacity: 0;
+                    transition: opacity 0.15s ease;
+
+                    button {
+                        border-radius: var(--daisy-radius-sm, 4px) !important;
+                        padding: 4px 6px !important;
+                        color: var(--daisy-text-muted) !important;
+                        font-size: 0.8125rem !important;
+
+                        &:hover {
+                            background-color: var(--daisy-surface-muted) !important;
+                            color: var(--daisy-text) !important;
+                        }
+                    }
+                }
+
+                // Reaction Pills (.o-mail-MessageReactions)
+                .o-mail-MessageReactions {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 4px;
+                    margin-top: 6px;
+
+                    .o-mail-MessageReaction {
+                        border-radius: var(--daisy-radius-sm, 6px) !important;
+                        background-color: var(--daisy-surface-muted) !important;
+                        border: 1px solid var(--daisy-border) !important;
+                        padding: 2px 8px !important;
+                        font-size: 0.75rem !important;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 4px;
+                        cursor: pointer;
+                        color: var(--daisy-text) !important;
+                        transition: all 0.12s ease;
+
+                        &:hover {
+                            background-color: var(--daisy-border) !important;
+                        }
+
+                        &.o-user-has-reacted {
+                            background-color: var(--daisy-primary-subtle, rgba(99, 102, 241, 0.12)) !important;
+                            border-color: var(--daisy-primary) !important;
+                            color: var(--daisy-primary) !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Message Composer at Bottom
+        .o-mail-Composer {
+            border: none !important;
+            box-shadow: none !important;
+            background-color: var(--daisy-surface) !important;
+            padding: 8px 24px 16px 24px !important;
+            margin: 0 !important;
+
+            .o-mail-Composer-sidebarMain {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                padding-top: 0 !important;
+                padding-bottom: 2px !important;
+
+                .o-mail-Composer-avatar {
+                    width: 36px !important;
+                    height: 36px !important;
+                    border-radius: 50% !important;
+                    border: 1px solid var(--daisy-border) !important;
+                    box-shadow: none !important;
+                    object-fit: cover !important;
+                }
+            }
+
+            .o-mail-Composer-coreMain {
+                width: 100% !important;
+            }
+
+            // Floating sleek input bubble
+            .o-mail-Composer-inputContainer {
+                background-color: var(--daisy-surface) !important;
+                border: 1px solid var(--daisy-border) !important;
+                border-radius: 12px !important;
+                box-shadow: none !important;
+                padding: 4px 6px 4px 10px !important;
+                display: flex !important;
+                align-items: center !important;
+                min-height: 44px !important;
+                transition: border-color 0.18s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.18s ease !important;
+
+                &:hover {
+                    border-color: var(--daisy-border-hover) !important;
+                }
+
+                &:focus-within {
+                    border-color: var(--daisy-primary) !important;
+                    box-shadow: 0 0 0 3px var(--daisy-ring-color, rgba(99, 102, 241, 0.18)) !important;
+                }
+            }
+
+            .o-mail-Composer-input,
+            .o-mail-Composer-inputStyle,
+            textarea.o-mail-Composer-input {
+                font-size: 0.875rem !important;
+                color: var(--daisy-text) !important;
+                background-color: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                outline: none !important;
+                padding: 6px 8px !important;
+                line-height: 1.45 !important;
+                margin: 0 !important;
+                resize: none !important;
+
+                &::placeholder {
+                    color: var(--daisy-text-muted) !important;
+                    opacity: 0.65 !important;
+                }
+
+                &:focus,
+                &:focus-visible {
+                    border: none !important;
+                    outline: none !important;
+                    box-shadow: none !important;
+                    background: transparent !important;
+                }
+            }
+
+            // Action wrappers inside the input bubble
+            .o-mail-Composer-actions,
+            .o-mail-Composer-quickActions,
+            .o-mail-ActionList,
+            .o-mail-ActionList-group {
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 2px !important;
+            }
+
+            // Ghost icon buttons inside the composer bubble ((+), GIF, emoji, send)
+            .o-mail-Composer-inputContainer {
+                button,
+                .btn,
+                .o-mail-ActionList-button,
+                .o-mail-Composer-send {
+                    background: transparent !important;
+                    border: none !important;
+                    outline: none !important;
+                    box-shadow: none !important;
+                    color: var(--daisy-text-muted) !important;
+                    width: 32px !important;
+                    height: 32px !important;
+                    min-width: 32px !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    border-radius: var(--daisy-radius-sm, 6px) !important;
+                    display: inline-flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    font-size: 0.875rem !important;
+                    cursor: pointer !important;
+                    transition: all 0.15s ease !important;
+
+                    i, .fa, .oi {
+                        font-size: 1rem !important;
+                        color: inherit !important;
+                        line-height: 1 !important;
+                    }
+
+                    &:hover {
+                        background-color: var(--daisy-surface-muted) !important;
+                        color: var(--daisy-text) !important;
+                        transform: none !important;
+                        box-shadow: none !important;
+                    }
+
+                    &:active {
+                        background-color: var(--daisy-border) !important;
+                        transform: scale(0.95) !important;
+                    }
+
+                    &:focus,
+                    &:focus-visible {
+                        outline: none !important;
+                        box-shadow: none !important;
+                    }
+                }
+
+                // Send Button (paper-plane)
+                .o-mail-Composer-send {
+                    color: var(--daisy-primary) !important;
+                    border-radius: 50% !important;
+
+                    i, .fa {
+                        font-size: 0.9375rem !important;
+                    }
+
+                    &:hover {
+                        background-color: var(--daisy-primary-subtle, rgba(99, 102, 241, 0.12)) !important;
+                        color: var(--daisy-primary) !important;
+                    }
+
+                    &:disabled {
+                        opacity: 0.35 !important;
+                        cursor: not-allowed !important;
+                        background: transparent !important;
+                        color: var(--daisy-text-muted) !important;
+                    }
+                }
+            }
+
+            // Composer Footer (extended mode or editing mode buttons)
+            .o-mail-Composer-footer {
+                padding-top: 6px !important;
+
+                .text-muted,
+                span.text-muted {
+                    color: var(--daisy-text-secondary, #64748b) !important;
+                    font-size: 0.8125rem !important;
+
+                    em {
+                        color: var(--daisy-text, #1e293b) !important;
+                        font-style: normal !important;
+                    }
+                }
+
+                samp {
+                    display: inline-flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    background-color: var(--daisy-surface-muted, #f1f5f9) !important;
+                    border: 1px solid var(--daisy-border, #cbd5e1) !important;
+                    border-radius: 4px !important;
+                    padding: 1px 6px !important;
+                    margin: 0 3px !important;
+                    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+                    font-size: 0.725rem !important;
+                    font-weight: 600 !important;
+                    color: var(--daisy-text, #334155) !important;
+                    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) !important;
+                    vertical-align: middle !important;
+                    line-height: 1.3 !important;
+                }
+
+                button[data-type="cancel"],
+                .btn-link[data-type="cancel"] {
+                    color: #dc2626 !important;
+                    text-decoration: underline !important;
+                    text-underline-offset: 3px !important;
+                    font-weight: 600 !important;
+                    cursor: pointer !important;
+                    transition: color 0.15s ease, opacity 0.15s ease !important;
+
+                    &:hover,
+                    &:focus {
+                        color: #b91c1c !important;
+                        text-decoration: underline !important;
+                    }
+                }
+
+                button[data-type="save"],
+                .btn-link[data-type="save"] {
+                    color: var(--daisy-primary, #4f46e5) !important;
+                    text-decoration: underline !important;
+                    text-underline-offset: 3px !important;
+                    font-weight: 600 !important;
+                    cursor: pointer !important;
+                    transition: color 0.15s ease, opacity 0.15s ease !important;
+
+                    &:hover,
+                    &:focus {
+                        color: var(--daisy-primary-hover, #4338ca) !important;
+                        text-decoration: underline !important;
+                    }
+                }
+
+                .btn-link:not([data-type="cancel"]):not([data-type="save"]) {
+                    color: var(--daisy-primary, #4f46e5) !important;
+                    text-decoration: underline !important;
+                    text-underline-offset: 3px !important;
+
+                    &:hover {
+                        color: var(--daisy-primary-hover, #4338ca) !important;
+                    }
+                }
+
+                .btn-primary {
+                    border-radius: var(--daisy-radius-sm, 6px) !important;
+                    padding: 4px 12px !important;
+                    font-size: 0.8125rem !important;
+                    font-weight: 500 !important;
+                    background-color: var(--daisy-primary) !important;
+                    border-color: var(--daisy-primary) !important;
+                    color: #ffffff !important;
+                    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08) !important;
+                }
+
+                .btn-secondary {
+                    border-radius: var(--daisy-radius-sm, 6px) !important;
+                    padding: 4px 12px !important;
+                    font-size: 0.8125rem !important;
+                }
+
+                button[data-type="cancel"].btn-secondary {
+                    border-radius: 9999px !important;
+                    padding: 2px 10px !important;
+                    font-size: 0.75rem !important;
+                    color: #dc2626 !important;
+                    border-color: rgba(220, 38, 38, 0.3) !important;
+                    background-color: rgba(220, 38, 38, 0.06) !important;
+
+                    &:hover {
+                        background-color: rgba(220, 38, 38, 0.12) !important;
+                        color: #b91c1c !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 2. Floating Chat Windows (.o-mail-ChatWindow)
+// ------------------------------------------------------------------------------
+.o-mail-ChatWindow {
+    border-radius: var(--daisy-radius-lg, 12px) var(--daisy-radius-lg, 12px) 0 0 !important;
+    border: 1px solid var(--daisy-border) !important;
+    border-bottom: none !important;
+    box-shadow: var(--daisy-shadow-lg) !important;
+    background-color: var(--daisy-surface) !important;
+    overflow: hidden;
+
+    .o-mail-ChatWindow-header {
+        background-color: var(--daisy-surface) !important;
+        border-bottom: 1px solid var(--daisy-border) !important;
+        padding: 10px 14px !important;
+
+        .o-mail-ChatWindow-name {
+            font-size: 0.875rem !important;
+            font-weight: 600 !important;
+            color: var(--daisy-text) !important;
+        }
+
+        .o-mail-ChatWindow-command {
+            color: var(--daisy-text-muted) !important;
+            border-radius: 4px !important;
+            padding: 2px 4px !important;
+
+            &:hover {
+                background-color: var(--daisy-surface-muted) !important;
+                color: var(--daisy-text) !important;
+            }
+        }
+    }
+
+    .o-mail-ChatWindow-content {
+        background-color: var(--daisy-surface-subtle) !important;
+    }
+
+    .o-mail-Composer {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 6px 10px 10px 10px !important;
+
+        .o-mail-Composer-inputContainer {
+            background-color: var(--daisy-surface) !important;
+            border: 1px solid var(--daisy-border) !important;
+            border-radius: 10px !important;
+            padding: 2px 6px !important;
+            box-shadow: none !important;
+
+            &:focus-within {
+                border-color: var(--daisy-primary) !important;
+                box-shadow: none !important;
+            }
+
+            .o-mail-Composer-actions,
+            .o-mail-Composer-quickActions,
+            .o-mail-ActionList,
+            .o-mail-ActionList-group {
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+
+            button,
+            .btn,
+            .o-mail-ActionList-button,
+            .o-mail-Composer-send {
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                width: 28px !important;
+                height: 28px !important;
+                min-width: 28px !important;
+                padding: 0 !important;
+                border-radius: 6px !important;
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 3. Systray Messaging Menu Dropdown (.o-mail-MessagingMenu)
+// ------------------------------------------------------------------------------
+.o-mail-MessagingMenu {
+    .dropdown-menu {
+        width: 360px !important;
+        max-width: 90vw !important;
+        border-radius: var(--daisy-radius-lg, 12px) !important;
+        border: 1px solid var(--daisy-border) !important;
+        box-shadow: var(--daisy-shadow-lg) !important;
+        padding: 0 !important;
+        overflow: hidden;
+        background-color: var(--daisy-surface) !important;
+
+        // Header with Tabs (All, Chats, Channels)
+        .o-mail-MessagingMenu-header {
+            padding: 10px 14px !important;
+            border-bottom: 1px solid var(--daisy-border) !important;
+            background-color: var(--daisy-surface) !important;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .nav-tabs,
+            .btn-group {
+                border-radius: var(--daisy-radius-sm, 6px);
+                background-color: var(--daisy-surface-muted);
+                padding: 2px;
+
+                .btn,
+                .nav-link {
+                    border-radius: 4px !important;
+                    font-size: 0.75rem !important;
+                    font-weight: 600 !important;
+                    padding: 4px 10px !important;
+                    border: none !important;
+                    color: var(--daisy-text-muted) !important;
+
+                    &.active {
+                        background-color: var(--daisy-surface) !important;
+                        color: var(--daisy-text) !important;
+                        box-shadow: none !important;
+                    }
+                }
+            }
+        }
+
+        // Conversation items
+        .o-mail-NotificationItem {
+            padding: 10px 14px !important;
+            border-bottom: 1px solid var(--daisy-border) !important;
+            transition: background-color 0.12s ease;
+            cursor: pointer;
+            color: var(--daisy-text) !important;
+
+            &:hover {
+                background-color: var(--daisy-surface-subtle) !important;
+            }
+
+            .o-mail-NotificationItem-name {
+                font-size: 0.8125rem !important;
+                font-weight: 600 !important;
+                color: var(--daisy-text) !important;
+            }
+
+            .o-mail-NotificationItem-date {
+                font-size: 0.6875rem !important;
+                color: var(--daisy-text-muted) !important;
+            }
+
+            .o-mail-NotificationItem-body {
+                font-size: 0.75rem !important;
+                color: var(--daisy-text-secondary) !important;
+            }
+        }
+    }
+}
+
+// ==============================================================================
+// 4. Global Overrides for Discuss Sidebar & Three-Dots Actions
+// (Ensures strict sizing, zero protrusion, and zero layout shift anywhere)
+// ==============================================================================
+.o-mail-DiscussSidebar-item,
+.o-mail-DiscussSidebarChannel,
+.o-mail-Mailbox {
+    box-sizing: border-box !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+    line-height: 38px !important;
+    padding: 0 8px !important;
+    margin: 1px 0 !important;
+    overflow: hidden !important;
+}
+
+.o-mail-DiscussSidebarChannel-actions {
+    display: none;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 24px !important;
+    max-height: 24px !important;
+    line-height: 1 !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
+
+    // Reset button properties completely to override any global .btn, .btn-light, .border styles
+    button,
+    button.btn,
+    .btn,
+    .btn-light,
+    .o-mail-discussSidebarBgColor,
+    .o-mail-ActionList-button {
+        width: 24px !important;
+        height: 24px !important;
+        min-width: 24px !important;
+        max-width: 24px !important;
+        min-height: 24px !important;
+        max-height: 24px !important;
+        aspect-ratio: 1 / 1 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: 0 !important;
+        border-width: 0 !important;
+        border-style: none !important;
+        border-color: transparent !important;
+        outline: none !important;
+        border-radius: var(--daisy-radius-sm, 6px) !important;
+        background-color: transparent !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        color: var(--daisy-text-muted, #94a3b8) !important;
+        cursor: pointer !important;
+        line-height: 1 !important;
+        transform: none !important;
+        transition: background-color 0.15s ease, color 0.15s ease !important;
+
+        .oi, .fa {
+            font-size: 0.8125rem !important;
+            line-height: 1 !important;
+            color: inherit !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        &:hover,
+        &:focus-visible,
+        &.o-showingActions {
+            background-color: var(--daisy-surface-muted, rgba(0, 0, 0, 0.08)) !important;
+            border: none !important;
+            color: var(--daisy-text, #0f172a) !important;
+            box-shadow: none !important;
+        }
+
+        &:active {
+            transform: scale(0.92) !important;
+        }
+    }
+}
+
+// Show action button on hover of the conversation row or when opened
+.o-mail-DiscussSidebarChannel:hover .o-mail-DiscussSidebarChannel-actions,
+.o-mail-DiscussSidebar-item:hover .o-mail-DiscussSidebarChannel-actions,
+.o-mail-DiscussSidebarChannel-actions.d-flex {
+    display: flex !important;
+}
+
+// ==============================================================================
+// 5. Global Discuss Content, ActionPanel & Composer Surface Support
+// ==============================================================================
+.o-mail-DiscussContent,
+.o-mail-DiscussContent-main,
+.o-mail-DiscussContent-core {
+    background-color: var(--daisy-surface) !important;
+}
+
+.o-mail-DiscussContent .o-mail-Composer {
+    background-color: var(--daisy-surface) !important;
+}
+
+// Discuss Sidebar & ActionPanel Container Base Background
+.o-mail-discussSidebarBgColor {
+    background-color: var(--daisy-surface) !important;
+}
+
+// ActionPanel Drawer (Attachments, Members, Threads, Notification Settings)
+.o-mail-DiscussContent-panelContainer {
+    background-color: var(--daisy-surface) !important;
+    border-left: 1px solid var(--daisy-border) !important;
+}
+
+.o-mail-ActionPanel,
+.o_resizable_panel {
+    background-color: var(--daisy-surface) !important;
+    color: var(--daisy-text) !important;
+
+    .o-mail-ActionPanel-header {
+        background-color: var(--daisy-surface) !important;
+        border-bottom: 1px solid var(--daisy-border) !important;
+        color: var(--daisy-text) !important;
+
+        p,
+        p.fw-bold {
+            color: var(--daisy-text) !important;
+            letter-spacing: 0.025em;
+        }
+
+        i,
+        .text-muted {
+            color: var(--daisy-text-muted) !important;
+        }
+
+        button.btn {
+            color: var(--daisy-text-secondary) !important;
+            border-radius: var(--daisy-radius-sm, 6px) !important;
+
+            &:hover {
+                color: var(--daisy-text) !important;
+                background-color: var(--daisy-surface-muted, rgba(0, 0, 0, 0.05)) !important;
+            }
+        }
+    }
+
+    .o-mail-ActionPanel-content {
+        background-color: var(--daisy-surface) !important;
+        color: var(--daisy-text-secondary) !important;
+
+        // Empty state message
+        .text-500,
+        .text-muted,
+        p.text-center {
+            color: var(--daisy-text-muted, #64748b) !important;
+        }
+
+        // Section dates
+        .o-mail-DateSection {
+            color: var(--daisy-text-muted) !important;
+        }
+
+        // Attachments
+        .o-mail-AttachmentCard {
+            background-color: var(--daisy-surface-subtle) !important;
+            border: 1px solid var(--daisy-border) !important;
+            border-radius: var(--daisy-radius, 8px) !important;
+
+            &:hover {
+                background-color: var(--daisy-surface-muted) !important;
+                border-color: var(--daisy-border-hover) !important;
+            }
+
+            .o-mail-AttachmentCard-filename {
+                color: var(--daisy-text) !important;
+            }
+
+            .o-mail-AttachmentCard-extension {
+                color: var(--daisy-text-muted) !important;
+            }
+        }
+
+        // Member list invite button
+        button[name="inviteButton"],
+        .btn-secondary {
+            background-color: var(--daisy-surface-muted) !important;
+            border: 1px solid var(--daisy-border) !important;
+            color: var(--daisy-text) !important;
+
+            &:hover {
+                background-color: var(--daisy-surface-hover) !important;
+            }
+        }
+    }
+}
+
+.o_resizable_panel_handle {
+    background-color: transparent !important;
+    transition: background-color 0.15s ease;
+
+    &:hover,
+    &:active {
+        background-color: var(--daisy-primary) !important;
+        opacity: 0.7;
+    }
+}
+
+// ==============================================================================
+// 6. ActionPanel & Discuss Surfaces in Dark Mode
+// Full modern redesign: Sidebar channels, livechat pills, status radios, chat stream
+// ==============================================================================
+[data-daisy-scheme="dark"],
+[data-bs-theme="dark"],
+[data-color-mode="dark"],
+body.o_dark_user_theme,
+.o_dark_user_theme {
+    // --------------------------------------------------------------------------
+    // A. Full Discuss App Layout & Backgrounds
+    // --------------------------------------------------------------------------
+    .o-mail-Discuss {
+        background-color: #0b0f19 !important;
+    }
+
+    .o-mail-discussSidebarBgColor {
+        background-color: #0c101c !important;
+    }
+
+    // --------------------------------------------------------------------------
+    // B. Discuss Sidebar (Navigation, Search, Channels & Direct Messages)
+    // --------------------------------------------------------------------------
+    .o-mail-DiscussSidebar {
+        background-color: #0c101c !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+        box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3) !important;
+
+        // Search bar
+        .o-mail-DiscussSearch {
+            .o-mail-DiscussSearch-inputContainer {
+                background-color: rgba(255, 255, 255, 0.05) !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                border-radius: var(--daisy-radius-md, 8px) !important;
+                color: #f8fafc !important;
+                transition: all 0.15s ease !important;
+
+                input,
+                .o_input {
+                    background: transparent !important;
+                    color: #f8fafc !important;
+                    border: none !important;
+
+                    &::placeholder {
+                        color: #64748b !important;
+                    }
+                }
+
+                i, .fa, .oi {
+                    color: #94a3b8 !important;
+                }
+
+                &:focus-within {
+                    background-color: rgba(255, 255, 255, 0.08) !important;
+                    border-color: var(--daisy-primary, #f59e0b) !important;
+                    box-shadow: 0 0 0 2px rgba(var(--daisy-primary-rgb, 245, 158, 11), 0.25) !important;
+                }
+            }
+
+            button.btn {
+                color: #94a3b8 !important;
+
+                &:hover {
+                    color: #ffffff !important;
+                    background-color: rgba(255, 255, 255, 0.08) !important;
+                }
+            }
+
+            // Video meeting button inside search bar
+            .btn-primary {
+                background: var(--daisy-primary-gradient, linear-gradient(135deg, #f59e0b 0%, #b45309 100%)) !important;
+                border: none !important;
+                color: #ffffff !important;
+                box-shadow: 0 2px 8px var(--daisy-primary-glow, rgba(245, 158, 11, 0.35)) !important;
+            }
+        }
+
+        // Section Categories (CHANNELS, SUPPORT, DIRECT MESSAGES, etc.)
+        .o-mail-DiscussSidebarCategory {
+            &:hover {
+                background-color: transparent !important;
+                outline-color: transparent !important;
+            }
+
+            .o-mail-DiscussSidebarCategory-toggler {
+                color: #64748b !important;
+
+                &:hover {
+                    color: #f8fafc !important;
+                }
+            }
+
+            .o-mail-DiscussSidebarCategory-title {
+                color: #64748b !important;
+                font-weight: 700 !important;
+                letter-spacing: 0.08em !important;
+            }
+
+            .o-mail-DiscussSidebarCategory-actions {
+                button,
+                .btn {
+                    color: #64748b !important;
+
+                    &:hover {
+                        color: #f8fafc !important;
+                        background-color: rgba(255, 255, 255, 0.08) !important;
+                    }
+                }
+            }
+        }
+
+        // Channel Container Wrapper (Fix for bright white bg-100 / o-bordered on ended livechats)
+        .o-mail-DiscussSidebarChannel-container {
+            background-color: transparent !important;
+            --mail-DiscussSidebarChannel-borderedBgColor: rgba(255, 255, 255, 0.03) !important;
+            ---mail-DiscussSidebarChannel-borderedBgColor: rgba(255, 255, 255, 0.03) !important;
+
+            &.bg-100,
+            &.o-bordered {
+                background-color: rgba(255, 255, 255, 0.04) !important;
+                border: 1px solid rgba(255, 255, 255, 0.07) !important;
+                border-radius: var(--daisy-radius-md, 8px) !important;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.08) !important;
+                    border-color: rgba(255, 255, 255, 0.14) !important;
+                }
+            }
+        }
+
+        // Sidebar Items (Channels, Direct Messages, Mailbox links)
+        .o-mail-DiscussSidebarChannel,
+        .o-mail-DiscussSidebar-item,
+        .o-mail-Mailbox {
+            color: #cbd5e1 !important;
+            background-color: transparent !important;
+            border-radius: var(--daisy-radius-md, 8px) !important;
+            border: 1px solid transparent !important;
+            transition: all 0.15s ease !important;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.06) !important;
+                color: #ffffff !important;
+                border-color: transparent !important;
+            }
+
+            // ACTIVE THREAD — Gorgeous luminous glow
+            &.o-active {
+                background: linear-gradient(90deg, rgba(var(--daisy-primary-rgb, 245, 158, 11), 0.2) 0%, rgba(var(--daisy-primary-rgb, 245, 158, 11), 0.06) 100%) !important;
+                border: 1px solid rgba(var(--daisy-primary-rgb, 245, 158, 11), 0.35) !important;
+                border-left: 3px solid var(--daisy-primary, #f59e0b) !important;
+                color: var(--daisy-primary, #f59e0b) !important;
+                font-weight: 600 !important;
+                box-shadow: inset 1px 0 0 var(--daisy-primary, #f59e0b) !important;
+
+                .o-mail-DiscussSidebarChannel-itemName {
+                    color: #ffffff !important;
+                    font-weight: 600 !important;
+                }
+
+                .o-mail-DiscussSidebarChannel-badge {
+                    background-color: var(--daisy-primary, #f59e0b) !important;
+                    color: #ffffff !important;
+                }
+            }
+
+            // Ended livechat channel text (italicized)
+            .fst-italic.text-muted {
+                color: #94a3b8 !important;
+                font-style: italic !important;
+            }
+
+            // Unread indicators & badges
+            .o-mail-DiscussSidebar-badge,
+            .o-mail-DiscussSidebarChannel-badge {
+                background-color: var(--daisy-primary, #f59e0b) !important;
+                color: #ffffff !important;
+                font-weight: 700 !important;
+                font-size: 0.6875rem !important;
+
+                &.bg-success {
+                    background-color: #10b981 !important;
+                    color: #ffffff !important;
+                }
+            }
+        }
+
+        // Livechat Status Label Icons (Fix white circle backgrounds)
+        .o-livechat-LivechatStatusLabel-icon.o-inDiscussSidebar {
+            background-color: #121824 !important;
+            color: inherit !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+        }
+
+        .o-livechat-LivechatStatusLabel.position-absolute {
+            background-color: #121824 !important;
+        }
+
+        .o-livechat-LivechatStatusLabel-Sidebar {
+            &.bg-info {
+                --background-color: rgba(139, 92, 246, 0.25) !important;
+                --border-color: rgba(139, 92, 246, 0.4) !important;
+            }
+            &.bg-warning {
+                --background-color: rgba(245, 158, 11, 0.25) !important;
+                --border-color: rgba(245, 158, 11, 0.4) !important;
+            }
+            &.o-help {
+                color: #c084fc !important;
+            }
+        }
+
+        // Subchannel connectors and branch icons
+        .o-mail-DiscussSidebarSubchannel {
+            color: #94a3b8 !important;
+
+            svg {
+                color: rgba(255, 255, 255, 0.25) !important;
+            }
+
+            .o-mail-DiscussSidebarChannel-subChannel {
+                color: #cbd5e1 !important;
+
+                &:hover {
+                    color: #ffffff !important;
+                    background-color: rgba(255, 255, 255, 0.05) !important;
+                }
+            }
+        }
+    }
+
+    // Floating action menus (three-dots on channels)
+    .o-mail-DiscussSidebar-floatingMenu,
+    .o-discuss-dropdownMenu,
+    .o-mail-DiscussSidebarChannel-actions .dropdown-menu,
+    .o_popover:has(.o-mail-DiscussSidebar-floatingMenu) {
+        background-color: #121824 !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: var(--daisy-radius-md, 8px) !important;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+        color: #f8fafc !important;
+
+        .dropdown-item,
+        .btn {
+            color: #cbd5e1 !important;
+
+            &:hover, &:focus {
+                background-color: rgba(255, 255, 255, 0.08) !important;
+                color: #ffffff !important;
+            }
+
+            &.text-danger:hover {
+                background-color: rgba(239, 68, 68, 0.15) !important;
+                color: #f87171 !important;
+            }
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // C. Center Chat Area (.o-mail-DiscussContent)
+    // --------------------------------------------------------------------------
+    .o-mail-DiscussContent,
+    .o-mail-DiscussContent-main,
+    .o-mail-DiscussContent-core {
+        background-color: #090d16 !important;
+    }
+
+    // Header at top of active conversation
+    .o-mail-DiscussContent-header {
+        background-color: #0f1522 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        color: #f8fafc !important;
+
+        b, strong, span.fw-bold {
+            color: #f8fafc !important;
+        }
+
+        // Thread description input pill
+        input,
+        .o_input {
+            background-color: rgba(255, 255, 255, 0.04) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: #cbd5e1 !important;
+            border-radius: var(--daisy-radius-sm, 6px) !important;
+
+            &::placeholder {
+                color: #64748b !important;
+            }
+
+            &:focus {
+                background-color: rgba(255, 255, 255, 0.08) !important;
+                border-color: var(--daisy-primary, #f59e0b) !important;
+                color: #f8fafc !important;
+            }
+        }
+
+        // Header action buttons
+        button.btn {
+            color: #94a3b8 !important;
+
+            &:hover {
+                color: #f8fafc !important;
+                background-color: rgba(255, 255, 255, 0.08) !important;
+            }
+
+            // Audio & Video call pill buttons
+            &.btn-success {
+                background-color: #059669 !important;
+                border-color: #059669 !important;
+                color: #ffffff !important;
+                box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
+
+                &:hover {
+                    background-color: #10b981 !important;
+                    border-color: #10b981 !important;
+                }
+            }
+        }
+    }
+
+    // Notification banners ("Visitor is disconnected", "Conversation ended", etc.)
+    .o-mail-DiscussContent .bg-200,
+    .o-mail-DiscussContent-body .bg-200,
+    .o-mail-DiscussContent .alert,
+    .o-livechat-VisitorDisconnected,
+    .o-mail-DiscussContent .o-livechat-VisitorDisconnected {
+        background-color: rgba(255, 255, 255, 0.06) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: #94a3b8 !important;
+        border-radius: var(--daisy-radius-md, 8px) !important;
+    }
+
+    // Sub-channel preview cards in messages (Fix for light gray btn-light-subtle boxes)
+    .o-mail-SubChannelPreview,
+    .o-mail-SubChannelPreview.btn-light-subtle,
+    .o-mail-DiscussContent .btn-light-subtle {
+        background-color: #131b2a !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: #f8fafc !important;
+        border-radius: var(--daisy-radius-md, 8px) !important;
+
+        &:hover {
+            background-color: #1b2538 !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            color: #ffffff !important;
+        }
+
+        .o-mail-SubChannelPreview-name {
+            color: #f8fafc !important;
+        }
+
+        .o-mail-SubChannelPreview-badge {
+            background-color: var(--daisy-primary, #f59e0b) !important;
+            color: #ffffff !important;
+        }
+    }
+
+    // Date separator pill
+    .o-mail-DiscussContent .o-mail-DateSection {
+        color: #94a3b8 !important;
+
+        hr {
+            border-color: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        span {
+            background-color: #0f1522 !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 9999px !important;
+            padding: 2px 12px !important;
+            color: #94a3b8 !important;
+            font-size: 0.75rem !important;
+        }
+    }
+
+    // Message stream items
+    .o-mail-Message {
+        color: #cbd5e1 !important;
+
+        &.o-highlighted {
+            background-color: rgba(var(--daisy-primary-rgb, 245, 158, 11), 0.1) !important;
+        }
+
+        &.o-selected {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        .o-mail-Message-author,
+        strong,
+        b {
+            color: #f8fafc !important;
+        }
+
+        .o-mail-Message-date {
+            color: #64748b !important;
+        }
+
+        .o-mail-Message-body {
+            color: #e2e8f0 !important;
+        }
+
+        .o-mail-Message-bubble {
+            background-color: #151d2e !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: #e2e8f0 !important;
+        }
+    }
+
+    // Composer Input Box
+    .o-mail-Composer {
+        background-color: #111726 !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: var(--daisy-radius-lg, 12px) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+
+        textarea,
+        .o-mail-Composer-input {
+            background: transparent !important;
+            color: #f8fafc !important;
+            border: none !important;
+
+            &::placeholder {
+                color: #64748b !important;
+            }
+        }
+
+        button.btn {
+            color: #94a3b8 !important;
+
+            &:hover {
+                color: #f8fafc !important;
+                background-color: rgba(255, 255, 255, 0.08) !important;
+            }
+        }
+
+        .o-mail-Composer-send {
+            color: #ffffff !important;
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // D. Right Action Panel ("INFORMATION" / Livechat / Members / Pinned)
+    // --------------------------------------------------------------------------
+    .o-mail-DiscussContent-panelContainer,
+    .o-mail-ActionPanel,
+    .o_resizable_panel {
+        background-color: #0e1422 !important;
+        border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
+        color: #f8fafc !important;
+
+        .o-mail-ActionPanel-header {
+            background-color: #0e1422 !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: #f8fafc !important;
+
+            p,
+            p.fw-bold {
+                color: #f8fafc !important;
+                letter-spacing: 0.04em !important;
+            }
+
+            i,
+            .text-muted {
+                color: #94a3b8 !important;
+            }
+
+            button.btn {
+                color: #cbd5e1 !important;
+
+                &:hover {
+                    color: #ffffff !important;
+                    background-color: rgba(255, 255, 255, 0.08) !important;
+                }
+            }
+        }
+
+        .o-mail-ActionPanel-content {
+            background-color: #0e1422 !important;
+            color: #cbd5e1 !important;
+
+            h6 {
+                color: #f8fafc !important;
+                font-weight: 600 !important;
+                font-size: 0.8125rem !important;
+            }
+
+            // "View Contact" primary button
+            a.btn.btn-primary[title="View Contact"],
+            .btn-primary {
+                background: var(--daisy-primary-gradient, linear-gradient(135deg, #f59e0b 0%, #b45309 100%)) !important;
+                border: none !important;
+                color: #ffffff !important;
+                font-weight: 600 !important;
+                box-shadow: 0 4px 12px var(--daisy-primary-glow, rgba(245, 158, 11, 0.35)) !important;
+                border-radius: var(--daisy-radius-md, 8px) !important;
+                transition: transform 0.15s ease, opacity 0.15s ease !important;
+
+                &:hover {
+                    opacity: 0.95 !important;
+                    transform: translateY(-1px) !important;
+                }
+            }
+
+            // Status Selector Card (Fix for glaring pure-white radio box)
+            .o-livechat-LivechatStatusSelection {
+                background-color: #131a29 !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                border-radius: var(--daisy-radius-md, 8px) !important;
+                overflow: hidden !important;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+                margin-top: 4px !important;
+
+                button.list-group-item {
+                    background-color: #131a29 !important;
+                    color: #cbd5e1 !important;
+                    border-color: rgba(255, 255, 255, 0.06) !important;
+                    border-left-width: 4px !important;
+                    border-left-color: transparent !important;
+                    transition: all 0.15s ease !important;
+                    padding: 8px 12px !important;
+
+                    &:hover {
+                        background-color: #1b2438 !important;
+                        color: #ffffff !important;
+                    }
+
+                    .o-livechat-LivechatStatusSelection-Label {
+                        color: #e2e8f0 !important;
+                        font-weight: 500 !important;
+                        font-size: 0.8125rem !important;
+                    }
+
+                    .form-check-input {
+                        background-color: #1c263b !important;
+                        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+                        --form-check-bg: #1c263b;
+                    }
+
+                    // In progress active state
+                    &.active.o-inProgress,
+                    &.active.bg-view {
+                        background-color: rgba(16, 185, 129, 0.14) !important;
+                        border-left-color: #10b981 !important;
+                        color: #34d399 !important;
+
+                        .o-livechat-LivechatStatusSelection-Label {
+                            color: #34d399 !important;
+                            font-weight: 600 !important;
+                        }
+
+                        .form-check-input {
+                            background-color: #10b981 !important;
+                            border-color: #10b981 !important;
+                        }
+                    }
+
+                    // Waiting active state
+                    &.active.o-waiting {
+                        background-color: rgba(245, 158, 11, 0.14) !important;
+                        border-left-color: #f59e0b !important;
+                        color: #fbbf24 !important;
+
+                        .o-livechat-LivechatStatusSelection-Label {
+                            color: #fbbf24 !important;
+                            font-weight: 600 !important;
+                        }
+
+                        .form-check-input {
+                            background-color: #f59e0b !important;
+                            border-color: #f59e0b !important;
+                        }
+                    }
+
+                    // Need help active state
+                    &.active.o-need-help {
+                        background-color: rgba(139, 92, 246, 0.16) !important;
+                        border-left-color: #8b5cf6 !important;
+                        color: #c084fc !important;
+
+                        .o-livechat-LivechatStatusSelection-Label {
+                            color: #c084fc !important;
+                            font-weight: 600 !important;
+                        }
+
+                        .form-check-input {
+                            background-color: #8b5cf6 !important;
+                            border-color: #8b5cf6 !important;
+                        }
+
+                        .o-livechat-LivechatStatusLabel.o-help {
+                            color: #c084fc !important;
+                        }
+                    }
+                }
+            }
+
+            // Notes Textarea
+            textarea.form-control {
+                background-color: #131a29 !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                color: #f8fafc !important;
+                border-radius: var(--daisy-radius-md, 8px) !important;
+                padding: 10px 12px !important;
+                font-size: 0.8125rem !important;
+
+                &::placeholder {
+                    color: #64748b !important;
+                }
+
+                &:focus {
+                    background-color: #172033 !important;
+                    border-color: var(--daisy-primary, #f59e0b) !important;
+                    box-shadow: 0 0 0 2px rgba(var(--daisy-primary-rgb, 245, 158, 11), 0.25) !important;
+                    color: #ffffff !important;
+                }
+            }
+
+            // Tags edit "+" button (Fix text-dark visibility)
+            button.btn-link.text-dark {
+                color: #94a3b8 !important;
+
+                &:hover {
+                    color: #ffffff !important;
+                }
+            }
+
+            // Expertise autocomplete input (Fix black typed text)
+            .o-autocomplete--input {
+                background-color: #131a29 !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                color: #f8fafc !important;
+                border-radius: var(--daisy-radius-md, 8px) !important;
+
+                &::placeholder {
+                    color: #64748b !important;
+                }
+
+                &:focus {
+                    background-color: #172033 !important;
+                    border-color: var(--daisy-primary, #f59e0b) !important;
+                }
+            }
+
+            .o-autocomplete--dropdown-menu {
+                background-color: #131a29 !important;
+                border: 1px solid rgba(255, 255, 255, 0.12) !important;
+                color: #f8fafc !important;
+
+                .dropdown-item {
+                    color: #cbd5e1 !important;
+
+                    &:hover, &:focus {
+                        background-color: rgba(255, 255, 255, 0.08) !important;
+                        color: #ffffff !important;
+                    }
+                }
+            }
+
+            // Outcome & Download conversation buttons
+            .btn-outline-secondary {
+                background-color: rgba(255, 255, 255, 0.05) !important;
+                border-color: rgba(255, 255, 255, 0.1) !important;
+                color: #cbd5e1 !important;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.1) !important;
+                    color: #ffffff !important;
+                }
+            }
+
+            // Attachment cards inside ActionPanel
+            .o-mail-AttachmentCard {
+                background-color: #131b2a !important;
+                border: 1px solid rgba(255, 255, 255, 0.08) !important;
+
+                &:hover {
+                    background-color: #1b2538 !important;
+                    border-color: rgba(255, 255, 255, 0.16) !important;
+                }
+
+                .o-mail-AttachmentCard-filename {
+                    color: #f8fafc !important;
+                }
+
+                .o-mail-AttachmentCard-extension {
+                    color: #94a3b8 !important;
+                }
+            }
+
+            // Member list invite button
+            button[name="inviteButton"],
+            .btn-secondary {
+                background-color: rgba(255, 255, 255, 0.06) !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                color: #f8fafc !important;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.12) !important;
+                }
+            }
+        }
+    }
+}
+
+
+

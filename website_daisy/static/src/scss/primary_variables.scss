@@ -1,0 +1,151 @@
+// ==============================================================================
+// Daisy Theme — Primary Variables
+// Inspired by shadcn/ui & Radix UI Design Systems
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// Global Design Tokens & Brand Colors
+// ------------------------------------------------------------------------------
+
+$o-brand-primary: #6366F1 !default;       // Indigo (shadcn default primary)
+$o-action: #6366F1 !default;
+$o-community-color: #6366F1 !default;
+
+// Border Radius tokens (shadcn standard radius system: --radius = 0.5rem)
+$o-border-radius: 0.5rem !default;        // 8px
+$o-border-radius-sm: 0.375rem !default;   // 6px
+$o-border-radius-lg: 0.75rem !default;    // 12px
+
+// ------------------------------------------------------------------------------
+// Typography (Google Fonts configurations)
+// ------------------------------------------------------------------------------
+
+$o-theme-font-configs: () !default;
+$o-theme-font-configs: map-merge($o-theme-font-configs, (
+    'Plus Jakarta Sans': (
+        'family': ('Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif),
+        'url': 'Plus+Jakarta+Sans:300,400,500,600,700',
+    ),
+    'Outfit': (
+        'family': ('Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif),
+        'url': 'Outfit:300,400,500,600,700',
+    ),
+    'DM Sans': (
+        'family': ('DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif),
+        'url': 'DM+Sans:400,500,600,700',
+    ),
+    'Inter': (
+        'family': ('Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif),
+        'url': 'Inter:300,400,500,600,700',
+    ),
+));
+
+// ------------------------------------------------------------------------------
+// Color Palettes (6 Curated Palettes inspired by shadcn & Radix UI)
+// ------------------------------------------------------------------------------
+
+$o-color-palettes: () !default;
+$o-color-palettes: map-merge($o-color-palettes, (
+    // 1. Daisy Dawn — The iconic shadcn Indigo + Rose accent with Slate neutrals
+    'daisy-dawn': (
+        'o-color-1': #6366F1, // Indigo 500 (Primary accent)
+        'o-color-2': #F43F5E, // Rose 500 (Secondary accent)
+        'o-color-3': #F8FAFC, // Slate 50 (Light background / surface)
+        'o-color-4': #FFFFFF, // Pure White
+        'o-color-5': #0F172A, // Slate 900 (Dark foreground)
+        'menu': 4,
+        'footer': 5,
+        'copyright-custom': 'black-15',
+    ),
+
+    // 2. Daisy Slate — Pure Minimalist Zinc/Slate Monochrome (Quintessential shadcn)
+    'daisy-slate': (
+        'o-color-1': #18181B, // Zinc 900 (Primary high contrast)
+        'o-color-2': #71717A, // Zinc 500 (Muted neutral)
+        'o-color-3': #F4F4F5, // Zinc 100 (Subtle surface)
+        'o-color-4': #FFFFFF, // Pure White
+        'o-color-5': #09090B, // Zinc 950 (Deep dark)
+        'menu': 4,
+        'footer': 5,
+        'copyright-custom': 'black-15',
+    ),
+
+    // 3. Daisy Forest — Radix Emerald / Sage
+    'daisy-forest': (
+        'o-color-1': #059669, // Emerald 600
+        'o-color-2': #10B981, // Emerald 500
+        'o-color-3': #F0FDF4, // Green 50
+        'o-color-4': #FFFFFF, // Pure White
+        'o-color-5': #064E3B, // Emerald 900
+        'menu': 4,
+        'footer': 5,
+        'copyright-custom': 'black-15',
+    ),
+
+    // 4. Daisy Sunset — Radix Orange / Warm Stone
+    'daisy-sunset': (
+        'o-color-1': #EA580C, // Orange 600
+        'o-color-2': #F97316, // Orange 500
+        'o-color-3': #FFF7ED, // Orange 50
+        'o-color-4': #FFFFFF, // Pure White
+        'o-color-5': #1C1917, // Stone 900
+        'menu': 4,
+        'footer': 5,
+        'copyright-custom': 'black-15',
+    ),
+
+    // 5. Daisy Arctic — Radix Sky / Cyan
+    'daisy-arctic': (
+        'o-color-1': #0284C7, // Sky 600
+        'o-color-2': #38BDF8, // Sky 400
+        'o-color-3': #F0F9FF, // Sky 50
+        'o-color-4': #FFFFFF, // Pure White
+        'o-color-5': #082F49, // Sky 950
+        'menu': 4,
+        'footer': 5,
+        'copyright-custom': 'black-15',
+    ),
+
+    // 6. Daisy Midnight — Radix Dark Violet
+    'daisy-midnight': (
+        'o-color-1': #8B5CF6, // Violet 500
+        'o-color-2': #A78BFA, // Violet 400
+        'o-color-3': #1E1E2E, // Dark Surface
+        'o-color-4': #09090B, // Deep Dark
+        'o-color-5': #F4F4F5, // Light text
+        'menu': 3,
+        'footer': 3,
+        'copyright-custom': 'black-15',
+    ),
+));
+
+// Register Daisy palettes at the top of the selectable palettes list
+$o-selected-color-palettes-names: join(
+    ('daisy-dawn', 'daisy-slate', 'daisy-forest', 'daisy-sunset', 'daisy-arctic', 'daisy-midnight'),
+    $o-selected-color-palettes-names
+);
+
+// ------------------------------------------------------------------------------
+// Website Values Palette (Theme defaults)
+// ------------------------------------------------------------------------------
+
+$o-website-values-palettes: (
+    (
+        'color-palettes-name': 'daisy-dawn',
+
+        // Typography
+        'headings-font':       'Outfit',
+        'font':                'Plus Jakarta Sans',
+        'navbar-font':         'Plus Jakarta Sans',
+        'buttons-font':        'Plus Jakarta Sans',
+
+        // Header & Footer
+        'header-template':     'default',
+        'header-links-style':  'default',
+        'footer-template':     'default',
+        'footer-scrolltop':    true,
+
+        // Links
+        'link-underline':      'hover',
+    ),
+);

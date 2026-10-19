@@ -1,0 +1,393 @@
+// ==============================================================================
+// Daisy Theme — eCommerce & Store, Cart/Checkout & Sub-Portal Pages
+// shadcn/ui and Radix UI aesthetics for Odoo 19 Website
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// 1. eCommerce Product Grid & Cards (.oe_website_sale, .oe_product_cart)
+// ------------------------------------------------------------------------------
+.oe_website_sale {
+    // Product Search & Category Filter Sidebar
+    .o_wsale_products_sidebar {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+
+        .nav-link {
+            color: #475569 !important;
+            font-size: 0.875rem !important;
+            padding: 6px 12px !important;
+            border-radius: 6px !important;
+            transition: all 0.12s ease !important;
+
+            &:hover {
+                background-color: #f1f5f9 !important;
+                color: #0f172a !important;
+            }
+
+            &.active {
+                background-color: #eef2ff !important;
+                color: #6366f1 !important;
+                font-weight: 600 !important;
+            }
+        }
+    }
+
+    // Modern Product Card
+    .oe_product_cart,
+    .o_wsale_product_grid_wrapper {
+        .card {
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 12px !important;
+            overflow: hidden !important;
+            background-color: #ffffff !important;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+
+            &:hover {
+                transform: translateY(-4px) !important;
+                box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.08), 0 4px 8px -4px rgba(0, 0, 0, 0.04) !important;
+                border-color: #cbd5e1 !important;
+            }
+
+            // Image Container
+            .oe_product_image {
+                background-color: #f8fafc !important;
+                padding: 16px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+
+                img {
+                    max-height: 220px !important;
+                    object-fit: contain !important;
+                    transition: transform 0.3s ease !important;
+                }
+
+                &:hover img {
+                    transform: scale(1.04);
+                }
+            }
+
+            // Card Body & Typography
+            .card-body {
+                padding: 16px !important;
+
+                .o_wsale_products_item_title {
+                    font-size: 0.9375rem !important;
+                    font-weight: 600 !important;
+                    color: #0f172a !important;
+                    margin-bottom: 6px !important;
+                    line-height: 1.35;
+
+                    a {
+                        color: inherit !important;
+                        text-decoration: none !important;
+
+                        &:hover {
+                            color: #6366f1 !important;
+                        }
+                    }
+                }
+
+                // Price Tag
+                .product_price {
+                    display: flex !important;
+                    align-items: baseline !important;
+                    gap: 6px !important;
+
+                    .h5, .h6 {
+                        font-weight: 700 !important;
+                        color: #0f172a !important;
+                        font-size: 1.0625rem !important;
+                    }
+
+                    .text-danger {
+                        color: #94a3b8 !important;
+                        text-decoration: line-through !important;
+                        font-size: 0.8125rem !important;
+                    }
+                }
+            }
+
+            // Ribbon Badge (Sale / New / Sold Out)
+            .ribbon {
+                font-size: 0.6875rem !important;
+                font-weight: 600 !important;
+                letter-spacing: 0.05em !important;
+                text-transform: uppercase !important;
+                padding: 4px 10px !important;
+                border-radius: 4px !important;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 2. Product Detail Page (#product_details)
+// ------------------------------------------------------------------------------
+#product_details {
+    h1 {
+        font-size: 1.875rem !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.02em !important;
+        color: #0f172a !important;
+        margin-bottom: 12px !important;
+    }
+
+    .o_price_h4 {
+        margin-bottom: 16px !important;
+
+        .oe_price {
+            font-size: 1.75rem !important;
+            font-weight: 700 !important;
+            color: #0f172a !important;
+        }
+    }
+
+    // Variant Attribute Pills
+    .js_add_cart_variants {
+        .variant_attribute {
+            margin-bottom: 16px !important;
+
+            strong {
+                font-size: 0.875rem !important;
+                font-weight: 600 !important;
+                color: #334155 !important;
+                display: block !important;
+                margin-bottom: 8px !important;
+            }
+
+            .list-inline-item {
+                .btn {
+                    border: 1px solid #cbd5e1 !important;
+                    border-radius: 6px !important;
+                    font-size: 0.8125rem !important;
+                    font-weight: 500 !important;
+                    padding: 6px 14px !important;
+                    color: #334155 !important;
+                    background-color: #ffffff !important;
+
+                    &:hover {
+                        border-color: #6366f1 !important;
+                        color: #6366f1 !important;
+                    }
+
+                    &.active {
+                        background-color: #6366f1 !important;
+                        border-color: #6366f1 !important;
+                        color: #ffffff !important;
+                        box-shadow: 0 1px 3px rgba(99, 102, 241, 0.3) !important;
+                    }
+                }
+            }
+        }
+    }
+
+    // Add to Cart Button & Quantity Stepper
+    #add_to_cart_wrap {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 24px;
+
+        .css_quantity {
+            border: 1px solid #cbd5e1 !important;
+            border-radius: 8px !important;
+            overflow: hidden !important;
+            background-color: #ffffff !important;
+
+            .btn {
+                background-color: #f8fafc !important;
+                border: none !important;
+                color: #475569 !important;
+                padding: 8px 12px !important;
+
+                &:hover {
+                    background-color: #e2e8f0 !important;
+                    color: #0f172a !important;
+                }
+            }
+
+            .js_quantity {
+                border: none !important;
+                text-align: center !important;
+                font-weight: 600 !important;
+                font-size: 0.9375rem !important;
+                width: 48px !important;
+            }
+        }
+
+        #add_to_cart {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+            border: none !important;
+            border-radius: 8px !important;
+            padding: 10px 24px !important;
+            font-size: 0.9375rem !important;
+            font-weight: 600 !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35) !important;
+            transition: all 0.2s ease !important;
+
+            &:hover {
+                transform: translateY(-1px) !important;
+                box-shadow: 0 6px 16px rgba(99, 102, 241, 0.45) !important;
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 3. Shopping Cart & Checkout Flow (.oe_cart)
+// ------------------------------------------------------------------------------
+.oe_cart {
+    // Checkout Step Wizard Breadcrumbs
+    .wizard {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        margin-bottom: 32px !important;
+
+        .wizard-step {
+            font-size: 0.8125rem !important;
+            font-weight: 600 !important;
+            color: #94a3b8 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+
+            &.active {
+                color: #6366f1 !important;
+            }
+
+            &.done {
+                color: #10b981 !important;
+            }
+        }
+    }
+
+    // Cart Review Table
+    table#cart_products {
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 10px !important;
+        overflow: hidden !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+
+        thead {
+            background-color: #f8fafc !important;
+
+            th {
+                border-bottom: 1px solid #e2e8f0 !important;
+                font-size: 0.75rem !important;
+                font-weight: 600 !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.05em !important;
+                color: #64748b !important;
+                padding: 12px 16px !important;
+            }
+        }
+
+        tbody td {
+            padding: 14px 16px !important;
+            border-bottom: 1px solid #f1f5f9 !important;
+            vertical-align: middle !important;
+        }
+    }
+
+    // Order Summary Card
+    #o_cart_summary,
+    .oe_cart_summary {
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+        background-color: #ffffff !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04) !important;
+        padding: 20px !important;
+
+        h4 {
+            font-size: 1.0625rem !important;
+            font-weight: 600 !important;
+            color: #0f172a !important;
+            border-bottom: 1px solid #f1f5f9 !important;
+            padding-bottom: 12px !important;
+            margin-bottom: 16px !important;
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 4. Portal Sub-pages (/my/orders, /my/invoices, /my/tasks)
+// ------------------------------------------------------------------------------
+.o_portal_my_doc_table {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+    background-color: #ffffff !important;
+
+    thead th {
+        background-color: #f8fafc !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+        font-size: 0.75rem !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        color: #64748b !important;
+        padding: 12px 18px !important;
+    }
+
+    tbody tr {
+        transition: background-color 0.12s ease !important;
+
+        &:hover {
+            background-color: #f8fafc !important;
+        }
+
+        td {
+            padding: 14px 18px !important;
+            border-bottom: 1px solid #f1f5f9 !important;
+            font-size: 0.875rem !important;
+            color: #334155 !important;
+            vertical-align: middle !important;
+        }
+    }
+
+    // Portal Status Badges
+    .badge {
+        font-weight: 600 !important;
+        font-size: 0.75rem !important;
+        padding: 4px 10px !important;
+        border-radius: 9999px !important;
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 5. Blog & Forum Layouts (.website_blog, .website_forum)
+// ------------------------------------------------------------------------------
+.website_blog {
+    .o_wblog_post_card {
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+
+        &:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .card-body {
+            padding: 20px !important;
+        }
+
+        .o_wblog_post_title {
+            font-size: 1.125rem !important;
+            font-weight: 700 !important;
+            color: #0f172a !important;
+            line-height: 1.4 !important;
+        }
+    }
+}

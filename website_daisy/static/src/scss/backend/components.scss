@@ -1,0 +1,232 @@
+// ==============================================================================
+// Daisy Theme — Global Backend Components
+// Command Palette, Dialogs, Toasts, Chatter, Dropdowns & Popovers
+// Fully token-driven for Light, Dark, and Contrast themes
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// 1. Command Palette (The Iconic shadcn CMDK Component)
+// ------------------------------------------------------------------------------
+.o_command_palette {
+    max-width: 640px !important;
+    border-radius: var(--daisy-radius-lg, 12px) !important;
+    border: 1px solid var(--daisy-border) !important;
+    box-shadow: var(--daisy-shadow-lg) !important;
+    background-color: var(--daisy-surface) !important;
+    overflow: hidden !important;
+
+    .modal-body {
+        padding: 0 !important;
+        background-color: var(--daisy-surface) !important;
+    }
+
+    // Search input at the top of palette
+    .o_command_palette_search {
+        padding: 14px 18px !important;
+        border-bottom: 1px solid var(--daisy-border) !important;
+        background-color: var(--daisy-surface) !important;
+
+        .o_searchview_input {
+            font-size: 0.9375rem !important;
+            color: var(--daisy-text) !important;
+            background-color: transparent !important;
+
+            &::placeholder {
+                color: var(--daisy-text-muted) !important;
+            }
+        }
+    }
+
+    // Command Listbox
+    .o_command_palette_listbox {
+        padding: 8px !important;
+        background-color: var(--daisy-surface) !important;
+
+        .o_command {
+            border-radius: var(--daisy-radius-sm, 6px) !important;
+            padding: 8px 12px !important;
+            font-size: 0.875rem !important;
+            font-weight: 500 !important;
+            color: var(--daisy-text) !important;
+            transition: all 0.12s ease !important;
+            display: flex !important;
+            align-items: center !important;
+
+            &:hover,
+            &.focused {
+                background-color: var(--daisy-surface-muted) !important;
+                color: var(--daisy-text) !important;
+            }
+
+            .o_command_hotkey {
+                background-color: var(--daisy-surface-subtle) !important;
+                border: 1px solid var(--daisy-border) !important;
+                border-radius: 4px !important;
+                padding: 2px 6px !important;
+                font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+                font-size: 0.75rem !important;
+                color: var(--daisy-text-muted) !important;
+                margin-left: auto;
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 2. Modals & Dialogs (.o_dialog, .modal-content)
+// ------------------------------------------------------------------------------
+.modal-content {
+    border: 1px solid var(--daisy-border) !important;
+    border-radius: var(--daisy-radius-lg, 12px) !important;
+    box-shadow: var(--daisy-shadow-lg) !important;
+    background-color: var(--daisy-surface) !important;
+    color: var(--daisy-text) !important;
+    overflow: hidden !important;
+
+    .modal-header {
+        border-bottom: 1px solid var(--daisy-border) !important;
+        padding: 16px 22px !important;
+        background-color: var(--daisy-surface) !important;
+
+        .modal-title {
+            font-size: 1.0625rem !important;
+            font-weight: 600 !important;
+            color: var(--daisy-text) !important;
+            letter-spacing: -0.015em !important;
+        }
+
+        .btn-close {
+            opacity: 0.6;
+            transition: opacity 0.15s ease;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    .modal-body {
+        padding: 22px !important;
+        background-color: var(--daisy-surface) !important;
+        color: var(--daisy-text) !important;
+    }
+
+    .modal-footer {
+        border-top: 1px solid var(--daisy-border) !important;
+        padding: 14px 22px !important;
+        background-color: var(--daisy-surface) !important;
+        gap: 8px;
+    }
+}
+
+.modal-backdrop.show {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0.5 !important;
+    background-color: #09090b !important;
+}
+
+// ------------------------------------------------------------------------------
+// 3. Toast Notifications (Sonner style)
+// ------------------------------------------------------------------------------
+.o_notification_manager {
+    .o_notification {
+        background-color: var(--daisy-surface) !important;
+        border: 1px solid var(--daisy-border) !important;
+        border-radius: var(--daisy-radius, 10px) !important;
+        box-shadow: var(--daisy-shadow-lg) !important;
+        padding: 14px 18px !important;
+        color: var(--daisy-text) !important;
+        margin-bottom: 10px !important;
+
+        .o_notification_title {
+            font-size: 0.875rem !important;
+            font-weight: 600 !important;
+            color: var(--daisy-text) !important;
+        }
+
+        .o_notification_content {
+            font-size: 0.8125rem !important;
+            color: var(--daisy-text-secondary) !important;
+            margin-top: 4px;
+        }
+
+        .o_notification_progress {
+            height: 2px !important;
+            background-color: var(--daisy-primary) !important;
+            border-radius: 0 0 10px 10px;
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 4. Dropdowns & Action Popovers (.dropdown-menu)
+// ------------------------------------------------------------------------------
+.dropdown-menu {
+    border: 1px solid var(--daisy-border) !important;
+    border-radius: var(--daisy-radius, 8px) !important;
+    box-shadow: var(--daisy-shadow-lg) !important;
+    padding: 4px !important;
+    background-color: var(--daisy-surface) !important;
+
+    .dropdown-item {
+        // Suppress legacy Odoo :before and :after checkmark pseudo-element that creates duplicate/misaligned check icons
+        &::before,
+        &:before,
+        &::after,
+        &:after {
+            display: none !important;
+            content: none !important;
+        }
+
+        font-size: 0.8125rem !important;
+        font-weight: 500 !important;
+        border-radius: var(--daisy-radius-sm, 6px) !important;
+        padding: 6px 12px !important;
+        color: var(--daisy-text) !important;
+        transition: background-color 0.12s ease !important;
+
+        &:hover,
+        &:focus {
+            background-color: var(--daisy-surface-muted) !important;
+            color: var(--daisy-text) !important;
+        }
+
+        &.active,
+        &:active {
+            background-color: var(--daisy-primary) !important;
+            color: #ffffff !important;
+
+            .o_stage_check,
+            .fa-check {
+                color: #ffffff !important;
+            }
+        }
+    }
+
+    .dropdown-divider {
+        border-top-color: var(--daisy-border) !important;
+        margin: 4px 0 !important;
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 5. Chatter & Discussion (.o-mail-Chatter)
+// (Fully modernized in dedicated stylesheet: chatter.scss)
+// ------------------------------------------------------------------------------
+
+
+// ------------------------------------------------------------------------------
+// 6. Tooltips (Radix Tooltip style)
+// ------------------------------------------------------------------------------
+.tooltip {
+    .tooltip-inner {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+        font-size: 0.75rem !important;
+        font-weight: 500 !important;
+        border-radius: var(--daisy-radius-sm, 6px) !important;
+        padding: 5px 10px !important;
+        box-shadow: var(--daisy-shadow-md) !important;
+    }
+}

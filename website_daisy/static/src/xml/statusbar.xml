@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+  <!-- Daisy Theme: Enhanced Stage Dropdown Toggle across all Form Views -->
+  <t t-inherit="web.StatusBarField" t-inherit-mode="extension">
+    <xpath expr="//button[@t-ref='after']" position="attributes">
+      <attribute name="class" add="o_statusbar_overflow_btn o_statusbar_overflow_after" separator=" "/>
+    </xpath>
+    <xpath expr="//button[@t-ref='before']" position="attributes">
+      <attribute name="class" add="o_statusbar_overflow_btn o_statusbar_overflow_before" separator=" "/>
+    </xpath>
+    <xpath expr="//button[@t-ref='dropdown']" position="attributes">
+      <attribute name="class" add="o_statusbar_stage_dropdown" separator=" "/>
+    </xpath>
+    <xpath expr="//button[@t-ref='dropdown']/t[@t-out='getCurrentLabel()']" position="replace">
+      <span class="o_stage_dot me-2" aria-hidden="true"/>
+      <span class="o_stage_label text-truncate" t-out="getCurrentLabel()"/>
+      <i class="fa fa-chevron-down ms-2 o_dropdown_chevron" aria-hidden="true"/>
+    </xpath>
+  </t>
+
+  <!-- Daisy Theme: Refined Stage Dropdown Menu Items with Checkmark on Active Stage -->
+  <t t-inherit="web.StatusBarField.Dropdown" t-inherit-mode="extension">
+    <xpath expr="//DropdownItem" position="attributes">
+      <attribute name="class">getDropdownItemClassNames(item) + ' o_stage_dropdown_item dropdown-item_active_noarrow'</attribute>
+    </xpath>
+    <xpath expr="//DropdownItem/span[@t-esc='item.label']" position="replace">
+      <div class="d-flex align-items-center justify-content-between w-100 py-1">
+        <span class="text-truncate" t-esc="item.label"/>
+        <i t-if="item.isSelected" class="fa fa-check ms-3 small o_stage_check"/>
+      </div>
+    </xpath>
+  </t>
+
+</templates>

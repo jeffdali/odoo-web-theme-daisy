@@ -1,0 +1,325 @@
+// ==============================================================================
+// Daisy Theme — List & Table View
+// Clean minimalist data tables with uppercase headers and smooth row highlights
+// Fully token-driven for Light, Dark, and Contrast themes
+// ==============================================================================
+
+.o_list_renderer {
+    margin: 12px 20px !important;
+    border: 1px solid var(--daisy-border) !important;
+    border-radius: var(--daisy-radius-lg, 10px) !important;
+    overflow-x: auto !important;
+    background-color: var(--daisy-surface) !important;
+    box-shadow: none !important;
+
+    // Remove outer margins inside form views / notebooks
+    .o_form_view & {
+        margin: 0 !important;
+    }
+
+    .o_list_table {
+        border-collapse: separate !important;
+        border-spacing: 0 !important;
+        width: 100% !important;
+
+        // Table Header
+        thead {
+            th {
+                background-color: var(--daisy-surface-muted) !important;
+                border-bottom: 1px solid var(--daisy-border) !important;
+                color: var(--daisy-text-muted) !important;
+                font-size: 0.75rem !important;
+                font-weight: 600 !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.04em !important;
+                padding: 10px 14px !important;
+                white-space: nowrap !important;
+                vertical-align: middle !important;
+
+                &.o_column_sortable:hover {
+                    color: var(--daisy-primary) !important;
+                }
+
+                // Checkbox column
+                &.o_list_record_selector {
+                    width: 44px !important;
+                    min-width: 44px !important;
+                    max-width: 44px !important;
+                    padding: 0 12px !important;
+                    text-align: center !important;
+                }
+
+                // Actions & Optional columns dropdown header cell
+                &.o_list_actions_header {
+                    width: 44px !important;
+                    min-width: 44px !important;
+                    max-width: 44px !important;
+                    padding: 0 !important;
+                    text-align: center !important;
+                    vertical-align: middle !important;
+                    background-color: var(--daisy-surface-muted) !important;
+                    position: sticky !important;
+                    right: 0 !important;
+                    z-index: 3 !important;
+                    border-top-right-radius: var(--daisy-radius-lg, 10px) !important;
+                }
+
+                &:first-child {
+                    border-top-left-radius: var(--daisy-radius-lg, 10px) !important;
+                }
+            }
+        }
+
+        // Table Body
+        tbody {
+            tr.o_data_row {
+                border-bottom: 1px solid var(--daisy-border) !important;
+                transition: background-color 0.15s ease !important;
+
+                td {
+                    padding: 10px 14px !important;
+                    font-size: 0.8125rem !important;
+                    color: var(--daisy-text) !important;
+                    border-bottom: 1px solid var(--daisy-border) !important;
+                    vertical-align: middle !important;
+
+                    &.o_list_record_selector {
+                        width: 44px !important;
+                        min-width: 44px !important;
+                        max-width: 44px !important;
+                        padding: 0 12px !important;
+                        text-align: center !important;
+                    }
+
+                    // Matching column for actions/optional columns
+                    &.w-print-0.p-print-0,
+                    &.o_list_record_remove {
+                        width: 44px !important;
+                        min-width: 44px !important;
+                        max-width: 44px !important;
+                        padding: 0 !important;
+                        text-align: center !important;
+                        vertical-align: middle !important;
+                        position: sticky !important;
+                        right: 0 !important;
+                        background-color: var(--daisy-surface) !important;
+                        z-index: 1 !important;
+
+                        button {
+                            font-family: 'FontAwesome' !important;
+                            color: var(--daisy-text-muted, #94a3b8) !important;
+                            display: inline-flex !important;
+                            align-items: center !important;
+                            justify-content: center !important;
+                            width: 28px !important;
+                            height: 28px !important;
+                            border-radius: 6px !important;
+                            background: transparent !important;
+                            border: none !important;
+                            transition: all 0.15s ease !important;
+
+                            &:hover {
+                                color: #ef4444 !important;
+                                background-color: rgba(239, 68, 68, 0.08) !important;
+                            }
+                        }
+                    }
+                }
+
+                &:hover {
+                    background-color: var(--daisy-surface-muted) !important;
+
+                    td.w-print-0.p-print-0,
+                    td.o_list_record_remove {
+                        background-color: var(--daisy-surface-muted) !important;
+                    }
+                }
+
+                &.table-info,
+                &.o_data_row_selected {
+                    background-color: var(--daisy-primary-subtle, rgba(99, 102, 241, 0.1)) !important;
+                    
+                    td {
+                        color: var(--daisy-text) !important;
+
+                        &.w-print-0.p-print-0,
+                        &.o_list_record_remove {
+                            background-color: var(--daisy-primary-subtle, rgba(99, 102, 241, 0.1)) !important;
+                        }
+                    }
+                }
+
+                &:last-child {
+                    td:first-child {
+                        border-bottom-left-radius: var(--daisy-radius-lg, 10px) !important;
+                    }
+
+                    td.w-print-0.p-print-0:last-child,
+                    td.o_list_record_remove:last-child {
+                        border-bottom-right-radius: var(--daisy-radius-lg, 10px) !important;
+                    }
+                }
+
+                // Inline editing row
+                &.o_selected_row {
+                    background-color: var(--daisy-surface) !important;
+
+                    .o_input {
+                        border: 1px solid var(--daisy-border) !important;
+                        border-radius: var(--daisy-radius-sm, 6px) !important;
+                        padding: 4px 8px !important;
+                        font-size: 0.8125rem !important;
+                        background-color: var(--daisy-surface) !important;
+                        color: var(--daisy-text) !important;
+
+                        &:focus {
+                            border-color: var(--daisy-primary) !important;
+                            box-shadow: none !important;
+                        }
+                    }
+                }
+            }
+
+            // Grouped Rows
+            tr.o_group_header {
+                background-color: var(--daisy-surface-muted) !important;
+                font-size: 0.875rem !important;
+                font-weight: 600 !important;
+                color: var(--daisy-text) !important;
+                border-bottom: 1px solid var(--daisy-border) !important;
+                cursor: pointer;
+
+                th, td {
+                    background-color: var(--daisy-surface-muted) !important;
+                    padding: 10px 14px !important;
+                    border-bottom: 1px solid var(--daisy-border) !important;
+                    vertical-align: middle !important;
+                }
+
+                // Group name cell MUST remain display: table-cell for colspan to work across table columns
+                th.o_group_name {
+                    display: table-cell !important;
+                    color: var(--daisy-text) !important;
+                    font-size: 0.875rem !important;
+                    font-weight: 600 !important;
+                    white-space: nowrap;
+
+                    &.text-black,
+                    &.text-body {
+                        color: var(--daisy-text) !important;
+                    }
+
+                    // Inner wrapper rendered by Odoo 19 is <div class="d-flex align-items-center">
+                    > div {
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    }
+
+                    .o_group_caret {
+                        margin-right: 4px;
+                        color: var(--daisy-text-muted);
+                        font-size: 0.75rem;
+                    }
+                }
+
+                // Group record count chip / pager
+                .o_group_pager,
+                .o_pager {
+                    font-size: 0.6875rem !important;
+                    font-weight: 600 !important;
+                    background-color: var(--daisy-surface) !important;
+                    border: 1px solid var(--daisy-border) !important;
+                    border-radius: 9999px !important;
+                    padding: 2px 8px !important;
+                    color: var(--daisy-text-muted) !important;
+                }
+
+                &:hover {
+                    background-color: var(--daisy-surface) !important;
+
+                    th, td {
+                        background-color: var(--daisy-surface) !important;
+                    }
+                }
+            }
+        }
+
+        // Table Footer
+        tfoot {
+            tr {
+                background-color: var(--daisy-surface-muted) !important;
+                border-top: 2px solid var(--daisy-border) !important;
+                font-weight: 600 !important;
+                font-size: 0.8125rem !important;
+
+                td {
+                    padding: 12px 14px !important;
+                    color: var(--daisy-text) !important;
+                }
+            }
+        }
+    }
+
+    // Checkbox styling
+    .form-check-input {
+        width: 16px !important;
+        height: 16px !important;
+        border: 1px solid var(--daisy-border-hover) !important;
+        border-radius: 4px !important;
+        cursor: pointer;
+        box-shadow: none !important;
+        transition: all 0.15s ease !important;
+
+        &:checked {
+            background-color: var(--daisy-primary) !important;
+            border-color: var(--daisy-primary) !important;
+            box-shadow: none !important;
+        }
+
+        &:focus {
+            box-shadow: none !important;
+        }
+    }
+
+    // Optional columns dropdown container and toggle button
+    .o_optional_columns_dropdown {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 100% !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+
+        .btn {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 32px !important;
+            height: 32px !important;
+            padding: 0 !important;
+            border: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+
+        .o_optional_columns_dropdown_toggle {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 28px !important;
+            height: 28px !important;
+            padding: 0 !important;
+            color: var(--daisy-text-muted) !important;
+            border-radius: 6px !important;
+            font-size: 13px !important;
+            transition: all 0.15s ease !important;
+
+            &:hover {
+                color: var(--daisy-text) !important;
+                background-color: var(--daisy-surface-subtle) !important;
+            }
+        }
+    }
+}

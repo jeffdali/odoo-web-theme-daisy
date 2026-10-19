@@ -1,0 +1,1121 @@
+// ==============================================================================
+// Daisy Theme — Search Panel & Filter Popovers
+// Modern collapsible sidebar and search filter popovers
+// Fully token-driven for Light, Dark, and Contrast themes
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// 1. Search Panel Sidebar (.o_search_panel)
+// ------------------------------------------------------------------------------
+.o_search_panel {
+    background-color: var(--daisy-surface) !important;
+    border-right: 1px solid var(--daisy-border) !important;
+    padding: 12px 8px 48px 8px !important;
+    --SearchPanel-width: 260px;
+    min-width: 240px;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    // Tree branch variables
+    --treeEntry-padding-h: 18px;
+    --treeEntry--beforeAfter-color: var(--daisy-border, rgba(0, 0, 0, 0.15));
+
+    // Ensure first section header doesn't collide with toggle sidebar button
+    .o_search_panel_section:first-of-type {
+        .o_search_panel_section_header {
+            padding-right: 36px !important;
+        }
+    }
+
+    // Search panel section
+    .o_search_panel_section {
+        margin-bottom: 20px !important;
+
+        .o_search_panel_section_header {
+            font-size: 0.72rem !important;
+            font-weight: 700 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+            color: var(--daisy-text-muted) !important;
+            padding: 6px 8px !important;
+            border-bottom: 1px solid var(--daisy-border);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .o_search_panel_section_icon {
+                color: var(--daisy-primary);
+                margin-right: 6px;
+            }
+        }
+
+        // List groups inside search panel
+        .list-group {
+            margin: 0 !important;
+            padding: 0 !important;
+            list-style: none !important;
+            background: transparent !important;
+        }
+
+        // Category tree items (LI container)
+        li.o_search_panel_category_value {
+            display: block !important;
+            width: 100% !important;
+            background-color: transparent !important;
+            border: none !important;
+            padding: 1px 0 !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+
+            // Nested child list - MUST stack vertically underneath header
+            > ul.list-group {
+                display: block !important;
+                width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            // Clickable header row item
+            > header.list-group-item {
+                background-color: transparent !important;
+                border: none !important;
+                border-radius: var(--daisy-radius-sm, 6px) !important;
+                padding: 5px 8px !important;
+                font-size: 0.8125rem !important;
+                color: var(--daisy-text-secondary) !important;
+                font-weight: 500 !important;
+                transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                cursor: pointer !important;
+                width: 100% !important;
+                min-height: 30px !important;
+
+                &:hover {
+                    background-color: var(--daisy-surface-muted, rgba(0, 0, 0, 0.05)) !important;
+                    color: var(--daisy-text) !important;
+                }
+
+                &.active {
+                    background-color: var(--daisy-primary-subtle, rgba(99, 102, 241, 0.12)) !important;
+                    color: var(--daisy-primary) !important;
+                    font-weight: 600 !important;
+
+                    .o_search_panel_counter {
+                        background-color: var(--daisy-primary) !important;
+                        color: #ffffff !important;
+                    }
+                }
+
+                .o_search_panel_label {
+                    display: flex !important;
+                    align-items: center !important;
+                    flex: 1 1 auto !important;
+                    min-width: 0 !important;
+                    overflow: hidden !important;
+                    text-overflow: ellipsis !important;
+                    white-space: nowrap !important;
+
+                    .o_toggle_fold {
+                        width: 16px !important;
+                        height: 16px !important;
+                        display: inline-flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        background: transparent !important;
+                        border: none !important;
+                        padding: 0 !important;
+                        margin-right: 4px !important;
+                        flex-shrink: 0 !important;
+                        color: var(--daisy-text-muted) !important;
+
+                        &:hover {
+                            color: var(--daisy-text) !important;
+                        }
+
+                        i.fa {
+                            font-size: 0.65rem !important;
+                        }
+                    }
+
+                    .o_search_panel_label_title {
+                        flex: 1 1 auto !important;
+                        min-width: 0 !important;
+                        overflow: hidden !important;
+                        text-overflow: ellipsis !important;
+                        white-space: nowrap !important;
+                    }
+                }
+
+                // Counter Badge
+                .o_search_panel_counter {
+                    flex-shrink: 0 !important;
+                    font-size: 0.6875rem !important;
+                    font-weight: 600 !important;
+                    background-color: var(--daisy-surface-muted, rgba(0, 0, 0, 0.06)) !important;
+                    color: var(--daisy-text-muted) !important;
+                    border-radius: 9999px !important;
+                    padding: 1px 7px !important;
+                    margin-left: 6px !important;
+                }
+            }
+        }
+
+        // Tree branch indentation connector lines
+        .o_treeEntry {
+            padding-left: var(--treeEntry-padding-h, 18px) !important;
+            position: relative !important;
+
+            &:before, &:after {
+                position: absolute;
+                left: calc(var(--treeEntry-padding-h, 18px) * 0.45) !important;
+                background: var(--treeEntry--beforeAfter-color, var(--daisy-border, rgba(0, 0, 0, 0.15))) !important;
+                content: '';
+            }
+
+            &:before {
+                top: 0 !important;
+                width: 1px !important;
+                height: 100% !important;
+            }
+
+            &:after {
+                top: 15px !important;
+                width: calc(var(--treeEntry-padding-h, 18px) * 0.55) !important;
+                height: 1px !important;
+            }
+
+            &:last-of-type:before {
+                height: 15px !important;
+            }
+        }
+
+        // Filter Checkbox items (Groups & Values)
+        .o_search_panel_filter_group,
+        .o_search_panel_filter_value {
+            display: block !important;
+            width: 100% !important;
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 0 2px 0 !important;
+
+            .form-check {
+                display: flex !important;
+                align-items: center !important;
+                width: 100% !important;
+                padding: 5px 8px !important;
+                border-radius: var(--daisy-radius-sm, 6px) !important;
+                transition: background-color 0.12s ease;
+                margin: 0 !important;
+
+                &:hover {
+                    background-color: var(--daisy-surface-muted) !important;
+                }
+
+                .form-check-input {
+                    border-radius: 4px;
+                    border: 1px solid var(--daisy-border-hover);
+                    margin-top: 0 !important;
+                    margin-right: 8px !important;
+                    flex-shrink: 0 !important;
+                    cursor: pointer;
+
+                    &:checked {
+                        background-color: var(--daisy-primary);
+                        border-color: var(--daisy-primary);
+                    }
+                }
+
+                .form-check-label {
+                    display: flex !important;
+                    align-items: center !important;
+                    justify-content: space-between !important;
+                    flex: 1 1 auto !important;
+                    min-width: 0 !important;
+                    font-size: 0.8125rem;
+                    color: var(--daisy-text);
+                    font-weight: 500;
+                    cursor: pointer;
+                    margin-bottom: 0 !important;
+
+                    .o_search_panel_label_title {
+                        flex: 1 1 auto !important;
+                        min-width: 0 !important;
+                        overflow: hidden !important;
+                        text-overflow: ellipsis !important;
+                        white-space: nowrap !important;
+                    }
+
+                    .o_search_panel_counter {
+                        flex-shrink: 0 !important;
+                        font-size: 0.6875rem !important;
+                        font-weight: 600 !important;
+                        background-color: var(--daisy-surface-muted) !important;
+                        color: var(--daisy-text-muted) !important;
+                        border-radius: 9999px !important;
+                        padding: 1px 6px !important;
+                        margin-left: 6px !important;
+                    }
+                }
+            }
+        }
+    }
+
+    // Resize border bar
+    .o_search_panel_resize {
+        background-color: transparent;
+        transition: background-color 0.15s ease;
+
+        &:hover {
+            background-color: var(--daisy-primary);
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 2. Search Bar Menu Popover (.o_search_bar_menu)
+// (Filters, Group By, Favorites dropdown)
+// ------------------------------------------------------------------------------
+.o_search_bar_menu {
+    border: 1px solid var(--daisy-border) !important;
+    border-radius: var(--daisy-radius, 10px) !important;
+    box-shadow: var(--daisy-shadow-lg) !important;
+    padding: 12px !important;
+    background-color: var(--daisy-surface) !important;
+
+    .o_dropdown_container {
+        border-color: var(--daisy-border) !important;
+
+        // Column Titles (Filters, Group By, Favorites)
+        .o_dropdown_title,
+        h5.o_dropdown_title,
+        h5 {
+            color: var(--daisy-text, #0f172a) !important;
+            font-size: 0.9375rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.015em !important;
+        }
+
+        // Icons in Column Titles
+        .text-primary,
+        i.text-primary {
+            color: var(--daisy-primary, #6366f1) !important;
+        }
+
+        .text-action,
+        i.text-action {
+            color: #0284c7 !important;
+        }
+
+        .text-favourite,
+        i.text-favourite {
+            color: #f59e0b !important;
+        }
+
+        .o_menu_item,
+        .dropdown-item,
+        .o_item_option {
+            border-radius: var(--daisy-radius-sm, 6px) !important;
+            padding: 6px 12px !important;
+            font-size: 0.8125rem !important;
+            font-weight: 500 !important;
+            color: var(--daisy-text) !important;
+            transition: background-color 0.12s ease;
+
+            &:hover,
+            &:focus {
+                background-color: var(--daisy-surface-muted) !important;
+                color: var(--daisy-text) !important;
+            }
+
+            &.selected {
+                color: var(--daisy-primary) !important;
+                font-weight: 600 !important;
+            }
+        }
+    }
+
+    // Accordion headers inside search menu
+    .accordion-header {
+        button {
+            font-size: 0.8125rem !important;
+            font-weight: 600 !important;
+            color: var(--daisy-text-secondary) !important;
+            padding: 8px 10px !important;
+            border-radius: var(--daisy-radius-sm, 6px);
+
+            &:hover {
+                background-color: var(--daisy-surface-muted);
+                color: var(--daisy-text);
+            }
+        }
+    }
+
+    // Custom Filter Inputs & Buttons
+    .o_add_custom_filter,
+    .o_add_custom_group_by,
+    .o_add_custom_group_menu {
+        color: var(--daisy-primary, #6366f1) !important;
+        font-weight: 500 !important;
+
+        .btn {
+            font-size: 0.75rem !important;
+            font-weight: 600 !important;
+            padding: 5px 12px !important;
+            border-radius: var(--daisy-radius-sm, 6px) !important;
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 3. Search Bar Dropdown Toggler Button (.o_searchview_dropdown_toggler)
+// ------------------------------------------------------------------------------
+.o_cp_searchview {
+    display: inline-flex !important;
+    align-items: stretch !important;
+
+    .o_searchview {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        border-right: none !important;
+    }
+
+    .o_searchview_dropdown_toggler {
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+        border-top-right-radius: var(--daisy-radius-sm, 6px) !important;
+        border-bottom-right-radius: var(--daisy-radius-sm, 6px) !important;
+    }
+}
+
+// Search view dropdown toggler button (Filter/GroupBy opener)
+.o_searchview_dropdown_toggler,
+button.o_searchview_dropdown_toggler {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    padding: 0 10px !important;
+    background-color: var(--daisy-surface, #ffffff) !important;
+    border: 1px solid var(--daisy-border, #e2e8f0) !important;
+    border-left: 1px solid var(--daisy-border, #e2e8f0) !important;
+    color: var(--daisy-text-secondary, #64748b) !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
+
+    &:after,
+    &::after {
+        color: inherit !important;
+        font-size: 0.8125rem !important;
+    }
+
+    &:hover {
+        background-color: var(--daisy-surface-muted, #f1f5f9) !important;
+        border-color: var(--daisy-border-hover, #cbd5e1) !important;
+        color: var(--daisy-text, #0f172a) !important;
+    }
+
+    &.show,
+    &[aria-expanded="true"],
+    &:active {
+        background-color: var(--daisy-primary-subtle, #eef2ff) !important;
+        border-color: var(--daisy-primary, #6366f1) !important;
+        color: var(--daisy-primary, #6366f1) !important;
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 4. Dark Mode Overrides for Search Bar & Search Bar Menu
+// ------------------------------------------------------------------------------
+[data-daisy-scheme="dark"],
+[data-bs-theme="dark"],
+[data-color-mode="dark"],
+body.o_dark_user_theme,
+.o_dark_user_theme {
+    // Search Input Container & Toggler in Dark Mode
+    .o_cp_searchview {
+        .o_searchview {
+            background-color: #181f2e !important;
+            border-color: rgba(255, 255, 255, 0.12) !important;
+            border-right: none !important;
+
+            &:focus-within {
+                border-color: var(--daisy-primary, #6366f1) !important;
+            }
+        }
+
+        &:focus-within .o_searchview_dropdown_toggler {
+            border-color: var(--daisy-primary, #6366f1) !important;
+        }
+    }
+
+    .o_searchview_dropdown_toggler,
+    button.o_searchview_dropdown_toggler {
+        background-color: #181f2e !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
+        color: #cbd5e1 !important; // Crisp, clearly visible without hovering
+
+        &:after,
+        &::after {
+            color: #cbd5e1 !important;
+        }
+
+        &:hover {
+            background-color: #243048 !important; // Sleek dark highlight (NOT white)
+            border-color: rgba(255, 255, 255, 0.25) !important;
+            color: #ffffff !important;
+
+            &:after,
+            &::after {
+                color: #ffffff !important;
+            }
+        }
+
+        &.show,
+        &[aria-expanded="true"],
+        &:active {
+            background-color: rgba(99, 102, 241, 0.22) !important;
+            border-color: var(--daisy-primary, #6366f1) !important;
+            color: var(--daisy-primary, #818cf8) !important;
+
+            &:after,
+            &::after {
+                color: var(--daisy-primary, #818cf8) !important;
+            }
+        }
+    }
+
+    // Search Bar Menu Dropdown in Dark Mode
+    .o_search_bar_menu,
+    .dropdown-menu.o_search_bar_menu {
+        background-color: #121824 !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        box-shadow: 0 20px 45px -8px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+        color: #cbd5e1 !important;
+
+        .o_dropdown_container {
+            border-color: rgba(255, 255, 255, 0.08) !important;
+
+            &.border-end {
+                border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+            }
+
+            // Column Titles (Filters, Group By, Favorites)
+            .o_dropdown_title,
+            h5.o_dropdown_title,
+            h5 {
+                color: #f8fafc !important;
+                font-size: 0.9375rem !important;
+                font-weight: 700 !important;
+                letter-spacing: 0.015em !important;
+            }
+
+            // High-Contrast Icons in Column Headers
+            .text-primary,
+            i.text-primary {
+                color: var(--daisy-primary, #818cf8) !important;
+            }
+
+            .text-action,
+            i.text-action {
+                color: #38bdf8 !important; // Sky 400
+            }
+
+            .text-favourite,
+            i.text-favourite {
+                color: #fbbf24 !important; // Amber 400
+            }
+
+            // Column Row Items
+            .o_menu_item,
+            .dropdown-item,
+            .o_item_option {
+                color: #cbd5e1 !important;
+
+                &:hover,
+                &:focus {
+                    background-color: rgba(255, 255, 255, 0.07) !important;
+                    color: #ffffff !important;
+                }
+
+                &.selected {
+                    color: var(--daisy-primary, #a5b4fc) !important;
+                    font-weight: 600 !important;
+                }
+            }
+
+            // Custom Filter & Custom Group Action Buttons
+            .o_add_custom_filter,
+            .o_add_custom_group_menu,
+            .o_add_custom_group_by {
+                color: var(--daisy-primary, #818cf8) !important;
+
+                &:hover {
+                    background-color: rgba(99, 102, 241, 0.15) !important;
+                    color: #ffffff !important;
+                }
+            }
+
+            // Accordion Elements
+            .accordion-header button {
+                color: #cbd5e1 !important;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.06) !important;
+                    color: #ffffff !important;
+                }
+            }
+
+            // Dividers
+            .dropdown-divider,
+            div[role="separator"] {
+                border-color: rgba(255, 255, 255, 0.08) !important;
+            }
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // Custom Filter Dialog (.o_domain_selector_dialog) & Domain Selector in Dark Mode
+    // --------------------------------------------------------------------------
+    .modal-content:has(.o_domain_selector),
+    .modal-content:has(.o_tree_editor),
+    .o_domain_selector_dialog {
+        background-color: #121824 !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+
+        .modal-header {
+            background-color: #121824 !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: #f8fafc !important;
+
+            .modal-title {
+                color: #f8fafc !important;
+                font-weight: 700 !important;
+                font-size: 1.125rem !important;
+                letter-spacing: -0.01em !important;
+            }
+
+            .btn-close {
+                filter: invert(1) grayscale(100%) brightness(200%) !important;
+                opacity: 0.7;
+                transition: opacity 0.15s ease;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .modal-body {
+            background-color: #121824 !important;
+            color: #f8fafc !important;
+        }
+
+        .modal-footer {
+            background-color: #121824 !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+
+            .btn-secondary {
+                background-color: #1e293b !important;
+                border: 1px solid rgba(255, 255, 255, 0.12) !important;
+                color: #cbd5e1 !important;
+
+                &:hover {
+                    background-color: #2e3c54 !important;
+                    color: #ffffff !important;
+                }
+            }
+        }
+    }
+
+    // Domain Selector Container Card
+    .o_domain_selector {
+        background-color: #161e2e !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 10px !important;
+        padding: 16px !important;
+        color: #f8fafc !important;
+
+        .o_domain_selector_row {
+            color: #cbd5e1 !important;
+        }
+
+        .o_domain_selector_debug_container {
+            background-color: #0f172a !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #94a3b8 !important;
+
+            textarea {
+                color: #f8fafc !important;
+            }
+        }
+    }
+
+    // Tree Editor & Domain Rules
+    .o_tree_editor {
+        color: #f8fafc !important;
+
+        .o_tree_editor_node {
+            color: #f8fafc !important;
+        }
+
+        // Connector header ("Match any of the following rules:")
+        .o_tree_editor_connector {
+            color: #f8fafc !important;
+            font-size: 0.875rem !important;
+
+            span {
+                color: #f8fafc !important;
+            }
+
+            .o_tree_editor_connector_value {
+                button {
+                    opacity: 1 !important;
+                    background: transparent !important;
+                    border: none !important;
+
+                    strong.text-primary,
+                    strong {
+                        color: var(--daisy-primary, #818cf8) !important;
+                        font-weight: 700 !important;
+                        font-size: 0.9375rem !important;
+                    }
+
+                    &:hover strong {
+                        color: #a5b4fc !important;
+                        text-decoration: underline;
+                    }
+
+                    &:after,
+                    &::after {
+                        color: var(--daisy-primary, #818cf8) !important;
+                    }
+                }
+            }
+        }
+
+        // Condition row
+        .o_tree_editor_condition {
+            gap: 10px !important;
+
+            &.border.bg-100 {
+                background-color: #181f2e !important;
+                border-color: rgba(255, 255, 255, 0.12) !important;
+                color: #f8fafc !important;
+                border-radius: 6px !important;
+            }
+        }
+
+        // Editor inputs and selects
+        .o_tree_editor_editor {
+            select,
+            select.o_input {
+                background-color: #181f2e !important;
+                border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                color: #f8fafc !important;
+                border-radius: 6px !important;
+                padding: 4px 10px !important;
+                min-height: 34px !important;
+
+                &:focus {
+                    border-color: var(--daisy-primary, #818cf8) !important;
+                    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25) !important;
+                    color: #ffffff !important;
+                    outline: none !important;
+                }
+
+                option,
+                option.text-black {
+                    background-color: #121824 !important;
+                    color: #f8fafc !important;
+                }
+            }
+
+            input,
+            input.o_input {
+                background-color: #181f2e !important;
+                border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                color: #f8fafc !important;
+                border-radius: 6px !important;
+                padding: 4px 10px !important;
+                min-height: 34px !important;
+
+                &:focus {
+                    border-color: var(--daisy-primary, #818cf8) !important;
+                    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25) !important;
+                    color: #ffffff !important;
+                    outline: none !important;
+                }
+            }
+
+            // Tags inside tree editor value
+            .o_input.d-flex {
+                background-color: #181f2e !important;
+                border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                color: #f8fafc !important;
+                border-radius: 6px !important;
+
+                .o_tag,
+                .badge {
+                    background-color: #243048 !important;
+                    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+                    color: #f8fafc !important;
+                }
+            }
+        }
+
+        // Action controls (Add rule, Add nested, Delete)
+        .o_tree_editor_node_control_panel {
+            gap: 4px !important;
+
+            button,
+            .btn {
+                color: #94a3b8 !important;
+                border-radius: 6px !important;
+                transition: all 0.15s ease !important;
+                padding: 4px 8px !important;
+
+                &:hover {
+                    color: #ffffff !important;
+                    background-color: rgba(255, 255, 255, 0.08) !important;
+                }
+
+                // Delete rule trash icon (crisp vibrant red)
+                &.text-danger,
+                .fa-trash {
+                    color: #f87171 !important;
+
+                    &:hover {
+                        color: #ef4444 !important;
+                        background-color: rgba(239, 68, 68, 0.15) !important;
+                    }
+                }
+
+                .fa-sitemap,
+                .fa-plus {
+                    color: #94a3b8 !important;
+
+                    &:hover {
+                        color: var(--daisy-primary, #818cf8) !important;
+                    }
+                }
+            }
+        }
+
+        // "New Rule" link / button
+        .o_tree_editor_row {
+            > a[role="button"] {
+                color: var(--daisy-primary, #818cf8) !important;
+                font-weight: 600 !important;
+                font-size: 0.8125rem !important;
+                background-color: rgba(99, 102, 241, 0.12) !important;
+                border: 1px dashed rgba(99, 102, 241, 0.35) !important;
+                border-radius: 6px !important;
+                padding: 4px 12px !important;
+                text-decoration: none !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 4px !important;
+                transition: all 0.15s ease !important;
+                margin-top: 4px !important;
+
+                &:hover {
+                    background-color: rgba(99, 102, 241, 0.22) !important;
+                    border-color: var(--daisy-primary, #818cf8) !important;
+                    color: #ffffff !important;
+                    text-decoration: none !important;
+                }
+
+                &::before {
+                    content: "+";
+                    font-size: 1rem;
+                    font-weight: 700;
+                    margin-right: 2px;
+                }
+            }
+        }
+    }
+
+    // Model Field Selector in Rule Row
+    .o_model_field_selector,
+    .o_model_field_selector.o_input {
+        background-color: #181f2e !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 6px !important;
+        color: #f8fafc !important;
+        min-height: 34px !important;
+        padding: 3px 8px !important;
+        display: flex !important;
+        align-items: center !important;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+
+        &:hover,
+        &:focus-within {
+            border-color: var(--daisy-primary, #818cf8) !important;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2) !important;
+        }
+
+        .o_model_field_selector_value {
+            &:empty::before {
+                content: "Select a field...";
+                color: #64748b !important;
+                font-size: 0.8125rem !important;
+                font-style: italic !important;
+            }
+        }
+
+        // Selected Field Chip (CRITICAL: overrides Odoo's hardcoded $o-brand-lightsecondary white box)
+        .o_model_field_selector_chain_part {
+            background: #243048 !important;
+            background-color: #243048 !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            color: #f8fafc !important;
+            border-radius: 4px !important;
+            padding: 2px 8px !important;
+            font-size: 0.8125rem !important;
+            font-weight: 500 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            margin-right: 2px !important;
+        }
+
+        i.oi-chevron-right,
+        i.fa-chevron-right {
+            color: #94a3b8 !important;
+            font-size: 0.65rem !important;
+            margin: 0 4px !important;
+        }
+
+        .o_model_field_selector_warning {
+            color: #f59e0b !important;
+        }
+
+        .o_model_field_selector_popover_relation_icon {
+            color: #94a3b8 !important;
+            &:hover {
+                color: #f87171 !important;
+            }
+        }
+    }
+
+    // Model Field Selector Popover & Popover Arrow in Dark Mode
+    .popover,
+    .o_popover {
+        --bs-popover-bg: #121824 !important;
+        --bs-popover-border-color: rgba(255, 255, 255, 0.15) !important;
+        --bs-popover-header-bg: #181f2e !important;
+        --bs-popover-header-color: #f8fafc !important;
+        --bs-popover-body-color: #cbd5e1 !important;
+        --bs-popover-arrow-border: rgba(255, 255, 255, 0.15) !important;
+        background-color: #121824 !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+        border-radius: 8px !important;
+
+        // Triangle Arrow in Dark Mode (Pointing up/down/left/right)
+        &.bs-popover-bottom,
+        &.bs-popover-auto[data-popper-placement^="bottom"] {
+            > .popover-arrow::after {
+                border-bottom-color: #121824 !important;
+            }
+            > .popover-arrow::before {
+                border-bottom-color: rgba(255, 255, 255, 0.15) !important;
+            }
+        }
+
+        &.bs-popover-top,
+        &.bs-popover-auto[data-popper-placement^="top"] {
+            > .popover-arrow::after {
+                border-top-color: #121824 !important;
+            }
+            > .popover-arrow::before {
+                border-top-color: rgba(255, 255, 255, 0.15) !important;
+            }
+        }
+
+        &.bs-popover-start,
+        &.bs-popover-auto[data-popper-placement^="left"] {
+            > .popover-arrow::after {
+                border-left-color: #121824 !important;
+            }
+            > .popover-arrow::before {
+                border-left-color: rgba(255, 255, 255, 0.15) !important;
+            }
+        }
+
+        &.bs-popover-end,
+        &.bs-popover-auto[data-popper-placement^="right"] {
+            > .popover-arrow::after {
+                border-right-color: #121824 !important;
+            }
+            > .popover-arrow::before {
+                border-right-color: rgba(255, 255, 255, 0.15) !important;
+            }
+        }
+
+        .popover-arrow::after {
+            border-bottom-color: #121824 !important;
+            border-top-color: #121824 !important;
+        }
+
+        .popover-arrow::before {
+            border-bottom-color: rgba(255, 255, 255, 0.15) !important;
+            border-top-color: rgba(255, 255, 255, 0.15) !important;
+        }
+    }
+
+    .o_model_field_selector_popover {
+        background-color: #121824 !important;
+        color: #f8fafc !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+
+        // Popover Header
+        > div:first-child,
+        .border-bottom {
+            background-color: #121824 !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: #f8fafc !important;
+
+            .text-dark,
+            .o_model_field_selector_popover_title {
+                color: #f8fafc !important;
+                font-weight: 700 !important;
+            }
+
+            .o_model_field_selector_popover_prev_page,
+            .o_model_field_selector_popover_close {
+                color: #94a3b8 !important;
+                opacity: 0.8;
+                transition: all 0.15s ease;
+
+                &:hover {
+                    color: #ffffff !important;
+                    opacity: 1;
+                }
+            }
+        }
+
+        // Search input
+        .o_model_field_selector_popover_search {
+            input,
+            input.o_input {
+                background-color: #181f2e !important;
+                border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                color: #f8fafc !important;
+                border-radius: 6px !important;
+                padding: 5px 10px !important;
+
+                &::placeholder {
+                    color: #64748b !important;
+                }
+
+                &:focus {
+                    border-color: var(--daisy-primary, #818cf8) !important;
+                    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25) !important;
+                    outline: none !important;
+                }
+            }
+        }
+
+        // Popover Body Scrollbar
+        .o_model_field_selector_popover_body {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: rgba(255, 255, 255, 0.2);
+                border-radius: 9999px;
+            }
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+        }
+
+        // Field items list
+        .o_model_field_selector_popover_page {
+            .o_model_field_selector_popover_item {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+                background-color: transparent !important;
+                transition: background-color 0.12s ease !important;
+
+                button.o_model_field_selector_popover_item_name,
+                button.o_model_field_selector_popover_item_relation,
+                button.btn-light {
+                    background: transparent !important;
+                    background-color: transparent !important;
+                    color: #cbd5e1 !important;
+                    border: none !important;
+                    padding: 6px 12px !important;
+                    font-size: 0.8125rem !important;
+
+                    .o_model_field_selector_popover_item_title {
+                        color: #64748b !important;
+                        font-size: 0.72rem !important;
+                    }
+
+                    .o_model_field_selector_popover_relation_icon {
+                        color: #94a3b8 !important;
+                    }
+                }
+
+                button.o_model_field_selector_popover_item_relation {
+                    border-left: 1px solid rgba(255, 255, 255, 0.06) !important;
+                }
+
+                &:hover,
+                &:focus-within {
+                    background-color: rgba(255, 255, 255, 0.08) !important;
+
+                    button.o_model_field_selector_popover_item_name,
+                    button.o_model_field_selector_popover_item_relation,
+                    button.btn-light {
+                        color: #ffffff !important;
+
+                        .o_model_field_selector_popover_relation_icon {
+                            color: #ffffff !important;
+                        }
+                    }
+                }
+
+                &.active {
+                    background-color: rgba(99, 102, 241, 0.22) !important;
+
+                    button.o_model_field_selector_popover_item_name,
+                    button.o_model_field_selector_popover_item_relation,
+                    button.btn-light {
+                        color: #ffffff !important;
+                        font-weight: 600 !important;
+
+                        .o_model_field_selector_popover_relation_icon {
+                            color: var(--daisy-primary, #818cf8) !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Debug mode footer
+        .o_model_field_selector_popover_footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+            background-color: #0f172a !important;
+
+            input.o_model_field_selector_debug {
+                background-color: #181f2e !important;
+                border: 1px solid rgba(255, 255, 255, 0.12) !important;
+                color: #f8fafc !important;
+            }
+        }
+    }
+}
+

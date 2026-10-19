@@ -1,0 +1,240 @@
+// ==============================================================================
+// Daisy Theme — Analytics Views (Pivot & Graph)
+// Enterprise BI reporting inspired by modern financial & analytics SaaS
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// 1. Pivot View (.o_pivot_view)
+// ------------------------------------------------------------------------------
+.o_pivot_view {
+    background-color: var(--daisy-surface-subtle, #f8fafc) !important;
+    padding: 16px 20px !important;
+
+    .o_pivot {
+        background-color: var(--daisy-surface, #ffffff) !important;
+        border: 1px solid var(--daisy-border, #e2e8f0) !important;
+        border-radius: 10px !important;
+        box-shadow: none !important;
+        overflow: auto !important;
+
+        table {
+            border-collapse: separate !important;
+            border-spacing: 0 !important;
+            font-variant-numeric: tabular-nums;
+            width: 100% !important;
+
+            // Header Cells
+            thead th,
+            th.o_pivot_header_cell_closed,
+            th.o_pivot_header_cell_opened,
+            .o_pivot_measure_row,
+            .o_pivot_origin_row {
+                background-color: var(--daisy-surface-muted, #f8fafc) !important;
+                border-bottom: 1px solid var(--daisy-border, #e2e8f0) !important;
+                border-right: 1px solid var(--daisy-border, #f1f5f9) !important;
+                padding: 10px 14px !important;
+                font-size: 0.75rem !important;
+                font-weight: 600 !important;
+                color: var(--daisy-text-secondary, #475569) !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.03em !important;
+                transition: background-color 0.12s ease;
+
+                &:hover {
+                    background-color: var(--daisy-surface-hover, #f1f5f9) !important;
+                    color: var(--daisy-text, #0f172a) !important;
+                }
+            }
+
+            // Data Cells
+            tbody tr {
+                &:hover td {
+                    background-color: var(--daisy-surface-hover, #f8fafc) !important;
+                }
+
+                td {
+                    padding: 8px 14px !important;
+                    font-size: 0.8125rem !important;
+                    color: var(--daisy-text, #0f172a) !important;
+                    border-bottom: 1px solid var(--daisy-border, #f1f5f9) !important;
+                    border-right: 1px solid var(--daisy-border, #f1f5f9) !important;
+                    transition: background-color 0.12s ease;
+
+                    &.o_cell_hover {
+                        background-color: var(--daisy-primary-subtle, #eef2ff) !important;
+                        color: var(--daisy-primary, #6366f1) !important;
+                        font-weight: 600;
+                    }
+
+                    // Total summary rows
+                    &.o_pivot_cell_value:empty {
+                        color: var(--daisy-text-muted, #cbd5e1);
+                    }
+                }
+
+                // Grand Total Row
+                &:last-child td,
+                &.o_pivot_total_row td {
+                    background-color: var(--daisy-surface-muted, #f8fafc) !important;
+                    font-weight: 700 !important;
+                    border-top: 2px solid var(--daisy-border, #e2e8f0) !important;
+                    color: var(--daisy-text, #0f172a) !important;
+                }
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 2. Graph View (.o_graph_view)
+// ------------------------------------------------------------------------------
+.o_graph_view {
+    background-color: var(--daisy-surface-subtle, #f8fafc) !important;
+    padding: 16px 20px !important;
+
+    .o_graph_renderer {
+        background-color: var(--daisy-surface, #ffffff) !important;
+        border: 1px solid var(--daisy-border, #e2e8f0) !important;
+        border-radius: 12px !important;
+        box-shadow: none !important;
+        padding: 24px !important;
+        height: calc(100% - 32px) !important;
+        display: flex;
+        flex-direction: column;
+
+        .o_graph_canvas_container {
+            flex: 1;
+            position: relative;
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 3. Analytics Control Panel Controls (Chart toggles & Measure selectors)
+// ------------------------------------------------------------------------------
+.o_cp_bottom_left {
+    .o_cp_buttons {
+        // Measure button dropdown
+        .btn-group {
+            .btn {
+                background-color: var(--daisy-surface, #ffffff) !important;
+                border: 1px solid var(--daisy-border, #e2e8f0) !important;
+                color: var(--daisy-text, #0f172a) !important;
+                font-size: 0.8125rem !important;
+                font-weight: 500 !important;
+                border-radius: 6px !important;
+                padding: 5px 12px !important;
+
+                &:hover {
+                    background-color: var(--daisy-surface-hover, #f8fafc) !important;
+                    border-color: var(--daisy-border-hover, #cbd5e1) !important;
+                }
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 4. Dark Mode Overrides for Analytics, Dashboards & KPI Cards
+// ------------------------------------------------------------------------------
+[data-daisy-scheme="dark"],
+[data-bs-theme="dark"],
+body.o_dark_user_theme,
+.o_dark_user_theme {
+    .o_pivot_view {
+        background-color: var(--daisy-surface-subtle, #09090b) !important;
+
+        .o_pivot {
+            background-color: var(--daisy-surface, #121824) !important;
+            border-color: var(--daisy-border, rgba(255, 255, 255, 0.08)) !important;
+
+            table {
+                thead th,
+                th.o_pivot_header_cell_closed,
+                th.o_pivot_header_cell_opened,
+                .o_pivot_measure_row,
+                .o_pivot_origin_row {
+                    background-color: var(--daisy-surface-muted, #181f2e) !important;
+                    border-color: rgba(255, 255, 255, 0.06) !important;
+                    color: var(--daisy-text-secondary, #cbd5e1) !important;
+
+                    &:hover {
+                        background-color: var(--daisy-surface-hover, #1c2438) !important;
+                        color: #ffffff !important;
+                    }
+                }
+
+                tbody tr {
+                    &:hover td {
+                        background-color: #1c2438 !important;
+                    }
+
+                    td {
+                        color: var(--daisy-text, #f8fafc) !important;
+                        border-color: rgba(255, 255, 255, 0.06) !important;
+
+                        &.o_cell_hover {
+                            background-color: rgba(245, 158, 11, 0.16) !important;
+                            color: var(--daisy-primary, #f59e0b) !important;
+                        }
+                    }
+
+                    &:last-child td,
+                    &.o_pivot_total_row td {
+                        background-color: #181f2e !important;
+                        color: #ffffff !important;
+                        border-top-color: rgba(255, 255, 255, 0.1) !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .o_graph_view {
+        background-color: var(--daisy-surface-subtle, #09090b) !important;
+
+        .o_graph_renderer {
+            background-color: var(--daisy-surface, #121824) !important;
+            border-color: var(--daisy-border, rgba(255, 255, 255, 0.08)) !important;
+        }
+    }
+
+    // Purchase Dashboard KPI Banners
+    .o_purchase_dashboard {
+        background-color: var(--daisy-surface-subtle, #09090b) !important;
+        border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+
+        .purchase-dashboard-card {
+            background-color: var(--daisy-surface, #121824) !important;
+            border: 1px solid var(--daisy-border, rgba(255, 255, 255, 0.08)) !important;
+            color: var(--daisy-text, #f8fafc) !important;
+
+            &:hover {
+                background-color: var(--daisy-surface-hover, #1c2438) !important;
+            }
+
+            &.bg-secondary-subtle {
+                background-color: var(--daisy-surface-muted, #181f2e) !important;
+                color: var(--daisy-text-secondary, #cbd5e1) !important;
+            }
+
+            .text-muted {
+                color: var(--daisy-text-muted, #94a3b8) !important;
+            }
+        }
+    }
+
+    // Spreadsheet Dashboard & General KPI Containers
+    .o_spreadsheet_dashboard_action,
+    .o_dashboard_common {
+        background-color: var(--daisy-surface-subtle, #09090b) !important;
+
+        .o_dashboard_item,
+        .o_box {
+            background-color: var(--daisy-surface, #121824) !important;
+            border: 1px solid var(--daisy-border, rgba(255, 255, 255, 0.08)) !important;
+            color: var(--daisy-text, #f8fafc) !important;
+        }
+    }
+}
+

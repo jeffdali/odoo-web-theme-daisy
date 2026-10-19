@@ -1,0 +1,632 @@
+// ==============================================================================
+// Daisy Theme — Calendar View (.o_calendar_view)
+// Modern scheduler inspired by shadcn/ui and Linear Calendar
+// Fully token-driven for Light, Dark, and Contrast themes
+// ==============================================================================
+
+.o_calendar_view {
+    background-color: var(--daisy-surface-subtle) !important;
+
+    // --------------------------------------------------------------------------
+    // Left Filter & Mini Calendar Panel
+    // --------------------------------------------------------------------------
+    .o_calendar_side_panel,
+    .o_calendar_filter {
+        background-color: var(--daisy-surface) !important;
+        border-right: 1px solid var(--daisy-border) !important;
+        padding: 16px !important;
+
+        .o_calendar_filter_section {
+            margin-bottom: 20px !important;
+
+            h5, .o_calendar_filter_heading {
+                font-size: 0.75rem !important;
+                font-weight: 600 !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.04em !important;
+                color: var(--daisy-text-muted) !important;
+                margin-bottom: 12px !important;
+            }
+
+            .o_calendar_filter_items {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+
+                .o_calendar_filter_item {
+                    display: flex;
+                    align-items: center;
+                    padding: 6px 10px;
+                    border-radius: var(--daisy-radius-sm, 6px);
+                    font-size: 0.8125rem;
+                    color: var(--daisy-text);
+                    transition: background-color 0.12s ease;
+
+                    &:hover {
+                        background-color: var(--daisy-surface-muted);
+                    }
+
+                    .form-check-input {
+                        margin-right: 8px;
+                        border-radius: 4px;
+                        border: 1px solid var(--daisy-border-hover);
+
+                        &:checked {
+                            background-color: var(--daisy-primary);
+                            border-color: var(--daisy-primary);
+                        }
+                    }
+
+                    .o_calendar_filter_avatar {
+                        width: 22px;
+                        height: 22px;
+                        border-radius: 9999px;
+                        margin-right: 8px;
+                        border: 1px solid var(--daisy-border);
+                    }
+                }
+            }
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // Calendar Main Renderer
+    // --------------------------------------------------------------------------
+    .o_calendar_renderer {
+        background-color: var(--daisy-surface) !important;
+        border: 1px solid var(--daisy-border) !important;
+        border-radius: var(--daisy-radius-lg, 10px) !important;
+        margin: 12px 16px !important;
+        box-shadow: none !important;
+        overflow: hidden !important;
+
+        // FullCalendar Navigation Toolbar
+        .fc-header-toolbar,
+        .fc-toolbar {
+            padding: 14px 20px !important;
+            margin-bottom: 0 !important;
+            border-bottom: 1px solid var(--daisy-border) !important;
+            background-color: var(--daisy-surface) !important;
+
+            .fc-toolbar-title {
+                font-size: 1.125rem !important;
+                font-weight: 700 !important;
+                color: var(--daisy-text) !important;
+                letter-spacing: -0.02em !important;
+            }
+
+            // Radix segmented button groups
+            .fc-button-group {
+                background-color: var(--daisy-surface-muted);
+                border-radius: var(--daisy-radius-sm, 6px);
+                padding: 3px;
+                gap: 2px;
+
+                .fc-button {
+                    background: transparent !important;
+                    border: none !important;
+                    color: var(--daisy-text-secondary) !important;
+                    font-size: 0.8125rem !important;
+                    font-weight: 500 !important;
+                    border-radius: 4px !important;
+                    padding: 4px 12px !important;
+                    box-shadow: none !important;
+                    transition: all 0.12s ease !important;
+
+                    &:hover {
+                        color: var(--daisy-text) !important;
+                    }
+
+                    &.fc-button-active {
+                        background-color: var(--daisy-surface) !important;
+                        color: var(--daisy-text) !important;
+                        font-weight: 600 !important;
+                        box-shadow: none !important;
+                    }
+                }
+            }
+
+            // Today button
+            .fc-today-button {
+                background-color: var(--daisy-surface) !important;
+                border: 1px solid var(--daisy-border) !important;
+                border-radius: var(--daisy-radius-sm, 6px) !important;
+                color: var(--daisy-text) !important;
+                font-size: 0.8125rem !important;
+                font-weight: 500 !important;
+                padding: 5px 14px !important;
+                box-shadow: none !important;
+
+                &:hover {
+                    background-color: var(--daisy-surface-muted) !important;
+                    border-color: var(--daisy-border-hover) !important;
+                }
+
+                &:disabled {
+                    opacity: 0.5;
+                }
+            }
+        }
+
+        // Calendar Grid Header (Mon, Tue, Wed...)
+        .fc-col-header {
+            background-color: var(--daisy-surface-muted) !important;
+
+            .fc-col-header-cell {
+                border-color: var(--daisy-border) !important;
+                padding: 10px 4px !important;
+
+                .fc-col-header-cell-cushion {
+                    font-size: 0.75rem !important;
+                    font-weight: 600 !important;
+                    text-transform: uppercase !important;
+                    letter-spacing: 0.04em !important;
+                    color: var(--daisy-text-secondary) !important;
+                    text-decoration: none !important;
+                }
+
+                &.fc-day-today {
+                    background-color: var(--daisy-primary-subtle, rgba(99, 102, 241, 0.06)) !important;
+
+                    .fc-col-header-cell-cushion {
+                        color: var(--daisy-primary) !important;
+                        font-weight: 700 !important;
+                    }
+                }
+            }
+        }
+
+        // Calendar Grid Lines
+        .fc-timegrid-slot,
+        .fc-daygrid-day {
+            border-color: var(--daisy-border) !important;
+
+            &.fc-day-today {
+                background-color: var(--daisy-primary-subtle, rgba(99, 102, 241, 0.03)) !important;
+            }
+        }
+
+        .fc-timegrid-slot-label {
+            font-size: 0.6875rem !important;
+            font-weight: 500 !important;
+            color: var(--daisy-text-muted) !important;
+            padding-right: 8px !important;
+        }
+
+        // Current time line indicator
+        .fc-timegrid-now-indicator-line {
+            border-color: #ef4444 !important;
+            border-width: 2px !important;
+        }
+
+        .fc-timegrid-now-indicator-arrow {
+            border-color: #ef4444 !important;
+        }
+
+        // ----------------------------------------------------------------------
+        // Calendar Event Pills (.fc-event)
+        // ----------------------------------------------------------------------
+        .fc-event {
+            border-radius: var(--daisy-radius-sm, 6px) !important;
+            border: 1px solid var(--daisy-border) !important;
+            border-left: 3px solid var(--daisy-primary) !important;
+            padding: 3px 6px !important;
+            box-shadow: none !important;
+            transition: border-color 0.12s ease !important;
+
+            &:hover {
+                transform: none !important;
+                box-shadow: none !important;
+                border-color: var(--daisy-primary) !important;
+                z-index: 5 !important;
+            }
+
+            .fc-event-main {
+                padding: 0 !important;
+            }
+
+            .fc-event-time {
+                font-size: 0.6875rem !important;
+                font-weight: 600 !important;
+                opacity: 0.85;
+            }
+
+            .fc-event-title {
+                font-size: 0.75rem !important;
+                font-weight: 600 !important;
+                letter-spacing: -0.01em !important;
+            }
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // Event Details Popover (.o_cw_popover)
+    // --------------------------------------------------------------------------
+    .o_cw_popover {
+        border: 1px solid var(--daisy-border) !important;
+        border-radius: var(--daisy-radius, 10px) !important;
+        box-shadow: var(--daisy-shadow-lg) !important;
+        background-color: var(--daisy-surface) !important;
+        padding: 16px !important;
+        min-width: 280px;
+
+        .popover-header {
+            font-size: 0.9375rem !important;
+            font-weight: 600 !important;
+            color: var(--daisy-text) !important;
+            border-bottom: 1px solid var(--daisy-border) !important;
+            padding-bottom: 8px !important;
+            background: transparent !important;
+        }
+
+        .popover-body {
+            padding: 10px 0 0 0 !important;
+            font-size: 0.8125rem !important;
+            color: var(--daisy-text-secondary) !important;
+
+            .o_cw_popover_edit,
+            .o_cw_popover_delete {
+                border-radius: var(--daisy-radius-sm, 6px) !important;
+                font-size: 0.75rem !important;
+                padding: 4px 10px !important;
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// Time Off Dashboard & Calendar Header Base Styles
+// ------------------------------------------------------------------------------
+.o_timeoff_calendar {
+    background-color: transparent !important;
+    flex-grow: 1;
+
+    .o_calendar_renderer {
+        margin: 12px 16px !important;
+    }
+}
+
+.o_timeoff_dashboard {
+    background-color: var(--daisy-surface, #ffffff) !important;
+    border: 1px solid var(--daisy-border, #e2e8f0) !important;
+    border-radius: var(--daisy-radius-lg, 12px) !important;
+    margin: 12px 16px 0 16px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: row !important;
+
+    .o_timeoff_card {
+        border-right: 1px solid var(--daisy-border, #e2e8f0) !important;
+        padding: 16px 14px !important;
+
+        &:last-child {
+            border-right: none !important;
+        }
+
+        .o_timeoff_name {
+            color: var(--daisy-text, #0f172a) !important;
+            font-size: 0.9375rem !important;
+            font-weight: 600 !important;
+            margin-bottom: 4px !important;
+
+            &.btn-link:hover {
+                color: var(--daisy-primary, #6366f1) !important;
+            }
+        }
+
+        .o_timeoff_duration {
+            color: var(--daisy-primary, #6366f1) !important;
+            font-size: 1.875rem !important;
+            font-weight: 700 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 6px !important;
+
+            img {
+                height: 32px !important;
+            }
+        }
+
+        .o_timeoff_details {
+            color: var(--daisy-primary, #6366f1) !important;
+            font-size: 0.75rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.05em !important;
+            cursor: pointer !important;
+
+            .o_timeoff_info {
+                color: var(--daisy-text-muted, #94a3b8) !important;
+                margin-left: 4px !important;
+
+                &:hover {
+                    color: var(--daisy-text, #0f172a) !important;
+                }
+            }
+        }
+
+        .o_timeoff_validity {
+            color: var(--daisy-text-muted, #94a3b8) !important;
+            font-size: 0.6875rem !important;
+            margin-top: 2px !important;
+        }
+    }
+}
+
+.o_calendar_header {
+    background-color: transparent !important;
+    border-bottom: 1px solid var(--daisy-border, #e2e8f0) !important;
+    padding: 10px 16px !important;
+
+    h5 {
+        color: var(--daisy-text, #0f172a) !important;
+        font-weight: 700 !important;
+        font-size: 1.125rem !important;
+        letter-spacing: -0.015em !important;
+    }
+}
+
+// ------------------------------------------------------------------------------
+// Dark Mode Overrides for Calendar View & Time Off Dashboard
+// ------------------------------------------------------------------------------
+[data-daisy-scheme="dark"],
+[data-bs-theme="dark"],
+[data-color-mode="dark"],
+body.o_dark_user_theme,
+.o_dark_user_theme {
+    .o_calendar_view,
+    .o_calendar_container,
+    .o_timeoff_calendar {
+        background-color: #09090b !important;
+    }
+
+    // Calendar Control Panel Header
+    .o_calendar_header {
+        background-color: #09090b !important;
+        border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+
+        // Year / Month title (e.g. "2026", "May 2026") - FIXES black text on dark background
+        h5,
+        h5.d-inline-flex {
+            color: #f8fafc !important;
+            font-weight: 700 !important;
+            font-size: 1.125rem !important;
+            letter-spacing: -0.015em !important;
+        }
+
+        // Prev, Next, Today buttons in Calendar Header
+        .o_calendar_navigation_buttons .btn,
+        .o_calendar_button_today {
+            background-color: #181f2e !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            color: #cbd5e1 !important;
+
+            &:hover {
+                background-color: #243048 !important;
+                color: #ffffff !important;
+                border-color: rgba(255, 255, 255, 0.2) !important;
+            }
+        }
+
+        // View scale selector dropdown toggler (Year, Month, Week, Day)
+        .o_view_scale_selector,
+        .btn-secondary:has(.oi-chevron-down),
+        button.btn-secondary {
+            background-color: #181f2e !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            color: #cbd5e1 !important;
+
+            &:hover {
+                background-color: #243048 !important;
+                color: #ffffff !important;
+                border-color: rgba(255, 255, 255, 0.2) !important;
+            }
+        }
+    }
+
+    // Time Off Dashboard Cards Container (CRITICAL: eliminates the bright white banner)
+    .o_timeoff_dashboard {
+        background-color: #121824 !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 12px !important;
+        margin: 12px 16px 0 16px !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+        color: #f8fafc !important;
+
+        .o_timeoff_card {
+            border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+            padding: 18px 14px !important;
+            transition: background-color 0.15s ease !important;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.02) !important;
+            }
+
+            &:last-child {
+                border-right: none !important;
+            }
+
+            // Card Title ("Paid Time Off", "Compensatory Days", "Pending Requests")
+            .o_timeoff_name {
+                color: #f8fafc !important;
+                font-size: 0.9375rem !important;
+                font-weight: 600 !important;
+
+                &.btn-link:hover {
+                    color: var(--daisy-primary, #818cf8) !important;
+                }
+            }
+
+            // Available / Taken numbers ("20", "16", count)
+            .o_timeoff_duration {
+                color: var(--daisy-primary, #818cf8) !important;
+                font-size: 1.875rem !important;
+                font-weight: 700 !important;
+
+                img {
+                    height: 32px !important;
+                    filter: invert(1) brightness(2) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)) !important;
+                }
+            }
+
+            // Details subtitle ("DAYS AVAILABLE", "VALID UNTIL")
+            .o_timeoff_details {
+                color: #a5b4fc !important;
+                font-size: 0.75rem !important;
+                font-weight: 700 !important;
+                letter-spacing: 0.05em !important;
+
+                &:hover {
+                    color: #ffffff !important;
+                }
+
+                .o_timeoff_info {
+                    color: #94a3b8 !important;
+
+                    &:hover {
+                        color: #ffffff !important;
+                    }
+                }
+            }
+
+            .o_timeoff_validity {
+                color: #94a3b8 !important;
+                font-size: 0.6875rem !important;
+            }
+
+            // Pending requests link ("New Allocation Request")
+            a.o_timeoff_details {
+                color: var(--daisy-primary, #818cf8) !important;
+                font-weight: 700 !important;
+                text-decoration: none !important;
+
+                &:hover {
+                    color: #ffffff !important;
+                    text-decoration: underline !important;
+                }
+            }
+
+            // Accrual allocation row ("Balance at the...")
+            .border-bottom {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+                color: #cbd5e1 !important;
+            }
+
+            .o_timeoff_today_button {
+                color: var(--daisy-primary, #818cf8) !important;
+                font-weight: 600 !important;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.08) !important;
+                    color: #ffffff !important;
+                }
+            }
+        }
+    }
+
+    // Main Calendar Renderer Shell
+    .o_calendar_renderer {
+        background-color: #121824 !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 12px !important;
+        margin: 12px 16px !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+    }
+
+    // FullCalendar Year View (.fc-dayGridYear-view)
+    .fc-dayGridYear-view {
+        background-color: #121824 !important;
+
+        .fc-month-container {
+            .fc-month {
+                background-color: #161e2e !important;
+                border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                border-radius: 8px !important;
+                padding: 12px 8px !important;
+
+                // Month header (e.g. "January 2026")
+                .fc-toolbar-title {
+                    color: #f8fafc !important;
+                    font-size: 1rem !important;
+                    font-weight: 700 !important;
+                    letter-spacing: -0.01em !important;
+                    margin-bottom: 8px !important;
+                }
+
+                // Day column headers (S M T W T F S)
+                .fc-col-header-cell {
+                    background: transparent !important;
+                    border: none !important;
+                    padding: 4px 0 !important;
+
+                    .fc-col-header-cell-cushion {
+                        color: #94a3b8 !important;
+                        font-size: 0.75rem !important;
+                        font-weight: 600 !important;
+                    }
+                }
+
+                // Day numbers
+                .fc-daygrid-day {
+                    background: transparent !important;
+                    border: none !important;
+
+                    .fc-daygrid-day-number {
+                        color: #cbd5e1 !important;
+                        font-size: 0.8125rem !important;
+                        font-weight: 500 !important;
+                        padding: 3px 6px !important;
+                        border-radius: 4px !important;
+                        transition: background-color 0.12s ease !important;
+
+                        &:hover {
+                            background-color: rgba(255, 255, 255, 0.12) !important;
+                            color: #ffffff !important;
+                        }
+                    }
+
+                    // Today pill
+                    &.fc-day-today .fc-daygrid-day-number {
+                        background-color: var(--daisy-primary, #6366f1) !important;
+                        color: #ffffff !important;
+                        font-weight: 700 !important;
+                    }
+                }
+
+                // Week numbers
+                .fc-daygrid-week-number {
+                    color: #64748b !important;
+                    font-size: 0.6875rem !important;
+                }
+            }
+        }
+    }
+
+    // TimeOffCard Popover in Dark Mode
+    .o_popover:has(.o_time_off_card_popover_warning),
+    .popover:has(.o_time_off_card_popover_warning) {
+        ul {
+            color: #f8fafc !important;
+
+            li {
+                border-color: rgba(255, 255, 255, 0.08) !important;
+            }
+
+            .btn-link {
+                color: var(--daisy-primary, #818cf8) !important;
+            }
+        }
+
+        .o_time_off_card_popover_warning {
+            background-color: rgba(245, 158, 11, 0.15) !important;
+            border-color: rgba(245, 158, 11, 0.3) !important;
+            color: #fbbf24 !important;
+
+            a {
+                color: #ffffff !important;
+                text-decoration: underline !important;
+            }
+        }
+    }
+}

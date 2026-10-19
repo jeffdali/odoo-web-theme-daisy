@@ -1,0 +1,347 @@
+// ==============================================================================
+// Daisy Theme — Frontend Stylesheet
+// Modern SaaS aesthetic inspired by shadcn/ui & Radix UI
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// CSS Custom Properties (Tokens)
+// ------------------------------------------------------------------------------
+:root {
+    --daisy-radius: 0.5rem;
+    --daisy-radius-sm: 0.375rem;
+    --daisy-radius-lg: 0.75rem;
+    --daisy-border: #e2e8f0;
+    --daisy-muted: #f1f5f9;
+    --daisy-muted-fg: #64748b;
+    --daisy-primary: #6366f1;
+    --daisy-primary-hover: #4f46e5;
+    --daisy-primary-glow: rgba(99, 102, 241, 0.25);
+    --daisy-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+    --daisy-shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+    --daisy-shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.08), 0 4px 8px -4px rgba(0, 0, 0, 0.04);
+    --daisy-shadow-xl: 0 24px 48px -8px rgba(0, 0, 0, 0.1), 0 8px 16px -4px rgba(0, 0, 0, 0.06);
+    --daisy-transition: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+// ------------------------------------------------------------------------------
+// Custom Scrollbar
+// ------------------------------------------------------------------------------
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background-color: #e2e8f0;
+    border-radius: 9999px;
+    &:hover { background-color: #cbd5e1; }
+}
+
+// Text selection
+::selection {
+    background-color: rgba(99, 102, 241, 0.18);
+}
+
+// ------------------------------------------------------------------------------
+// Header & Navigation (Glassmorphism + Radix Menu feel)
+// ------------------------------------------------------------------------------
+header#top {
+    border-bottom: 1px solid var(--daisy-border);
+    transition: background-color 0.25s ease, backdrop-filter 0.25s ease, box-shadow 0.25s ease;
+
+    &.o_header_is_scrolled,
+    &.daisy-navbar-scrolled {
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06), var(--daisy-shadow-sm);
+    }
+
+    .navbar-brand {
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        transition: opacity var(--daisy-transition);
+
+        &:hover { opacity: 0.8; }
+    }
+
+    .navbar-nav {
+        .nav-link {
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.45rem 0.85rem;
+            border-radius: calc(var(--daisy-radius) - 2px);
+            transition: color var(--daisy-transition), background-color var(--daisy-transition);
+
+            &:hover {
+                background-color: var(--daisy-muted);
+                color: #0f172a;
+            }
+
+            &.active {
+                background-color: rgba(99, 102, 241, 0.08);
+                color: #6366f1;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// Buttons (shadcn button variants)
+// ------------------------------------------------------------------------------
+.btn {
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    border-radius: calc(var(--daisy-radius) - 2px);
+    box-shadow: none;
+    transition: all var(--daisy-transition);
+
+    &.btn-primary {
+        background-color: var(--daisy-primary, #6366f1);
+        border-color: var(--daisy-primary, #6366f1);
+        color: #ffffff;
+
+        &:hover, &:focus {
+            background-color: var(--daisy-primary-hover, #4f46e5);
+            border-color: var(--daisy-primary-hover, #4f46e5);
+            box-shadow: none;
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+
+    &.btn-secondary {
+        background-color: var(--daisy-muted);
+        border-color: var(--daisy-border);
+        color: #0f172a;
+
+        &:hover, &:focus {
+            background-color: #e2e8f0;
+            border-color: #cbd5e1;
+            color: #09090b;
+            transform: translateY(-1px);
+        }
+    }
+
+    &.btn-outline-primary,
+    &.btn-outline-secondary {
+        background-color: #ffffff;
+        border-color: var(--daisy-border);
+        color: #0f172a;
+
+        &:hover, &:focus {
+            background-color: var(--daisy-muted);
+            border-color: #cbd5e1;
+            color: #09090b;
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// Cards (shadcn card elevation & border)
+// ------------------------------------------------------------------------------
+.card {
+    border: 1px solid var(--daisy-border);
+    border-radius: var(--daisy-radius);
+    box-shadow: var(--daisy-shadow-sm);
+    background-color: #ffffff;
+    overflow: hidden;
+    transition: all var(--daisy-transition);
+
+    &:hover {
+        border-color: #cbd5e1;
+        box-shadow: var(--daisy-shadow-md);
+        transform: translateY(-2px);
+    }
+
+    .card-header {
+        background-color: transparent;
+        border-bottom: 1px solid var(--daisy-border);
+        padding: 1rem 1.25rem;
+        font-weight: 600;
+    }
+
+    .card-body {
+        padding: 1.25rem;
+    }
+
+    .card-footer {
+        background-color: transparent;
+        border-top: 1px solid var(--daisy-border);
+        padding: 1rem 1.25rem;
+    }
+}
+
+// ------------------------------------------------------------------------------
+// Form Elements (Radix focus ring & crisp inputs)
+// ------------------------------------------------------------------------------
+.form-control,
+.form-select {
+    border: 1px solid var(--daisy-border);
+    border-radius: calc(var(--daisy-radius) - 2px);
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+    transition: border-color var(--daisy-transition), box-shadow var(--daisy-transition);
+    background-color: #ffffff;
+
+    &:focus {
+        border-color: #6366f1;
+        outline: none;
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px rgba(99, 102, 241, 0.25);
+    }
+
+    &::placeholder {
+        color: var(--daisy-muted-fg);
+        font-size: 0.875rem;
+    }
+}
+
+// ------------------------------------------------------------------------------
+// Badges & Tags (shadcn badge styling)
+// ------------------------------------------------------------------------------
+.badge,
+.o_tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 6px 8px !important;
+    border-radius: var(--daisy-radius-sm, 6px);
+    border: 1px solid transparent;
+
+    &.bg-primary {
+        background-color: rgba(99, 102, 241, 0.1) !important;
+        color: #6366f1 !important;
+        border-color: rgba(99, 102, 241, 0.2) !important;
+    }
+
+    &.bg-secondary,
+    &.bg-light {
+        background-color: var(--daisy-muted) !important;
+        border-color: var(--daisy-border);
+        color: #0f172a !important;
+    }
+
+    &.bg-success {
+        background-color: #ecfdf5 !important;
+        color: #065f46 !important;
+        border-color: #a7f3d0 !important;
+    }
+
+    &.bg-warning {
+        background-color: #fffbeb !important;
+        color: #92400e !important;
+        border-color: #fde68a !important;
+    }
+
+    &.bg-danger {
+        background-color: #fef2f2 !important;
+        color: #991b1b !important;
+        border-color: #fecaca !important;
+    }
+}
+
+// ------------------------------------------------------------------------------
+// Tables (Modern minimal data tables)
+// ------------------------------------------------------------------------------
+.table {
+    --bs-table-border-color: var(--daisy-border);
+
+    thead th {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--daisy-muted-fg);
+        border-bottom-width: 1px;
+        padding: 10px 16px;
+    }
+
+    tbody td {
+        padding: 12px 16px;
+        font-size: 0.875rem;
+        border-color: #f1f5f9;
+        vertical-align: middle;
+    }
+
+    tbody tr {
+        transition: background-color 0.12s ease;
+
+        &:hover {
+            background-color: #f8fafc;
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// Blockquote & Pull Quotes
+// ------------------------------------------------------------------------------
+blockquote {
+    border-left: 3px solid var(--daisy-primary, #6366f1);
+    padding: 16px 20px;
+    margin: 24px 0;
+    background-color: rgba(99, 102, 241, 0.04);
+    border-radius: 0 8px 8px 0;
+    font-style: normal;
+
+    p {
+        color: #334155;
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+    }
+}
+
+// ------------------------------------------------------------------------------
+// Footer
+// ------------------------------------------------------------------------------
+footer#bottom {
+    border-top: 1px solid var(--daisy-border);
+
+    .o_footer_copyright {
+        border-top: 1px solid rgba(226, 232, 240, 0.6);
+        font-size: 0.8125rem;
+        color: var(--daisy-muted-fg);
+    }
+}
+
+// Scroll to top button
+.o_footer_scrolltop {
+    border-radius: 9999px !important;
+    box-shadow: var(--daisy-shadow-md);
+    transition: transform var(--daisy-transition), box-shadow var(--daisy-transition);
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--daisy-shadow-lg);
+    }
+}
+
+// ------------------------------------------------------------------------------
+// Hero Sections & Landing Pages
+// ------------------------------------------------------------------------------
+.o_parallax,
+.o_we_shape_container {
+    overflow: hidden;
+}
+
+// Section titles
+.h1, h1 { letter-spacing: -0.025em; }
+.h2, h2 { letter-spacing: -0.02em; }
+.h3, h3 { letter-spacing: -0.015em; }
+
+// Lead paragraphs
+.lead {
+    font-size: 1.0625rem;
+    font-weight: 400;
+    color: #475569;
+    line-height: 1.7;
+}
+
+

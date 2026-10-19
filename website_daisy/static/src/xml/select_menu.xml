@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+  <!-- Daisy Theme: Color & Scheme Swatches in SelectMenu Dropdown Items -->
+  <t t-inherit="web.SelectMenu.ChoiceItem" t-inherit-mode="extension">
+    <xpath expr="//DropdownItem" position="attributes">
+      <attribute name="attrs">{ 'data-choice-index': choice_index, 'data-value': choice.value }</attribute>
+    </xpath>
+    <xpath expr="//div[@t-esc='choice.label || choice.value']" position="replace">
+      <div class="d-flex align-items-center w-100">
+        <span t-if="['indigo', 'emerald', 'sky', 'violet', 'rose', 'amber', 'slate', 'light', 'dark'].includes(choice.value)"
+              t-attf-class="o_daisy_swatch o_daisy_swatch_{{ choice.value }} me-2" />
+        <span class="text-truncate" t-esc="choice.label || choice.value" />
+      </div>
+    </xpath>
+  </t>
+
+  <!-- Daisy Theme: Selected Swatch in SelectMenu Toggler Input -->
+  <t t-inherit="web.SelectMenu" t-inherit-mode="extension">
+    <xpath expr="//div[hasclass('position-relative') and hasclass('d-flex')]" position="inside">
+      <span t-if="['indigo', 'emerald', 'sky', 'violet', 'rose', 'amber', 'slate', 'light', 'dark'].includes(props.value)"
+            t-attf-class="o_daisy_swatch o_daisy_swatch_toggler o_daisy_swatch_{{ props.value }}" />
+    </xpath>
+  </t>
+
+</templates>

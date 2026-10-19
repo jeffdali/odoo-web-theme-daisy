@@ -1,0 +1,1831 @@
+// ==============================================================================
+// Daisy Theme — Overlays, Popovers, Systray Menus & Advanced Widgets
+// shadcn/ui and Radix UI aesthetics for Odoo 19
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// 1. Systray Activity Menu & Popover (.o-mail-ActivityMenu, .o-mail-DiscussSystray)
+// ------------------------------------------------------------------------------
+.dropdown-menu.o-mail-DiscussSystray,
+.dropdown-menu:has(.o-mail-ActivityMenu),
+.o-mail-DiscussSystray {
+    width: 360px !important;
+    max-width: 95vw !important;
+    border-radius: var(--daisy-radius-lg, 12px) !important;
+    border: 1px solid var(--daisy-border, #e2e8f0) !important;
+    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.14), 0 4px 12px -2px rgba(0, 0, 0, 0.06) !important;
+    background-color: var(--daisy-surface, #ffffff) !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+.o-mail-ActivityMenu {
+    width: 100% !important;
+    max-height: 450px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+    scrollbar-width: thin;
+    scrollbar-color: var(--daisy-border, #cbd5e1) transparent;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--daisy-border, #cbd5e1);
+        border-radius: 9999px;
+
+        &:hover {
+            background-color: var(--daisy-border-hover, #94a3b8);
+        }
+    }
+
+    .dropdown-toggle {
+        padding: 6px 10px !important;
+        border-radius: 6px !important;
+        color: var(--daisy-text, #0f172a) !important;
+        transition: all 0.15s ease !important;
+
+        &:hover {
+            background-color: var(--daisy-surface-muted, #f1f5f9) !important;
+        }
+
+        .badge {
+            font-size: 0.6875rem !important;
+            font-weight: 600 !important;
+            padding: 2px 6px !important;
+            border-radius: 9999px !important;
+        }
+    }
+
+    // Reset Bootstrap list-group styles inside Activity Menu
+    .list-group,
+    .list-group-flush {
+        --bs-list-group-bg: transparent !important;
+        --bs-list-group-color: inherit !important;
+        background-color: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    // Activity Group Rows
+    .o-mail-ActivityGroup {
+        padding: 10px 14px !important;
+        border-radius: 0 !important;
+        border-bottom: 1px solid var(--daisy-border, #f1f5f9) !important;
+        background-color: transparent !important;
+        color: var(--daisy-text, #0f172a) !important;
+        transition: background-color 0.12s ease !important;
+        cursor: pointer !important;
+
+        &:hover {
+            background-color: var(--daisy-surface-muted, #f8fafc) !important;
+        }
+
+        img {
+            height: 36px !important;
+            width: 36px !important;
+            aspect-ratio: 1 !important;
+            border-radius: 8px !important;
+            object-fit: contain !important;
+        }
+
+        [name="activityTitle"],
+        .o-mail-ActivityGroup-name {
+            font-size: 0.875rem !important;
+            font-weight: 600 !important;
+            color: var(--daisy-text, #0f172a) !important;
+            line-height: 1.4 !important;
+        }
+
+        // Counters: Late, Today, Future
+        .btn-link,
+        .text-muted {
+            font-size: 0.75rem !important;
+            padding: 1px 6px !important;
+            text-decoration: none !important;
+            border-radius: 4px !important;
+            transition: all 0.12s ease !important;
+        }
+
+        .btn-link {
+            font-weight: 600 !important;
+
+            // First counter is Late (overdue)
+            &:first-of-type {
+                color: #ef4444 !important;
+                &:hover {
+                    color: #dc2626 !important;
+                    background-color: rgba(239, 68, 68, 0.08) !important;
+                }
+            }
+
+            // Second counter is Today
+            &:nth-of-type(2) {
+                color: #f59e0b !important;
+                &:hover {
+                    color: #d97706 !important;
+                    background-color: rgba(245, 158, 11, 0.08) !important;
+                }
+            }
+
+            // Third counter is Future
+            &:nth-of-type(3) {
+                color: var(--daisy-primary, #6366f1) !important;
+                &:hover {
+                    color: var(--daisy-primary-hover, #4f46e5) !important;
+                    background-color: rgba(99, 102, 241, 0.08) !important;
+                }
+            }
+        }
+
+        .text-muted {
+            color: var(--daisy-text-muted, #94a3b8) !important;
+            opacity: 0.75 !important;
+        }
+
+        .badge {
+            border-radius: 6px !important;
+            font-weight: 600 !important;
+            font-size: 0.75rem !important;
+            padding: 3px 8px !important;
+
+            &.text-bg-success {
+                background-color: #ecfdf5 !important;
+                color: #065f46 !important;
+                border: 1px solid #a7f3d0 !important;
+            }
+            &.text-bg-warning {
+                background-color: #fffbeb !important;
+                color: #92400e !important;
+                border: 1px solid #fde68a !important;
+            }
+            &.text-bg-danger {
+                background-color: #fef2f2 !important;
+                color: #991b1b !important;
+                border: 1px solid #fecaca !important;
+            }
+        }
+    }
+
+    // "View all activities" Footer
+    .list-group-item:not(.o-mail-ActivityGroup),
+    span.list-group-item {
+        background-color: var(--daisy-surface-muted, #f8fafc) !important;
+        border-top: 1px solid var(--daisy-border, #e2e8f0) !important;
+        border-bottom: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        color: var(--daisy-primary, #6366f1) !important;
+        font-weight: 600 !important;
+        font-size: 0.8125rem !important;
+        padding: 12px 16px !important;
+        text-align: center !important;
+        display: block !important;
+        cursor: pointer !important;
+        border-radius: 0 0 var(--daisy-radius-lg, 12px) var(--daisy-radius-lg, 12px) !important;
+        transition: background-color 0.15s ease, color 0.15s ease !important;
+
+        &:hover {
+            background-color: var(--daisy-primary-subtle, #eef2ff) !important;
+            color: var(--daisy-primary-hover, #4f46e5) !important;
+        }
+    }
+
+    .o-mail-ActivityMenu-empty {
+        padding: 24px 16px !important;
+        color: var(--daisy-text-muted, #94a3b8) !important;
+        font-size: 0.875rem !important;
+    }
+
+    // Legacy container class support
+    .o-mail-ActivityMenu-container,
+    .o-mail-ActivityListPopover {
+        width: 360px !important;
+        max-width: 95vw !important;
+        border-radius: 12px !important;
+        border: 1px solid var(--daisy-border, #e2e8f0) !important;
+        background-color: var(--daisy-surface, #ffffff) !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 2. Systray Messaging Menu Popover (.o-mail-MessagingMenu)
+// ------------------------------------------------------------------------------
+.o-mail-MessagingMenu {
+    .dropdown-toggle {
+        padding: 6px 10px !important;
+        border-radius: 6px !important;
+        color: var(--daisy-text, #0f172a) !important;
+        transition: all 0.15s ease !important;
+
+        &:hover {
+            background-color: var(--daisy-surface-muted, #f1f5f9) !important;
+        }
+    }
+
+    .o-mail-MessagingMenu-container {
+        width: 380px !important;
+        max-width: 95vw !important;
+        border-radius: 12px !important;
+        border: 1px solid var(--daisy-border, #e2e8f0) !important;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
+        background-color: var(--daisy-surface, #ffffff) !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+
+        // Navigation Tabs (All, Chats, Channels)
+        .o-mail-MessagingMenu-header {
+            padding: 10px 14px !important;
+            border-bottom: 1px solid var(--daisy-border, #e2e8f0) !important;
+            background-color: var(--daisy-surface-muted, #f8fafc) !important;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .btn-group {
+                background-color: var(--daisy-border, #e2e8f0);
+                padding: 2px;
+                border-radius: 6px;
+
+                .btn {
+                    border-radius: 4px !important;
+                    font-size: 0.75rem !important;
+                    font-weight: 500 !important;
+                    padding: 4px 10px !important;
+                    border: none !important;
+                    color: var(--daisy-text-secondary, #64748b) !important;
+
+                    &.active {
+                        background-color: var(--daisy-surface, #ffffff) !important;
+                        color: var(--daisy-text, #0f172a) !important;
+                        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+                    }
+                }
+            }
+        }
+
+        // Quick Search Input
+        .o-mail-MessagingMenu-search {
+            padding: 8px 12px !important;
+            border-bottom: 1px solid var(--daisy-border, #f1f5f9) !important;
+
+            input {
+                border-radius: 6px !important;
+                border: 1px solid var(--daisy-border, #e2e8f0) !important;
+                padding: 6px 10px !important;
+                font-size: 0.8125rem !important;
+                background-color: var(--daisy-surface-muted, #f8fafc) !important;
+                color: var(--daisy-text) !important;
+
+                &:focus {
+                    background-color: var(--daisy-surface, #ffffff) !important;
+                    border-color: var(--daisy-primary) !important;
+                    box-shadow: none !important;
+                    outline: none !important;
+                }
+            }
+        }
+
+        // Notification / Message list item
+        .o-mail-NotificationItem {
+            padding: 10px 14px !important;
+            border-bottom: 1px solid var(--daisy-border, #f1f5f9) !important;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: background-color 0.12s ease !important;
+
+            &:hover {
+                background-color: var(--daisy-surface-muted, #f8fafc) !important;
+            }
+
+            .o-mail-NotificationItem-name {
+                font-size: 0.8125rem !important;
+                font-weight: 600 !important;
+                color: var(--daisy-text, #0f172a) !important;
+            }
+
+            .o-mail-NotificationItem-text {
+                font-size: 0.75rem !important;
+                color: var(--daisy-text-muted, #64748b) !important;
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 3. Multi-Company Switcher Menu (.o_switch_company_menu)
+// ------------------------------------------------------------------------------
+.o_switch_company_menu {
+    .dropdown-toggle,
+    > button {
+        padding: 6px 10px !important;
+        border-radius: 6px !important;
+        color: inherit !important;
+        font-weight: 500 !important;
+        font-size: 0.8125rem !important;
+
+        &:hover {
+            background-color: var(--daisy-surface-muted, rgba(255, 255, 255, 0.08)) !important;
+        }
+    }
+}
+
+.o_switch_company_menu .dropdown-menu,
+.o_switch_company_menu_dropdown {
+    min-width: 280px !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--daisy-border, #e2e8f0) !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
+    padding: 6px !important;
+    background-color: var(--daisy-surface, #ffffff) !important;
+
+    // Search filter inside company menu
+    div[role="search"],
+    .form-control {
+        border-radius: 6px !important;
+        border: 1px solid var(--daisy-border, #e2e8f0) !important;
+        background-color: var(--daisy-surface-subtle, #f8fafc) !important;
+        color: var(--daisy-text, #0f172a) !important;
+        padding: 4px 8px !important;
+
+        .o_input {
+            background-color: transparent !important;
+            color: var(--daisy-text, #0f172a) !important;
+            font-size: 0.8125rem !important;
+        }
+
+        .oi-search {
+            color: var(--daisy-text-muted, #94a3b8) !important;
+        }
+    }
+
+    // Items list container
+    .o_switch_company_menu_items {
+        max-height: 20rem;
+        overflow-y: auto;
+    }
+
+    // Company Row Item
+    .o_switch_company_item {
+        // Suppress legacy Odoo :before and :after checkmarks to prevent double icons
+        &::before,
+        &:before,
+        &::after,
+        &:after {
+            display: none !important;
+            content: none !important;
+        }
+
+        border-radius: 6px !important;
+        padding: 0 !important;
+        margin: 2px 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        height: 36px !important;
+        min-height: 36px !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        border: none !important;
+        color: var(--daisy-text, #0f172a) !important;
+        transition: background-color 0.15s ease !important;
+
+        // Clear out legacy alert-secondary background on selected companies
+        &.alert-secondary,
+        &.alert-secondary > * {
+            background: transparent !important;
+            background-color: transparent !important;
+            border-color: transparent !important;
+            color: inherit !important;
+            box-shadow: none !important;
+        }
+
+        // Hover & Focus (overrides Odoo's &.focus, &.focus > * { background-color: var(--gray-200); })
+        &:hover,
+        &:hover > *,
+        &.focus,
+        &.focus > *,
+        &:focus,
+        &:focus > * {
+            background-color: var(--daisy-surface-muted, #f1f5f9) !important;
+        }
+
+        // Checkbox column
+        div[role="menuitemcheckbox"] {
+            height: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 0 4px !important;
+            border-right: 1px solid var(--daisy-border, #e2e8f0) !important;
+            flex-shrink: 0 !important;
+
+            &.border-primary {
+                border-right-color: var(--daisy-primary, #6366f1) !important;
+            }
+
+            .btn {
+                padding: 4px 6px !important;
+                border: none !important;
+                background: transparent !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+
+            .fa-check-square {
+                color: var(--daisy-primary, #6366f1) !important;
+                font-size: 0.9375rem !important;
+            }
+
+            .fa-square-o {
+                color: var(--daisy-text-muted, #cbd5e1) !important;
+                font-size: 0.9375rem !important;
+            }
+        }
+
+        // Company label & log into button
+        .log_into {
+            height: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            flex-grow: 1 !important;
+            min-width: 0 !important;
+            padding: 0 10px !important;
+            cursor: pointer !important;
+
+            .company_label,
+            .company_label.text-body {
+                color: var(--daisy-text, #0f172a) !important;
+                font-size: 0.8125rem !important;
+                font-weight: 500 !important;
+            }
+
+            // Current active company highlight
+            &.bg-primary-subtle {
+                background: var(--daisy-primary-subtle, #eef2ff) !important;
+                background-color: var(--daisy-primary-subtle, #eef2ff) !important;
+                border-radius: 0 6px 6px 0 !important;
+
+                .company_label,
+                .company_label.text-body {
+                    color: var(--daisy-primary, #4338ca) !important;
+                    font-weight: 600 !important;
+                }
+            }
+        }
+    }
+
+    // Action buttons at bottom (Confirm / Reset)
+    .o_switch_company_menu_buttons {
+        padding: 8px 4px 4px 4px !important;
+        border-top: 1px solid var(--daisy-border, #e2e8f0) !important;
+        margin-top: 4px !important;
+
+        .btn-primary {
+            background-color: var(--daisy-primary, #6366f1) !important;
+            border-color: var(--daisy-primary, #6366f1) !important;
+            color: #ffffff !important;
+            border-radius: 6px !important;
+            font-size: 0.8125rem !important;
+            font-weight: 600 !important;
+        }
+
+        .btn-secondary {
+            background-color: var(--daisy-surface-muted, #f1f5f9) !important;
+            border: 1px solid var(--daisy-border, #e2e8f0) !important;
+            color: var(--daisy-text, #0f172a) !important;
+            border-radius: 6px !important;
+            font-size: 0.8125rem !important;
+            font-weight: 500 !important;
+
+            &:hover {
+                background-color: var(--daisy-surface-hover, #e2e8f0) !important;
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 4. User Profile Menu (.o_user_menu)
+// ------------------------------------------------------------------------------
+.o_user_menu {
+    .dropdown-toggle {
+        padding: 4px 8px !important;
+        border-radius: 9999px !important;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        img.rounded-circle {
+            border: 2px solid var(--daisy-surface, #ffffff);
+            box-shadow: 0 0 0 1px var(--daisy-border, #e2e8f0);
+            width: 28px;
+            height: 28px;
+        }
+
+        .oe_topbar_name {
+            font-size: 0.8125rem !important;
+            font-weight: 500 !important;
+            color: var(--daisy-text, #0f172a) !important;
+        }
+
+        &:hover {
+            background-color: var(--daisy-surface-muted, #f1f5f9) !important;
+        }
+    }
+
+    .dropdown-menu {
+        width: 240px !important;
+        border-radius: 12px !important;
+        border: 1px solid var(--daisy-border, #e2e8f0) !important;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
+        padding: 6px !important;
+
+        .dropdown-item {
+            border-radius: 6px !important;
+            padding: 8px 12px !important;
+            font-size: 0.8125rem !important;
+            font-weight: 500 !important;
+            color: var(--daisy-text-secondary, #334155) !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            i {
+                font-size: 0.875rem;
+                opacity: 0.7;
+                width: 16px;
+                text-align: center;
+            }
+
+            &:hover {
+                background-color: var(--daisy-surface-muted, #f1f5f9) !important;
+                color: var(--daisy-text, #0f172a) !important;
+            }
+
+            // Log out danger hover
+            &[data-menu="logout"] {
+                color: #ef4444 !important;
+
+                &:hover {
+                    background-color: rgba(239, 68, 68, 0.1) !important;
+                    color: #dc2626 !important;
+                }
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 5. Domain Selector, Tree Editor & Field Selector (.o_domain_selector, .o_tree_editor)
+// ------------------------------------------------------------------------------
+.o_domain_selector {
+    border: 1px solid var(--daisy-border, #e2e8f0) !important;
+    border-radius: 10px !important;
+    background-color: var(--daisy-surface-muted, #f8fafc) !important;
+    padding: 14px !important;
+    color: var(--daisy-text, #0f172a) !important;
+
+    .o_tree_editor {
+        color: var(--daisy-text, #0f172a) !important;
+
+        .o_tree_editor_connector {
+            color: var(--daisy-text, #0f172a) !important;
+
+            .o_tree_editor_connector_value strong {
+                color: var(--daisy-primary, #6366f1) !important;
+            }
+        }
+
+        .o_tree_editor_condition {
+            gap: 8px !important;
+        }
+
+        .o_tree_editor_row {
+            > a[role="button"] {
+                color: var(--daisy-primary, #6366f1) !important;
+                font-weight: 600 !important;
+                font-size: 0.8125rem !important;
+                text-decoration: none !important;
+
+                &:hover {
+                    color: var(--daisy-primary-hover, #4f46e5) !important;
+                    text-decoration: underline !important;
+                }
+            }
+        }
+
+        .o_tree_editor_node_control_panel {
+            button {
+                color: var(--daisy-text-muted, #94a3b8) !important;
+
+                &:hover {
+                    color: var(--daisy-text, #0f172a) !important;
+                }
+
+                &.text-danger,
+                .fa-trash {
+                    color: #ef4444 !important;
+                }
+            }
+        }
+    }
+
+    // Model Field Selector Box
+    .o_model_field_selector {
+        background-color: var(--daisy-surface, #ffffff) !important;
+        border: 1px solid var(--daisy-border, #cbd5e1) !important;
+        border-radius: 6px !important;
+        min-height: 32px !important;
+        padding: 2px 6px !important;
+
+        .o_model_field_selector_chain_part {
+            background-color: var(--daisy-surface-muted, #f1f5f9) !important;
+            border: 1px solid var(--daisy-border, #cbd5e1) !important;
+            color: var(--daisy-text, #0f172a) !important;
+            border-radius: 4px !important;
+            padding: 2px 6px !important;
+            font-size: 0.8125rem !important;
+        }
+    }
+
+    .o_domain_node {
+        border-left: 2px solid var(--daisy-border-hover, #cbd5e1);
+        padding-left: 14px;
+        margin: 8px 0;
+    }
+
+    .o_domain_leaf {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        background-color: var(--daisy-surface, #ffffff);
+        border: 1px solid var(--daisy-border, #e2e8f0);
+        border-radius: 8px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+
+        select, input {
+            border-radius: 6px !important;
+            border: 1px solid var(--daisy-border, #cbd5e1) !important;
+            padding: 4px 8px !important;
+            font-size: 0.8125rem !important;
+            background-color: var(--daisy-surface, #ffffff) !important;
+            color: var(--daisy-text) !important;
+
+            &:focus {
+                border-color: var(--daisy-primary) !important;
+                box-shadow: none !important;
+                outline: none !important;
+            }
+        }
+
+        .btn-group {
+            .btn {
+                border-radius: 4px !important;
+                padding: 4px 8px !important;
+                font-size: 0.75rem !important;
+            }
+        }
+
+        .o_domain_delete_node_button {
+            color: #94a3b8;
+            transition: color 0.12s ease;
+
+            &:hover {
+                color: #ef4444;
+            }
+        }
+    }
+
+    // Match All / Match Any selector
+    .o_domain_operator_selector {
+        font-size: 0.8125rem !important;
+        font-weight: 600 !important;
+        color: #475569 !important;
+        margin-bottom: 8px;
+
+        select {
+            border-radius: 6px !important;
+            border: 1px solid #cbd5e1 !important;
+            padding: 3px 8px !important;
+            margin-left: 6px;
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 6. File Viewer & Lightbox (.o_file_viewer)
+// ------------------------------------------------------------------------------
+.o_file_viewer {
+    background-color: rgba(9, 9, 11, 0.85) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+
+    .o_file_viewer_toolbar {
+        background-color: rgba(24, 24, 27, 0.85) !important;
+        backdrop-filter: blur(8px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 9999px !important;
+        padding: 6px 14px !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        .btn {
+            color: #f8fafc !important;
+            border-radius: 9999px !important;
+            width: 34px;
+            height: 34px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.15s ease;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.15) !important;
+            }
+        }
+    }
+
+    .o_file_viewer_nav {
+        color: #ffffff !important;
+        background-color: rgba(24, 24, 27, 0.6) !important;
+        border-radius: 9999px !important;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s ease;
+
+        &:hover {
+            background-color: rgba(24, 24, 27, 0.9) !important;
+            transform: scale(1.08);
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 7. Electronic Signature Canvas & Modal (.o_signature, .o_web_sign_signature)
+// ------------------------------------------------------------------------------
+.o_web_sign_signature,
+.o_signature {
+    .card {
+        border-radius: 12px !important;
+        border: 1px solid var(--daisy-border, #e2e8f0) !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+        overflow: hidden;
+    }
+
+    .o_web_sign_signature_canvas {
+        background-color: var(--daisy-surface, #ffffff) !important;
+        border: 2px dashed var(--daisy-border-hover, #cbd5e1) !important;
+        border-radius: 8px !important;
+        cursor: crosshair !important;
+    }
+
+    .o_web_sign_signature_nav {
+        border-bottom: 1px solid var(--daisy-border, #e2e8f0) !important;
+        background-color: var(--daisy-surface-muted, #f8fafc) !important;
+
+        .nav-link {
+            font-size: 0.8125rem !important;
+            font-weight: 500 !important;
+            color: var(--daisy-text-secondary, #64748b) !important;
+            border-radius: 6px !important;
+            padding: 8px 16px !important;
+
+            &.active {
+                background-color: var(--daisy-surface, #ffffff) !important;
+                color: var(--daisy-primary, #6366f1) !important;
+                font-weight: 600 !important;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 8. HTML / Rich Text Editor (.o_field_html, .od_editor, .note-editor)
+// ------------------------------------------------------------------------------
+.o_field_html {
+    border: 1px solid var(--daisy-border, #e2e8f0) !important;
+    border-radius: var(--daisy-radius, 8px) !important;
+    background-color: var(--daisy-surface, #ffffff) !important;
+    transition: border-color 0.15s ease, background-color 0.15s ease !important;
+    overflow: hidden;
+    box-shadow: none !important;
+
+    &:hover:not(:focus-within) {
+        border-color: var(--daisy-border-hover, #cbd5e1) !important;
+    }
+
+    &:focus-within {
+        border-color: var(--daisy-primary) !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    // Floating / Top Editor Toolbar
+    .od_toolbar,
+    .note-toolbar,
+    .o_editor_toolbar {
+        background-color: var(--daisy-surface-subtle, #f8fafc) !important;
+        border-bottom: 1px solid var(--daisy-border, #e2e8f0) !important;
+        padding: 6px 10px !important;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+
+        .btn-group {
+            background-color: var(--daisy-surface, #ffffff);
+            border: 1px solid var(--daisy-border, #e2e8f0);
+            border-radius: 6px;
+            padding: 1px;
+
+            .btn {
+                border-radius: 4px !important;
+                border: none !important;
+                color: var(--daisy-text-secondary, #475569) !important;
+                font-size: 0.8125rem !important;
+                padding: 4px 8px !important;
+
+                &:hover {
+                    background-color: var(--daisy-surface-subtle, #f1f5f9) !important;
+                    color: var(--daisy-text, #0f172a) !important;
+                }
+
+                &.active {
+                    background-color: var(--daisy-border, #e2e8f0) !important;
+                    color: var(--daisy-text, #0f172a) !important;
+                    font-weight: 600 !important;
+                }
+            }
+        }
+    }
+
+    // Editor Content Area
+    .od_content,
+    .note-editable,
+    .odoo-editor-editable {
+        padding: 12px 14px !important;
+        min-height: 110px !important;
+        font-size: 0.875rem !important;
+        line-height: 1.6 !important;
+        color: var(--daisy-text, #0f172a) !important;
+        background-color: var(--daisy-surface, #ffffff) !important;
+
+        p {
+            margin-bottom: 0.5rem;
+        }
+
+        blockquote {
+            border-left: 3px solid var(--daisy-primary) !important;
+            padding-left: 14px !important;
+            color: var(--daisy-text-secondary, #64748b) !important;
+            font-style: italic !important;
+            margin: 12px 0 !important;
+        }
+
+        pre {
+            background-color: var(--daisy-surface-muted, #0f172a) !important;
+            color: #f8fafc !important;
+            border-radius: var(--daisy-radius-sm, 6px) !important;
+            padding: 12px !important;
+            font-size: 0.8125rem !important;
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 9. Mobile Apps Drawer (.o_app_menu_sidebar)
+// ------------------------------------------------------------------------------
+.o_app_menu_sidebar {
+    background-color: var(--daisy-surface, #ffffff) !important;
+    border-right: 1px solid var(--daisy-border, #e2e8f0) !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15) !important;
+    width: 280px !important;
+    max-width: 85vw !important;
+
+    .o_sidebar_topbar {
+        background-color: var(--daisy-surface-muted, #f8fafc) !important;
+        border-bottom: 1px solid var(--daisy-border, #e2e8f0) !important;
+        padding: 14px 18px !important;
+    }
+
+    .o_burger_menu_content {
+        padding: 12px !important;
+
+        .o_app {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--daisy-text, #0f172a);
+            transition: all 0.12s ease;
+
+            &:hover {
+                background-color: var(--daisy-surface-muted, #f1f5f9);
+            }
+
+            &.active {
+                background-color: var(--daisy-primary-subtle, #eef2ff);
+                color: var(--daisy-primary, #6366f1);
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// 10. Dark Mode Overrides for Overlays & Popovers
+// ------------------------------------------------------------------------------
+[data-daisy-scheme="dark"],
+[data-bs-theme="dark"],
+body.o_dark_user_theme,
+.o_dark_user_theme {
+    .o_popover:has(.o-mail-MessagingMenu),
+    .o_popover.o-dropdown--menu:has(.o-mail-MessagingMenu),
+    .o_popover .o-mail-MessagingMenu,
+    .o-mail-MessagingMenu {
+        background-color: #0d121f !important;
+        border-color: rgba(255, 255, 255, 0.12) !important;
+        color: #f8fafc !important;
+
+        .dropdown-toggle {
+            color: #f8fafc !important;
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.08) !important;
+            }
+        }
+
+        .dropdown-menu,
+        .o-mail-MessagingMenu-container,
+        .o-mail-MessagingMenu-list {
+            background-color: #0d121f !important;
+            border-color: rgba(255, 255, 255, 0.12) !important;
+
+            .o-mail-MessagingMenu-header {
+                background-color: #121824 !important;
+                border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+
+                .btn-group {
+                    background-color: rgba(255, 255, 255, 0.05);
+
+                    .btn {
+                        color: #94a3b8 !important;
+
+                        &.active {
+                            background-color: #1e293b !important;
+                            color: #f8fafc !important;
+                        }
+                    }
+                }
+                
+                a, .btn-link {
+                    color: var(--daisy-primary, #6366f1) !important;
+                }
+            }
+
+            .o-mail-MessagingMenu-search input {
+                background-color: #1e293b !important;
+                border-color: rgba(255, 255, 255, 0.1) !important;
+                color: #f8fafc !important;
+
+                &:focus {
+                    background-color: #121824 !important;
+                    border-color: var(--daisy-primary) !important;
+                }
+            }
+
+            .o-mail-NotificationItem,
+            .o-mail-Message,
+            .dropdown-item,
+            .list-group-item {
+                border-bottom-color: rgba(255, 255, 255, 0.05) !important;
+                background-color: transparent !important;
+                color: #cbd5e1 !important;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.04) !important;
+                }
+
+                .o-mail-NotificationItem-name,
+                .o-mail-NotificationItem-text,
+                .o-mail-Message-header,
+                .o-mail-Message-author,
+                strong,
+                b {
+                    color: #f8fafc !important;
+                }
+
+                .o-mail-NotificationItem-date,
+                .o-mail-Message-date {
+                    color: #94a3b8 !important;
+                }
+
+                .o-mail-NotificationItem-body,
+                .o-mail-Message-body,
+                p, span {
+                    color: #cbd5e1 !important;
+                }
+            }
+        }
+    }
+
+    // Activity Menu Popover in Dark Mode
+    .dropdown-menu.o-mail-DiscussSystray,
+    .dropdown-menu:has(.o-mail-ActivityMenu),
+    .o-mail-DiscussSystray {
+        background-color: #121824 !important;
+        border-color: rgba(255, 255, 255, 0.12) !important;
+        box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .o_ActivityMenu_popover,
+    .o-mail-ActivityMenu {
+        background-color: transparent !important;
+        scrollbar-color: rgba(255, 255, 255, 0.18) transparent !important;
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.18) !important;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.3) !important;
+            }
+        }
+
+        .dropdown-menu,
+        .o-mail-ActivityMenu-container,
+        .o-mail-ActivityListPopover {
+            background-color: #121824 !important;
+            border-color: rgba(255, 255, 255, 0.12) !important;
+        }
+
+        .list-group,
+        .list-group-flush {
+            --bs-list-group-bg: transparent !important;
+            --bs-list-group-color: #cbd5e1 !important;
+            --bs-list-group-action-hover-bg: rgba(255, 255, 255, 0.05) !important;
+            background-color: transparent !important;
+        }
+
+        .o-mail-ActivityGroup {
+            border-bottom-color: rgba(255, 255, 255, 0.06) !important;
+            background-color: transparent !important;
+            color: #cbd5e1 !important;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.05) !important;
+            }
+
+            [name="activityTitle"],
+            .o-mail-ActivityGroup-name {
+                color: #f8fafc !important;
+            }
+
+            // Semantic colored counters in dark mode
+            .btn-link {
+                &:first-of-type {
+                    color: #f87171 !important; // Rose 400 for Late
+                    &:hover {
+                        color: #fca5a5 !important;
+                        background-color: rgba(239, 68, 68, 0.15) !important;
+                    }
+                }
+
+                &:nth-of-type(2) {
+                    color: #fbbf24 !important; // Amber 400 for Today
+                    &:hover {
+                        color: #fde68a !important;
+                        background-color: rgba(245, 158, 11, 0.15) !important;
+                    }
+                }
+
+                &:nth-of-type(3) {
+                    color: #818cf8 !important; // Indigo/Violet for Future
+                    &:hover {
+                        color: #a5b4fc !important;
+                        background-color: rgba(99, 102, 241, 0.15) !important;
+                    }
+                }
+            }
+
+            .text-muted {
+                color: #64748b !important;
+                opacity: 0.65 !important;
+            }
+
+            .badge {
+                &.text-bg-success, &.bg-success {
+                    background-color: rgba(16, 185, 129, 0.16) !important;
+                    color: #6ee7b7 !important;
+                    border: 1px solid rgba(16, 185, 129, 0.3) !important;
+                }
+                &.text-bg-warning, &.bg-warning {
+                    background-color: rgba(245, 158, 11, 0.16) !important;
+                    color: #fde68a !important;
+                    border: 1px solid rgba(245, 158, 11, 0.3) !important;
+                }
+                &.text-bg-danger, &.bg-danger {
+                    background-color: rgba(239, 68, 68, 0.16) !important;
+                    color: #fca5a5 !important;
+                    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+                }
+            }
+        }
+
+        // "View all activities" Footer Button in Dark Mode
+        .list-group-item:not(.o-mail-ActivityGroup),
+        span.list-group-item {
+            background: #181f2e !important;
+            background-color: #181f2e !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-bottom: none !important;
+            border-left: none !important;
+            border-right: none !important;
+            color: var(--daisy-primary, #818cf8) !important;
+            font-weight: 600 !important;
+            font-size: 0.8125rem !important;
+
+            &:hover {
+                background: rgba(99, 102, 241, 0.2) !important;
+                background-color: rgba(99, 102, 241, 0.2) !important;
+                color: #ffffff !important;
+            }
+        }
+
+        .o-mail-ActivityMenu-empty {
+            color: #94a3b8 !important;
+        }
+    }
+
+    .o_app_menu_sidebar {
+        background-color: #09090b !important;
+        border-right-color: rgba(255, 255, 255, 0.08) !important;
+
+        .o_sidebar_topbar {
+            background-color: #0c0e14 !important;
+            border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        .o_burger_menu_content {
+            .o_app {
+                color: #cbd5e1 !important;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.06) !important;
+                    color: #ffffff !important;
+                }
+
+                &.active {
+                    background-color: rgba(99, 102, 241, 0.2) !important;
+                    color: #ffffff !important;
+                }
+            }
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // Multi-Company Switcher Menu in Dark Mode
+    // --------------------------------------------------------------------------
+    .o_switch_company_menu {
+        .dropdown-toggle,
+        > button {
+            color: #f8fafc !important;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.08) !important;
+            }
+        }
+    }
+
+    .o_switch_company_menu .dropdown-menu,
+    .o_switch_company_menu_dropdown {
+        background-color: #121824 !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6) !important;
+        padding: 6px !important;
+
+        div[role="search"],
+        .form-control {
+            background-color: #181f2e !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            color: #f8fafc !important;
+
+            .o_input {
+                color: #f8fafc !important;
+
+                &::placeholder {
+                    color: #64748b !important;
+                }
+            }
+
+            .oi-search {
+                color: #94a3b8 !important;
+            }
+        }
+
+        .o_switch_company_item {
+            background: transparent !important;
+            background-color: transparent !important;
+            border: none !important;
+            color: #cbd5e1 !important;
+
+            // Completely eliminate white alert-secondary background in dark mode
+            &.alert-secondary,
+            &.alert-secondary > * {
+                background: transparent !important;
+                background-color: transparent !important;
+                border-color: transparent !important;
+                color: #cbd5e1 !important;
+                box-shadow: none !important;
+            }
+
+            // Focus & Hover states (overriding Odoo's var(--gray-200) #e2e8f0)
+            &:hover,
+            &:hover > *,
+            &.focus,
+            &.focus > *,
+            &:focus,
+            &:focus > * {
+                background-color: rgba(255, 255, 255, 0.08) !important;
+                color: #ffffff !important;
+            }
+
+            // Left Checkbox Column
+            div[role="menuitemcheckbox"] {
+                border-right-color: rgba(255, 255, 255, 0.08) !important;
+
+                &.border-primary {
+                    border-right-color: rgba(99, 102, 241, 0.4) !important;
+                }
+
+                .fa-check-square {
+                    color: var(--daisy-primary, #818cf8) !important;
+                }
+
+                .fa-square-o {
+                    color: #64748b !important;
+                }
+
+                &:hover .fa-square-o {
+                    color: #94a3b8 !important;
+                }
+            }
+
+            // Right Company Label & Active Company Highlight
+            .log_into {
+                .company_label,
+                .company_label.text-body {
+                    color: #f8fafc !important;
+                }
+
+                // Active Current Company Highlight in Dark Mode
+                &.bg-primary-subtle {
+                    background: rgba(99, 102, 241, 0.22) !important;
+                    background-color: rgba(99, 102, 241, 0.22) !important;
+                    border-radius: 0 6px 6px 0 !important;
+
+                    .company_label,
+                    .company_label.text-body {
+                        color: #a5b4fc !important;
+                        font-weight: 600 !important;
+                    }
+                }
+            }
+
+            // When current company row is hovered
+            &:hover .log_into.bg-primary-subtle,
+            &.focus .log_into.bg-primary-subtle {
+                background-color: rgba(99, 102, 241, 0.32) !important;
+
+                .company_label,
+                .company_label.text-body {
+                    color: #ffffff !important;
+                }
+            }
+        }
+
+        // Bottom action buttons (Confirm / Reset)
+        .o_switch_company_menu_buttons {
+            border-top-color: rgba(255, 255, 255, 0.08) !important;
+
+            .btn-primary {
+                background-color: var(--daisy-primary, #6366f1) !important;
+                border-color: var(--daisy-primary, #6366f1) !important;
+                color: #ffffff !important;
+
+                &:hover {
+                    background-color: var(--daisy-primary-hover, #4f46e5) !important;
+                }
+            }
+
+            .btn-secondary {
+                background-color: rgba(255, 255, 255, 0.08) !important;
+                border: 1px solid rgba(255, 255, 255, 0.12) !important;
+                color: #cbd5e1 !important;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.14) !important;
+                    color: #ffffff !important;
+                }
+            }
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // Popovers & Popover Arrows in Dark Mode (OLED Midnight #121824)
+    // --------------------------------------------------------------------------
+    .popover,
+    .o_popover {
+        --bs-popover-bg: #121824 !important;
+        --bs-popover-border-color: rgba(255, 255, 255, 0.15) !important;
+        --bs-popover-header-bg: #181f2e !important;
+        --bs-popover-header-color: #f8fafc !important;
+        --bs-popover-body-color: #cbd5e1 !important;
+        --bs-popover-arrow-border: rgba(255, 255, 255, 0.15) !important;
+        background-color: #121824 !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+        border-radius: 8px !important;
+
+        // Popover Triangle Arrow Overrides (Eliminates stark white arrow)
+        &.bs-popover-bottom,
+        &.bs-popover-auto[data-popper-placement^="bottom"] {
+            > .popover-arrow::after {
+                border-bottom-color: #121824 !important;
+            }
+            > .popover-arrow::before {
+                border-bottom-color: rgba(255, 255, 255, 0.15) !important;
+            }
+        }
+
+        &.bs-popover-top,
+        &.bs-popover-auto[data-popper-placement^="top"] {
+            > .popover-arrow::after {
+                border-top-color: #121824 !important;
+            }
+            > .popover-arrow::before {
+                border-top-color: rgba(255, 255, 255, 0.15) !important;
+            }
+        }
+
+        &.bs-popover-start,
+        &.bs-popover-auto[data-popper-placement^="left"] {
+            > .popover-arrow::after {
+                border-left-color: #121824 !important;
+            }
+            > .popover-arrow::before {
+                border-left-color: rgba(255, 255, 255, 0.15) !important;
+            }
+        }
+
+        &.bs-popover-end,
+        &.bs-popover-auto[data-popper-placement^="right"] {
+            > .popover-arrow::after {
+                border-right-color: #121824 !important;
+            }
+            > .popover-arrow::before {
+                border-right-color: rgba(255, 255, 255, 0.15) !important;
+            }
+        }
+
+        .popover-arrow::after {
+            border-bottom-color: #121824 !important;
+            border-top-color: #121824 !important;
+        }
+
+        .popover-arrow::before {
+            border-bottom-color: rgba(255, 255, 255, 0.15) !important;
+            border-top-color: rgba(255, 255, 255, 0.15) !important;
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // Domain Selector & Tree Editor in Dark Mode
+    // --------------------------------------------------------------------------
+    .o_domain_selector {
+        background-color: #161e2e !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 10px !important;
+        padding: 16px !important;
+        color: #f8fafc !important;
+
+        .o_domain_selector_row {
+            color: #cbd5e1 !important;
+        }
+
+        .o_domain_selector_debug_container {
+            background-color: #0f172a !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #94a3b8 !important;
+
+            textarea {
+                color: #f8fafc !important;
+            }
+        }
+
+        .o_tree_editor {
+            color: #f8fafc !important;
+
+            .o_tree_editor_node {
+                color: #f8fafc !important;
+            }
+
+            .o_tree_editor_connector {
+                color: #f8fafc !important;
+                font-size: 0.875rem !important;
+
+                span {
+                    color: #f8fafc !important;
+                }
+
+                .o_tree_editor_connector_value {
+                    button {
+                        opacity: 1 !important;
+                        background: transparent !important;
+                        border: none !important;
+
+                        strong.text-primary,
+                        strong {
+                            color: var(--daisy-primary, #818cf8) !important;
+                            font-weight: 700 !important;
+                            font-size: 0.9375rem !important;
+                        }
+
+                        &:hover strong {
+                            color: #a5b4fc !important;
+                            text-decoration: underline;
+                        }
+
+                        &:after,
+                        &::after {
+                            color: var(--daisy-primary, #818cf8) !important;
+                        }
+                    }
+                }
+            }
+
+            .o_tree_editor_condition {
+                gap: 10px !important;
+
+                &.border.bg-100 {
+                    background-color: #181f2e !important;
+                    border-color: rgba(255, 255, 255, 0.12) !important;
+                    color: #f8fafc !important;
+                    border-radius: 6px !important;
+                }
+            }
+
+            .o_tree_editor_editor {
+                select,
+                select.o_input {
+                    background-color: #181f2e !important;
+                    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                    color: #f8fafc !important;
+                    border-radius: 6px !important;
+                    padding: 4px 10px !important;
+                    min-height: 34px !important;
+
+                    &:focus {
+                        border-color: var(--daisy-primary, #818cf8) !important;
+                        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25) !important;
+                        color: #ffffff !important;
+                        outline: none !important;
+                    }
+
+                    option,
+                    option.text-black {
+                        background-color: #121824 !important;
+                        color: #f8fafc !important;
+                    }
+                }
+
+                input,
+                input.o_input {
+                    background-color: #181f2e !important;
+                    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                    color: #f8fafc !important;
+                    border-radius: 6px !important;
+                    padding: 4px 10px !important;
+                    min-height: 34px !important;
+
+                    &:focus {
+                        border-color: var(--daisy-primary, #818cf8) !important;
+                        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25) !important;
+                        color: #ffffff !important;
+                        outline: none !important;
+                    }
+                }
+
+                .o_input.d-flex {
+                    background-color: #181f2e !important;
+                    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                    color: #f8fafc !important;
+                    border-radius: 6px !important;
+
+                    .o_tag,
+                    .badge {
+                        background-color: #243048 !important;
+                        border: 1px solid rgba(255, 255, 255, 0.18) !important;
+                        color: #f8fafc !important;
+                    }
+                }
+            }
+
+            .o_tree_editor_node_control_panel {
+                gap: 4px !important;
+
+                button,
+                .btn {
+                    color: #94a3b8 !important;
+                    border-radius: 6px !important;
+                    transition: all 0.15s ease !important;
+                    padding: 4px 8px !important;
+
+                    &:hover {
+                        color: #ffffff !important;
+                        background-color: rgba(255, 255, 255, 0.08) !important;
+                    }
+
+                    &.text-danger,
+                    .fa-trash {
+                        color: #f87171 !important;
+
+                        &:hover {
+                            color: #ef4444 !important;
+                            background-color: rgba(239, 68, 68, 0.15) !important;
+                        }
+                    }
+
+                    .fa-sitemap,
+                    .fa-plus {
+                        color: #94a3b8 !important;
+
+                        &:hover {
+                            color: var(--daisy-primary, #818cf8) !important;
+                        }
+                    }
+                }
+            }
+
+            .o_tree_editor_row {
+                > a[role="button"] {
+                    color: var(--daisy-primary, #818cf8) !important;
+                    font-weight: 600 !important;
+                    font-size: 0.8125rem !important;
+                    background-color: rgba(99, 102, 241, 0.12) !important;
+                    border: 1px dashed rgba(99, 102, 241, 0.35) !important;
+                    border-radius: 6px !important;
+                    padding: 4px 12px !important;
+                    text-decoration: none !important;
+                    display: inline-flex !important;
+                    align-items: center !important;
+                    gap: 4px !important;
+                    transition: all 0.15s ease !important;
+                    margin-top: 4px !important;
+
+                    &:hover {
+                        background-color: rgba(99, 102, 241, 0.22) !important;
+                        border-color: var(--daisy-primary, #818cf8) !important;
+                        color: #ffffff !important;
+                        text-decoration: none !important;
+                    }
+
+                    &::before {
+                        content: "+";
+                        font-size: 1rem;
+                        font-weight: 700;
+                        margin-right: 2px;
+                    }
+                }
+            }
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // Model Field Selector in Dark Mode
+    // --------------------------------------------------------------------------
+    .o_model_field_selector,
+    .o_model_field_selector.o_input {
+        background-color: #181f2e !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 6px !important;
+        color: #f8fafc !important;
+        min-height: 34px !important;
+        padding: 3px 8px !important;
+        display: flex !important;
+        align-items: center !important;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+
+        &:hover,
+        &:focus-within {
+            border-color: var(--daisy-primary, #818cf8) !important;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2) !important;
+        }
+
+        .o_model_field_selector_value {
+            &:empty::before {
+                content: "Select a field...";
+                color: #64748b !important;
+                font-size: 0.8125rem !important;
+                font-style: italic !important;
+            }
+        }
+
+        // Chip item (CRITICAL: overrides Odoo's hardcoded $o-brand-lightsecondary)
+        .o_model_field_selector_chain_part {
+            background: #243048 !important;
+            background-color: #243048 !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            color: #f8fafc !important;
+            border-radius: 4px !important;
+            padding: 2px 8px !important;
+            font-size: 0.8125rem !important;
+            font-weight: 500 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            margin-right: 2px !important;
+        }
+
+        i.oi-chevron-right,
+        i.fa-chevron-right {
+            color: #94a3b8 !important;
+            font-size: 0.65rem !important;
+            margin: 0 4px !important;
+        }
+
+        .o_model_field_selector_warning {
+            color: #f59e0b !important;
+        }
+
+        .o_model_field_selector_popover_relation_icon {
+            color: #94a3b8 !important;
+            &:hover {
+                color: #f87171 !important;
+            }
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // Model Field Selector Popover in Dark Mode
+    // --------------------------------------------------------------------------
+    .o_model_field_selector_popover {
+        background-color: #121824 !important;
+        color: #f8fafc !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+
+        > div:first-child,
+        .border-bottom {
+            background-color: #121824 !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: #f8fafc !important;
+
+            .text-dark,
+            .o_model_field_selector_popover_title {
+                color: #f8fafc !important;
+                font-weight: 700 !important;
+            }
+
+            .o_model_field_selector_popover_prev_page,
+            .o_model_field_selector_popover_close {
+                color: #94a3b8 !important;
+                opacity: 0.8;
+                transition: all 0.15s ease;
+
+                &:hover {
+                    color: #ffffff !important;
+                    opacity: 1;
+                }
+            }
+        }
+
+        .o_model_field_selector_popover_search {
+            input,
+            input.o_input {
+                background-color: #181f2e !important;
+                border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                color: #f8fafc !important;
+                border-radius: 6px !important;
+                padding: 5px 10px !important;
+
+                &::placeholder {
+                    color: #64748b !important;
+                }
+
+                &:focus {
+                    border-color: var(--daisy-primary, #818cf8) !important;
+                    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25) !important;
+                    outline: none !important;
+                }
+            }
+        }
+
+        .o_model_field_selector_popover_body {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: rgba(255, 255, 255, 0.2);
+                border-radius: 9999px;
+            }
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+        }
+
+        .o_model_field_selector_popover_page {
+            .o_model_field_selector_popover_item {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+                background-color: transparent !important;
+                transition: background-color 0.12s ease !important;
+
+                button.o_model_field_selector_popover_item_name,
+                button.o_model_field_selector_popover_item_relation,
+                button.btn-light {
+                    background: transparent !important;
+                    background-color: transparent !important;
+                    color: #cbd5e1 !important;
+                    border: none !important;
+                    padding: 6px 12px !important;
+                    font-size: 0.8125rem !important;
+
+                    .o_model_field_selector_popover_item_title {
+                        color: #64748b !important;
+                        font-size: 0.72rem !important;
+                    }
+
+                    .o_model_field_selector_popover_relation_icon {
+                        color: #94a3b8 !important;
+                    }
+                }
+
+                button.o_model_field_selector_popover_item_relation {
+                    border-left: 1px solid rgba(255, 255, 255, 0.06) !important;
+                }
+
+                &:hover,
+                &:focus-within {
+                    background-color: rgba(255, 255, 255, 0.08) !important;
+
+                    button.o_model_field_selector_popover_item_name,
+                    button.o_model_field_selector_popover_item_relation,
+                    button.btn-light {
+                        color: #ffffff !important;
+
+                        .o_model_field_selector_popover_relation_icon {
+                            color: #ffffff !important;
+                        }
+                    }
+                }
+
+                &.active {
+                    background-color: rgba(99, 102, 241, 0.22) !important;
+
+                    button.o_model_field_selector_popover_item_name,
+                    button.o_model_field_selector_popover_item_relation,
+                    button.btn-light {
+                        color: #ffffff !important;
+                        font-weight: 600 !important;
+
+                        .o_model_field_selector_popover_relation_icon {
+                            color: var(--daisy-primary, #818cf8) !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        .o_model_field_selector_popover_footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+            background-color: #0f172a !important;
+
+            input.o_model_field_selector_debug {
+                background-color: #181f2e !important;
+                border: 1px solid rgba(255, 255, 255, 0.12) !important;
+                color: #f8fafc !important;
+            }
+        }
+    }
+}
